@@ -1,0 +1,85 @@
+# Plugin information
+plugin:
+    name: djetson.shop::lang.plugin.name
+    description: djetson.shop::lang.plugin.description
+    author: Djetson
+    icon: oc-icon-shopping-cart
+
+# Plugin navigation
+navigation:
+    shop:
+        label: djetson.shop::lang.plugin.menu_label
+        url: djetson/shop/products
+        icon: icon-shopping-cart
+        sideMenu:
+            products:
+                label: djetson.shop::lang.products.menu_label
+                url: djetson/shop/products
+                icon: icon-cube
+            categories:
+                label: djetson.shop::lang.categories.menu_label
+                url: djetson/shop/categories
+                icon: icon-cube
+            manufacturers:
+                label: djetson.shop::lang.manufacturers.menu_label
+                url: djetson/shop/manufacturers
+                icon: icon-cube
+            orders:
+                label: djetson.shop::lang.orders.menu_label
+                url: djetson/shop/orders
+                icon: icon-cube
+
+# Plugin permissions
+permissions:
+    djetson.shop.access_product:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_product
+    djetson.shop.access_categories:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_categories
+    djetson.shop.access_manufacturers:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_manufacturers
+    djetson.shop.access_orders:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_orders
+    djetson.shop.access_currencies:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_currencies
+    djetson.shop.access_shipping_methods:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_shipping_methods
+    djetson.shop.access_payment_methods:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_payment_methods
+
+# Plugin settings
+settings:
+    store:
+        label: djetson.shop::lang.settings.general.label
+        description: djetson.shop::lang.settings.general.description
+        category: djetson.shop::lang.settings.plugin_settings_category
+        icon: icon-shopping-cart
+        class: Djetson\Shop\Models\Settings
+        order: 1
+    currencies:
+        label: djetson.shop::lang.settings.currencies.label
+        description: djetson.shop::lang.settings.currencies.description
+        category: djetson.shop::lang.settings.plugin_settings_category
+        icon: icon-shopping-cart
+        url: /backend/djetson/shop/currencies
+        order: 2
+    shipping_methods:
+        label: djetson.shop::lang.settings.shipping_methods.label
+        description: djetson.shop::lang.settings.shipping_methods.description
+        category: djetson.shop::lang.settings.plugin_settings_category
+        icon: icon-shopping-cart
+        url: /backend/djetson/shop/shippingmethods
+        order: 3
+    payment_methods:
+        label: djetson.shop::lang.settings.payment_methods.label
+        description: djetson.shop::lang.settings.payment_methods.description
+        category: djetson.shop::lang.settings.plugin_settings_category
+        icon: icon-shopping-cart
+        url: /backend/djetson/shop/paymentmethods
+        order: 4

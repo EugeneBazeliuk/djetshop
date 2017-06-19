@@ -1,0 +1,37 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    name:
+        label: djetson.shop::lang.form.name
+        type: text
+        span: left
+        required: 1
+
+    code:
+        label: djetson.shop::lang.form.code
+        type: text
+        span: left
+        required: 1
+
+    symbol:
+        label: djetson.shop::lang.form.symbol
+        type: text
+        span: left
+        required: 1
+
+    symbol_position:
+        label: djetson.shop::lang.form.symbol_position
+        type: dropdown
+        span: left
+        required: 1
+        options:
+            before: djetson.shop::lang.form.symbol_position_before
+            after: djetson.shop::lang.form.symbol_position_after
+
+    symbol_space:
+        label: djetson.shop::lang.form.symbol_space
+        type: switch
+        default: 1

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Shipping Method
+
+# Model Form Field configuration
+form: $/djetson/shop/models/shippingmethod/fields.yaml
+
+# Model Class name
+modelClass: Djetson\Shop\Models\ShippingMethod
+
+# Default redirect location
+defaultRedirect: djetson/shop/shippingmethods
+
+# Create page
+create:
+    title: Create Shipping Method
+    redirect: djetson/shop/shippingmethods/update/:id
+    redirectClose: djetson/shop/shippingmethods
+
+# Update page
+update:
+    title: Edit Shipping Method
+    redirect: djetson/shop/shippingmethods
+    redirectClose: djetson/shop/shippingmethods
+
+# Preview page
+preview:
+    title: Preview Shipping Method

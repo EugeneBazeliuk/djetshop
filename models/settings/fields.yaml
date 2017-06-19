@@ -1,0 +1,27 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+tabs:
+    fields:
+
+        currency:
+            tab: djetson.shop::lang.settings.tab.currency
+            label: djetson.shop::lang.settings.currency
+            type: relation
+            span: left
+
+        price_format_decimal_count:
+            tab: djetson.shop::lang.settings.tab.currency
+            label: djetson.shop::lang.settings.price_format_decimal_count
+            span: left
+
+        price_format_decimal_point:
+            tab: djetson.shop::lang.settings.tab.currency
+            label: djetson.shop::lang.settings.price_format_decimal_point
+            span: left
+
+        price_thousands_separator:
+            tab: djetson.shop::lang.settings.tab.currency
+            label: djetson.shop::lang.settings.price_thousands_separator
+            span: left

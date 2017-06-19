@@ -1,0 +1,61 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+
+    name:
+        label: djetson.shop::lang.list.name
+        searchable: 1
+
+    sku:
+        label: djetson.shop::lang.list.sku
+        type: number
+        width: 1%
+        searchable: 1
+
+    category:
+        label: djetson.shop::lang.list.category
+        relation: category
+        select: name
+        width: 10%
+
+    price:
+        label: djetson.shop::lang.list.price
+        type: number
+        cssClass: text-center
+        width: 10%
+        searchable: 0
+
+    is_unique_text:
+        label: djetson.shop::lang.list.is_unique_text
+        width: 1%
+        searchable: 0
+
+    is_searchable:
+        label: djetson.shop::lang.list.is_searchable
+        width: 1%
+        searchable: 0
+
+    is_active:
+        label: djetson.shop::lang.list.is_active
+        width: 1%
+        searchable: 0
+
+    created_at:
+        label: djetson.shop::lang.list.created_at
+        type: date
+        invisible: true
+        width: 120px
+
+    updated_at:
+        label: djetson.shop::lang.list.updated_at
+        type: date
+        invisible: true
+        width: 120px
+
+    deleted_at:
+        label: djetson.shop::lang.list.updated_at
+        type: date
+        invisible: true
+        width: 120px

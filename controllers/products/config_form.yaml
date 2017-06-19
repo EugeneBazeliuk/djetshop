@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Product
+
+# Model Form Field configuration
+form: $/djetson/shop/models/product/fields.yaml
+
+# Model Class name
+modelClass: Djetson\Shop\Models\Product
+
+# Default redirect location
+defaultRedirect: djetson/shop/products
+
+# Create page
+create:
+    title: Create Product
+    redirect: djetson/shop/products/update/:id
+    redirectClose: djetson/shop/products
+
+# Update page
+update:
+    title: Edit Product
+    redirect: djetson/shop/products
+    redirectClose: djetson/shop/products
+
+# Preview page
+preview:
+    title: Preview Product

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Manufacturer
+
+# Model Form Field configuration
+form: $/djetson/shop/models/manufacturer/fields.yaml
+
+# Model Class name
+modelClass: Djetson\Shop\Models\Manufacturer
+
+# Default redirect location
+defaultRedirect: djetson/shop/manufacturers
+
+# Create page
+create:
+    title: Create Manufacturer
+    redirect: djetson/shop/manufacturers/update/:id
+    redirectClose: djetson/shop/manufacturers
+
+# Update page
+update:
+    title: Edit Manufacturer
+    redirect: djetson/shop/manufacturers
+    redirectClose: djetson/shop/manufacturers
+
+# Preview page
+preview:
+    title: Preview Manufacturer
