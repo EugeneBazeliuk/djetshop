@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('djetson/shop/paymentmethods') ?>">Payment Methods</a></li>
+        <li><a href="<?= Backend::url('djetson/shop/paymentmethods') ?>"><?= e(trans('djetson.shop::lang.payment_methods.label')) ?></a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -51,6 +51,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('djetson/shop/paymentmethods') ?>" class="btn btn-default">Return to payment methods list</a></p>
+    <p><a href="<?= Backend::url('djetson/shop/paymentmethods') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
 
 <?php endif ?>

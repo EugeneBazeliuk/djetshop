@@ -9,7 +9,7 @@ list: $/djetson/shop/models/shippingmethod/columns.yaml
 modelClass: Djetson\Shop\Models\ShippingMethod
 
 # List Title
-title: Manage Shipping Methods
+title: djetson.shop::lang.shipping_methods.manage
 
 # Link URL for each record
 recordUrl: djetson/shop/shippingmethods/update/:id

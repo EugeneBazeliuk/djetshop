@@ -17,14 +17,41 @@ fields:
         required: 1
         emptyOption: djetson.shop::lang.form.provider_empty
 
-    cost:
-        label: djetson.shop::lang.form.cost
-        type: number
-        span: left
-        default: 0
-
     is_active:
         label: djetson.shop::lang.form.is_active
         type: switch
-        span: left
-        default: 1
+        default: 0
+
+    is_allow_in_order:
+        label: djetson.shop::lang.form.is_allow_in_order
+        type: switch
+        default: 0
+
+    is_allow_free_shipping:
+        label: djetson.shop::lang.form.is_allow_free_shipping
+        type: switch
+        default: 0
+
+tabs:
+    fields:
+
+        cost:
+            tab: djetson.shop::lang.form.tab.settings
+            label: djetson.shop::lang.form.cost
+            type: number
+            span: left
+            dependsOn: is_allow_in_order
+            trigger:
+                action: show
+                field: is_allow_in_order
+                condition: checked
+
+        free_shipping_limit:
+            tab: djetson.shop::lang.form.tab.settings
+            label: djetson.shop::lang.form.free_shipping_limit
+            type: number
+            span: left
+            trigger:
+                action: show
+                field: is_allow_free_shipping
+                condition: checked

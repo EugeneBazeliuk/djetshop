@@ -21,7 +21,7 @@ tabs:
             label: djetson.shop::lang.settings.price_format_decimal_point
             span: left
 
-        price_thousands_separator:
+        price_format_thousands_separator:
             tab: djetson.shop::lang.settings.tab.currency
-            label: djetson.shop::lang.settings.price_thousands_separator
+            label: djetson.shop::lang.settings.price_format_thousands_separator
             span: left

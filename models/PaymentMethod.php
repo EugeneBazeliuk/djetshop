@@ -2,6 +2,7 @@
 
 use Model;
 use Config;
+use ApplicationException;
 use October\Rain\Database\Traits\Validation;
 
 /**
@@ -48,9 +49,17 @@ class PaymentMethod extends Model
     public $rules = [
         'name'      => ['required', 'between:1,255'],
         'provider'  => ['required', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255'],
-        'cost'      => ['required', 'numeric'],
+        'cost'      => ['numeric'],
         'is_active' => ['boolean'],
     ];
+
+    /**
+     * Before Save action
+     */
+    public function beforeSave()
+    {
+        $this->checkProvider();
+    }
 
     /**
      * Provider list
@@ -66,5 +75,20 @@ class PaymentMethod extends Model
         }
 
         return $list;
+    }
+
+    /**
+     * Check provider
+     * @throws \ApplicationException
+     */
+    public function checkProvider()
+    {
+        $providerList = Config::get('djetson.shop::payments.methods');
+
+        if (!array_key_exists($this->provider, $providerList)) {
+            throw new ApplicationException(trans('djetson.shop::lang.payment_methods.errors.provider_not_found', [
+                'provider' => $this->provider,
+            ]));
+        }
     }
 }

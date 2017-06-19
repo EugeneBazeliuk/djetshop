@@ -17,9 +17,20 @@ columns:
 
     cost:
         label: djetson.shop::lang.list.cost
-        type: number
-        cssClass: text-center
+        type: price
         width: 10%
+        searchable: 0
+
+    is_allow_in_order:
+        label: djetson.shop::lang.list.is_allow_in_order
+        type: switch
+        width: 1%
+        searchable: 0
+
+    is_allow_free_shipping:
+        label: djetson.shop::lang.list.is_allow_free_shipping
+        type: switch
+        width: 1%
         searchable: 0
 
     is_active:

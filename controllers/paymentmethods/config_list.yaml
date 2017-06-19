@@ -9,7 +9,7 @@ list: $/djetson/shop/models/paymentmethod/columns.yaml
 modelClass: Djetson\Shop\Models\PaymentMethod
 
 # List Title
-title: Manage Payment Methods
+title: djetson.shop::lang.payment_methods.manage
 
 # Link URL for each record
 recordUrl: djetson/shop/paymentmethods/update/:id

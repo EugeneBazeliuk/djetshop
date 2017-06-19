@@ -14,11 +14,9 @@ class Plugin extends PluginBase
      */
     public function registerListColumnTypes()
     {
-        $setting = new Settings;
-
         return [
-            'price' => function(float $value) use ($setting) {
-                return $setting->instance()->convertPrice($value);
+            'price' => function(float $value) {
+                return Settings::instance()->convertPrice($value);
             }
         ];
     }

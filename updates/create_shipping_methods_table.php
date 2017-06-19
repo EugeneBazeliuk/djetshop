@@ -14,10 +14,15 @@ class CreateShippingMethodsTable extends Migration
             // Base
             $table->string('name');
             $table->string('provider');
-            $table->decimal('cost', 10, 2)->nullable();
+            $table->decimal('cost', 10, 2)->default(0.00);
+            $table->decimal('free_shipping_limit', 10, 2)->default(0.00);
             // State
+            $table->boolean('is_allow_in_order')->default(0);
+            $table->boolean('is_allow_free_shipping')->default(0);
             $table->boolean('is_active')->default(0);
+            // Timestamps
             $table->timestamps();
+
         });
     }
 

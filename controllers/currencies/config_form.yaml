@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: djetson.shop::lang.currencies.name
+name: djetson.shop::lang.currencies.label
 
 # Model Form Field configuration
 form: $/djetson/shop/models/currency/fields.yaml

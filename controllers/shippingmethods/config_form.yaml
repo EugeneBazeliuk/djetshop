@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Shipping Method
+name: djetson.shop::lang.shipping_methods.label
 
 # Model Form Field configuration
 form: $/djetson/shop/models/shippingmethod/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: djetson/shop/shippingmethods
 
 # Create page
 create:
-    title: Create Shipping Method
+    title: djetson.shop::lang.shipping_methods.create
     redirect: djetson/shop/shippingmethods/update/:id
     redirectClose: djetson/shop/shippingmethods
 
 # Update page
 update:
-    title: Edit Shipping Method
+    title: djetson.shop::lang.shipping_methods.update
     redirect: djetson/shop/shippingmethods
     redirectClose: djetson/shop/shippingmethods
 
 # Preview page
 preview:
-    title: Preview Shipping Method
+    title: djetson.shop::lang.shipping_methods.preview

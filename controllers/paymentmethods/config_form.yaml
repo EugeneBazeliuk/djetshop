@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Payment Method
+name: djetson.shop::lang.payment_methods.label
 
 # Model Form Field configuration
 form: $/djetson/shop/models/paymentmethod/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: djetson/shop/paymentmethods
 
 # Create page
 create:
-    title: Create Payment Method
+    title: djetson.shop::lang.payment_methods.create
     redirect: djetson/shop/paymentmethods/update/:id
     redirectClose: djetson/shop/paymentmethods
 
 # Update page
 update:
-    title: Edit Payment Method
+    title: djetson.shop::lang.payment_methods.update
     redirect: djetson/shop/paymentmethods
     redirectClose: djetson/shop/paymentmethods
 
 # Preview page
 preview:
-    title: Preview Payment Method
+    title: djetson.shop::lang.payment_methods.preview

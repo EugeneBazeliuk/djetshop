@@ -5,27 +5,26 @@ use ApplicationException;
 
 /**
  * Settings
- * Manage plugin settings
- *
- * @property    \Djetson\Shop\Models\Currency $currency
- * @method      \October\Rain\Database\Relations\BelongsTo currency
+ * @package Djetson\Shop
  *
  * @property string $price_format_decimal_count
  * @property string $price_format_decimal_point
- * @property string $price_thousands_separator
+ * @property string $price_format_thousands_separator
+ * @property \Djetson\Shop\Models\Currency $currency
  *
- * @method static get($key, $value)
- * @method static set($key, $value)
+ * @method \October\Rain\Database\Relations\BelongsTo currency
+ *
+ * @see \System\Behaviors\SettingsModel::instance()
+ * @see \System\Behaviors\SettingsModel::set()
+ * @see \System\Behaviors\SettingsModel::get()
  *
  * @mixin \October\Rain\Database\Model
  * @mixin \System\Behaviors\SettingsModel
- *
- * @package Djetson\Shop
  */
 class Settings extends Model
 {
     public $implement = ['System.Behaviors.SettingsModel'];
-    public $settingsCode = 'djetshop_settings';
+    public $settingsCode = 'djetson_shop_settings';
     public $settingsFields = 'fields.yaml';
 
     //
@@ -50,7 +49,7 @@ class Settings extends Model
     {
         $this->price_format_decimal_count = self::PRICE_FORMAT_DECIMAL_COUNT;
         $this->price_format_decimal_point = self::PRICE_FORMAT_DECIMAL_POINT;
-        $this->price_thousands_separator = self::PRICE_FORMAT_THOUSANDS_SEPARATOR;
+        $this->price_format_thousands_separator = self::PRICE_FORMAT_THOUSANDS_SEPARATOR;
     }
 
     /**
@@ -59,9 +58,9 @@ class Settings extends Model
      *
      * @return string
      */
-    public function getPriceFormat(float $price)
+    public function convertPrice(float $price)
     {
-        return $this->convertPrice($this->getDefaultCurrency(), $price);
+        return $this->getConvertedPrice($this->getDefaultCurrency(), $price);
     }
 
     /**
@@ -72,21 +71,23 @@ class Settings extends Model
      * @return string
      * @throws \ApplicationException
      */
-    public function convertPrice(Currency $currency, float $price)
+    public function getConvertedPrice(Currency $currency, float $price)
     {
-        $price = number_format($price, $this->price_format_decimal_count, $this->price_format_decimal_point, $this->price_thousands_separator);
         $space = $currency->symbol_space ? ' ' : '';
+        $price = number_format($price,
+            $this->price_format_decimal_count,
+            $this->price_format_decimal_point,
+            $this->price_format_thousands_separator);
 
-        switch ($currency->symbol_position)
-        {
-            case self::PRICE_FORMAT_POSITION_AFTER:
-                $price = implode($space, [$price, $currency->symbol]);
-                break;
-            case self::PRICE_FORMAT_POSITION_BEFORE:
+        switch ($currency->symbol_position) {
+            case self::PRICE_FORMAT_POSITION_BEFORE;
                 $price = implode($space, [$currency->symbol, $price]);
                 break;
+            case self::PRICE_FORMAT_POSITION_AFTER;
+                $price = implode($space, [$price, $currency->symbol]);
+                break;
             default:
-                throw new ApplicationException('Wrong price format position');
+                throw new ApplicationException(trans('djetson.shop::lang.settings.errors.failed_price_format_position'));
         }
 
         return (string) $price;
@@ -97,12 +98,12 @@ class Settings extends Model
      * @return \Djetson\Shop\Models\Currency
      * @throws \ApplicationException
      */
-    public function getDefaultCurrency()
+    private function getDefaultCurrency()
     {
-        if (!$this->currency) {
-            throw new ApplicationException(trans('djetson.shop::lang.settings.errors.currency_failed'));
+        if ($this->currency) {
+            return $this->currency;
         }
 
-        return $this->currency;
+        throw new ApplicationException(trans('djetson.shop::lang.settings.errors.failed_default_currency'));
     }
 }
