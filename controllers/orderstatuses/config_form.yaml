@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Order Status
+
+# Model Form Field configuration
+form: $/djetson/shop/models/orderstatus/fields.yaml
+
+# Model Class name
+modelClass: Djetson\Shop\Models\OrderStatus
+
+# Default redirect location
+defaultRedirect: djetson/shop/orderstatuses
+
+# Create page
+create:
+    title: Create Order Status
+    redirect: djetson/shop/orderstatuses/update/:id
+    redirectClose: djetson/shop/orderstatuses
+
+# Update page
+update:
+    title: Edit Order Status
+    redirect: djetson/shop/orderstatuses
+    redirectClose: djetson/shop/orderstatuses
+
+# Preview page
+preview:
+    title: Preview Order Status
