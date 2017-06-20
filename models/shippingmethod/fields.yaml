@@ -40,6 +40,7 @@ tabs:
             label: djetson.shop::lang.form.cost
             type: number
             span: left
+            default: 0
             dependsOn: is_allow_in_order
             trigger:
                 action: show
@@ -51,6 +52,7 @@ tabs:
             label: djetson.shop::lang.form.free_shipping_limit
             type: number
             span: left
+            default: 0
             trigger:
                 action: show
                 field: is_allow_free_shipping

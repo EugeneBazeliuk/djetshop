@@ -52,6 +52,9 @@ permissions:
     djetson.shop.access_payment_methods:
         tab: djetson.shop::lang.plugin.name
         label: djetson.shop::lang.permissions.access_payment_methods
+    djetson.shop.access_order_statuses:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_order_statuses
 
 # Plugin settings
 settings:
@@ -83,3 +86,10 @@ settings:
         icon: icon-shopping-cart
         url: /backend/djetson/shop/paymentmethods
         order: 4
+    order_statuses:
+        label: djetson.shop::lang.settings.order_statuses.label
+        description: djetson.shop::lang.settings.order_statuses.description
+        category: djetson.shop::lang.settings.plugin_settings_category
+        icon: icon-shopping-cart
+        url: /backend/djetson/shop/orderstatuses
+        order: 5

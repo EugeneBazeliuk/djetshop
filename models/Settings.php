@@ -13,9 +13,11 @@ use ApplicationException;
  * @property \Djetson\Shop\Models\Currency $currency
  *
  * @method \October\Rain\Database\Relations\BelongsTo currency
- *
+ * @method static instance()
  * @see \System\Behaviors\SettingsModel::instance()
+ * @method static set()
  * @see \System\Behaviors\SettingsModel::set()
+ * @method static get()
  * @see \System\Behaviors\SettingsModel::get()
  *
  * @mixin \October\Rain\Database\Model
@@ -47,6 +49,7 @@ class Settings extends Model
 
     public function initSettingsData()
     {
+        $this->currency = Currency::firstOrFail();
         $this->price_format_decimal_count = self::PRICE_FORMAT_DECIMAL_COUNT;
         $this->price_format_decimal_point = self::PRICE_FORMAT_DECIMAL_POINT;
         $this->price_format_thousands_separator = self::PRICE_FORMAT_THOUSANDS_SEPARATOR;
@@ -91,6 +94,15 @@ class Settings extends Model
         }
 
         return (string) $price;
+    }
+
+    public function checkIsDefaultCurrency($id)
+    {
+        if ($this->currency->id == $id) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

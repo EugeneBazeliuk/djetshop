@@ -71,7 +71,7 @@ class Currency extends Model
      */
     public function beforeDelete()
     {
-        if ($this->checkIsDefaultCurrency()) {
+        if (Settings::instance()->checkIsDefaultCurrency($this->id)) {
             throw new ApplicationException(trans('djetson.shop::lang.currencies.errors.delete_default'));
         }
     }
@@ -82,22 +82,6 @@ class Currency extends Model
      */
     public function getPreviewAttribute()
     {
-        $settings = new Settings;
-
-        return $settings->instance()->getConvertedPrice($this, 100.00);
-    }
-
-    /**
-     * @return bool
-     */
-    public function checkIsDefaultCurrency()
-    {
-        $settings = new Settings;
-
-        if ($this->id == $settings->instance()->currency->id) {
-            return true;
-        }
-
-        return false;
+        return Settings::instance()->getConvertedPrice($this, 100.00);
     }
 }

@@ -155,6 +155,15 @@ return [
         ]
     ],
 
+    // Order statuses
+    'order_statuses' => [
+        'label' => 'Статус счёта',
+        'manage' => 'Управление статусами счёта',
+        'create' => 'Создание статуса счёта',
+        'update' => 'Обновление статуса счёта',
+        'preview' => 'Просмотр статуса счёта',
+    ],
+
     // Settings
     'settings' => [
         'plugin_settings_category' => 'Djetson Shop',
@@ -176,6 +185,11 @@ return [
         'payment_methods' => [
             'label' => 'Методы оплаты',
             'description' => 'Управление методами оплаты',
+            'category' => 'Djetson Shop',
+        ],
+        'order_statuses' => [
+            'label' => 'Статусы счёта',
+            'description' => 'Управление статусами счёта',
             'category' => 'Djetson Shop',
         ],
         'tab' => [
