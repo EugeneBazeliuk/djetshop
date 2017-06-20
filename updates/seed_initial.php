@@ -1,5 +1,6 @@
 <?php namespace Djetson\Shop\Updates;
 
+use Djetson\Shop\Models\OrderStatus;
 use Seeder;
 use Djetson\Shop\Models\Currency;
 use Djetson\Shop\Models\ShippingMethod;
@@ -27,8 +28,15 @@ class SeedInitial extends Seeder
 
         // Add Payment method
         PaymentMethod::create([
-            'name' => 'Тест',
+            'name' => 'Тестовый метод оплаты',
             'provider' => 'self',
+            'is_active' => true,
+        ]);
+
+        // Add Order status
+        OrderStatus::create([
+            'name' => 'Тестовый метод оплаты',
+            'color' => '#1abc9c',
             'is_active' => true,
         ]);
     }

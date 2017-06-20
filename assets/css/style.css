@@ -1,0 +1,11 @@
+.v-align-middle {
+    vertical-align: middle !important;
+}
+
+.order-status-label {
+    color: #fff;
+    padding: 3px 6px;
+    font-size: smaller;
+    display: inline-block;
+    border-radius: 3px;
+}

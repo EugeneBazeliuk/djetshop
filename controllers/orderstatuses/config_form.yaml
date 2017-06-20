@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Order Status
+name: djetson.shop::lang.order_statuses.label
 
 # Model Form Field configuration
 form: $/djetson/shop/models/orderstatus/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: djetson/shop/orderstatuses
 
 # Create page
 create:
-    title: Create Order Status
+    title: djetson.shop::lang.order_statuses.create
     redirect: djetson/shop/orderstatuses/update/:id
     redirectClose: djetson/shop/orderstatuses
 
 # Update page
 update:
-    title: Edit Order Status
+    title: djetson.shop::lang.order_statuses.update
     redirect: djetson/shop/orderstatuses
     redirectClose: djetson/shop/orderstatuses
 
 # Preview page
 preview:
-    title: Preview Order Status
+    title: djetson.shop::lang.order_statuses.preview

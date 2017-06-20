@@ -36,6 +36,9 @@ return [
         'provider' => 'Поставщик',
         'provider_empty' => '--- Выберите поставщика ---',
         'free_shipping_limit' => 'Лимит бесплатной доставки',
+        'mail_template' => 'Шаблон письма',
+        'mail_template_empty' => '--- Выберите шаблон ---',
+        'mail_template_section' => 'Настройка уведомления на E-mail',
 
         'cost' => 'Стоимость',
         'price' => 'Цена',
@@ -49,6 +52,8 @@ return [
         'is_unique_text' => 'Статус уникального наполнения',
         'is_allow_in_order' => 'Разрешить учитывать в заказе',
         'is_allow_free_shipping' => 'Разрешить бесплатную доставку',
+        'is_send_email' => 'Отправить уведомление на E-mail?',
+        'is_attach_invoice' => 'Прикрепить счёт во вложение?',
 
         'created_at' => 'Создано',
         'updated_at' => 'Обновлено',
@@ -91,6 +96,8 @@ return [
         'is_unique_text' => 'Текст',
         'is_allow_in_order' => 'Учитывать',
         'is_allow_free_shipping' => 'Бесплатная доставка',
+        'is_send_email' => 'Отправить Email',
+        'is_attach_invoice' => 'Отправить счёт',
 
         'created_at' => 'Создано',
         'updated_at' => 'Обновлено',
@@ -157,7 +164,7 @@ return [
 
     // Order statuses
     'order_statuses' => [
-        'label' => 'Статус счёта',
+        'label' => 'Статусы счёта',
         'manage' => 'Управление статусами счёта',
         'create' => 'Создание статуса счёта',
         'update' => 'Обновление статуса счёта',

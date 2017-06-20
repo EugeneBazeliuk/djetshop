@@ -8,17 +8,14 @@ return [
 
             'self' => [
                 'name' => 'Self',
-                'provider'   => 'self',
             ],
 
             'novaposhta' => [
                 'name' => 'Novaposhta',
-                'provider'   => 'novaposhta',
             ],
 
             'ukrposhta' => [
                 'name' => 'Ukrposhta',
-                'provider'   => 'ukrposhta',
             ],
 
         ],
@@ -31,12 +28,10 @@ return [
 
             'self' => [
                 'name' => 'Self',
-                'provider'   => 'self',
             ],
 
             'privatbank' => [
                 'name' => 'Приватбанк',
-                'provider'   => 'privatbank',
             ]
 
         ],

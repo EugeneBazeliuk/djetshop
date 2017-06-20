@@ -9,7 +9,7 @@ list: $/djetson/shop/models/orderstatus/columns.yaml
 modelClass: Djetson\Shop\Models\OrderStatus
 
 # List Title
-title: Manage Order Statuses
+title: djetson.shop::lang.order_statuses.manage
 
 # Link URL for each record
 recordUrl: djetson/shop/orderstatuses/update/:id

@@ -6,6 +6,7 @@ use October\Rain\Database\Traits\Validation;
 
 /**
  * Currency Model
+ * @package Djetson\Shop
  *
  * @property int $id
  * @property string $name
@@ -26,6 +27,7 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereSymbolSpace($value)
  * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereUpdatedAt($value)
  *
+ * @mixin   \Eloquent
  * @mixin   \October\Rain\Database\Model
  * @mixin   \October\Rain\Database\Builder
  * @mixin   \October\Rain\Database\Traits\Validation

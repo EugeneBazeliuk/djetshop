@@ -1,6 +1,7 @@
 <?php namespace Djetson\Shop\Controllers;
 
 use BackendMenu;
+use System\Classes\SettingsManager;
 use Backend\Classes\Controller;
 
 /**
@@ -20,6 +21,8 @@ class OrderStatuses extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Djetson.Shop', 'shop', 'orderstatuses');
+        BackendMenu::setContext('October.System', 'system', 'settings');
+        SettingsManager::setContext('Djetson.Shop', 'order_statuses');
+        $this->addCss('/plugins/djetson/shop/assets/css/style.css');
     }
 }

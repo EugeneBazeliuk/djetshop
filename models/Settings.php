@@ -13,13 +13,9 @@ use ApplicationException;
  * @property \Djetson\Shop\Models\Currency $currency
  *
  * @method \October\Rain\Database\Relations\BelongsTo currency
- * @method static instance()
- * @see \System\Behaviors\SettingsModel::instance()
- * @method static set()
- * @see \System\Behaviors\SettingsModel::set()
- * @method static get()
- * @see \System\Behaviors\SettingsModel::get()
+ * @method static $this instance()
  *
+ * @mixin \Eloquent
  * @mixin \October\Rain\Database\Model
  * @mixin \System\Behaviors\SettingsModel
  */

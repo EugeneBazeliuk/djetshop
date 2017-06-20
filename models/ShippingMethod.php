@@ -30,6 +30,7 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\ShippingMethod whereProvider($value)
  * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\ShippingMethod whereUpdatedAt($value)
  *
+ * @mixin \Eloquent
  * @mixin \October\Rain\Database\Model
  * @mixin \October\Rain\Database\Traits\Validation
  */
@@ -91,18 +92,5 @@ class ShippingMethod extends Model
         }
 
         return $list;
-    }
-
-    /**
-     * Form filter
-     * @param $fields
-     * @param null $context
-     */
-    public function filterFields($fields, $context = null)
-    {
-        // Filter for cost field
-        if ($this->is_allow_in_order == false) {
-            $fields->cost->value = 0;
-        }
     }
 }

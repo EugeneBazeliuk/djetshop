@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('djetson/shop/orderstatuses') ?>">Order Statuses</a></li>
+        <li><a href="<?= Backend::url('djetson/shop/orderstatuses') ?>"><?= e(trans('djetson.shop::lang.order_statuses.label')) ?></a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -43,6 +43,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('djetson/shop/orderstatuses') ?>" class="btn btn-default">Return to order statuses list</a></p>
+    <p><a href="<?= Backend::url('djetson/shop/orderstatuses') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
 
 <?php endif ?>

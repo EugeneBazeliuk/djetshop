@@ -1,9 +1,15 @@
 1.0.1:
-    - First version of Shop. Create Products, Categories, Manufacturers, Currencies, Shipping methods, Payment methods, Initial Seed
+    - First version of Shop.
+    - Create Product, Manufacturers, Categories
+    - Create Currencies, Settings, Payment methods, Shipping methods
+    - Create Orders, Order statuses
+    - Initial seed
     - create_products_table.php
-    - create_categories_table.php
     - create_manufacturers_table.php
+    - create_categories_table.php
     - create_currencies_table.php
-    - create_shipping_methods_table.php
     - create_payment_methods_table.php
+    - create_shipping_methods_table.php
+    - create_orders_table.php
+    - create_order_statuses_table.php
     - seed_initial.php

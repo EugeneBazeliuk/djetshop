@@ -51,6 +51,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('djetson/shop/orderstatuses') ?>" class="btn btn-default">Return to order statuses list</a></p>
+    <p><a href="<?= Backend::url('djetson/shop/orderstatuses') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
 
 <?php endif ?>

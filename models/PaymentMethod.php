@@ -2,18 +2,29 @@
 
 use Model;
 use Config;
-use ApplicationException;
 use October\Rain\Database\Traits\Validation;
 
 /**
  * PaymentMethod Model
+ * @package Djetson\Shop
  *
  * @property int        $id
  * @property string     $name
  * @property string     $provider
  * @property double     $cost
  * @property boolean    $is_active
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  *
+ * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\PaymentMethod whereCost($value)
+ * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\PaymentMethod whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\PaymentMethod whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\PaymentMethod whereIsActive($value)
+ * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\PaymentMethod whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\PaymentMethod whereProvider($value)
+ * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\PaymentMethod whereUpdatedAt($value)
+ *
+ * @mixin \Eloquent
  * @mixin \October\Rain\Database\Model
  * @mixin \October\Rain\Database\Traits\Validation
  *
@@ -54,14 +65,6 @@ class PaymentMethod extends Model
     ];
 
     /**
-     * Before Save action
-     */
-    public function beforeSave()
-    {
-        $this->checkProvider();
-    }
-
-    /**
      * Provider list
      * @return array
      */
@@ -75,20 +78,5 @@ class PaymentMethod extends Model
         }
 
         return $list;
-    }
-
-    /**
-     * Check provider
-     * @throws \ApplicationException
-     */
-    public function checkProvider()
-    {
-        $providerList = Config::get('djetson.shop::payments.methods');
-
-        if (!array_key_exists($this->provider, $providerList)) {
-            throw new ApplicationException(trans('djetson.shop::lang.payment_methods.errors.provider_not_found', [
-                'provider' => $this->provider,
-            ]));
-        }
     }
 }
