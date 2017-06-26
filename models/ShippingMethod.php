@@ -1,7 +1,7 @@
 <?php namespace Djetson\Shop\Models;
 
-use Model;
 use Config;
+use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
 /**
@@ -38,19 +38,13 @@ class ShippingMethod extends Model
 {
     use Validation;
 
-    /**
-     * @var string The database table used by the model.
-     */
+    /** @var string The database table used by the model. */
     public $table = 'djetshop_shipping_methods';
 
-    /**
-     * @var array Guarded fields
-     */
+    /** @var array Guarded fields */
     protected $guarded = ['*'];
 
-    /**
-     * @var array Fillable fields
-     */
+    /** @var array Fillable fields */
     protected $fillable = [
         'name',
         'provider',
@@ -61,14 +55,13 @@ class ShippingMethod extends Model
         'is_active',
     ];
 
-    /**
-     * @var array Json fields
-     */
+    /** @var array Json fields */
     protected $jsonable  = ['settings'];
 
-    /**
-     * Validation
-     */
+    /** @var string The database timestamps. */
+    public $timestamps = false;
+
+    /** @var array Validation rules */
     public $rules = [
         'name'      => ['required', 'between:1,255'],
         'provider'  => ['required', 'alpha_dash', 'between:1,255'],

@@ -1,43 +1,30 @@
 <?php namespace Djetson\Shop\Updates;
 
-use Djetson\Shop\Models\OrderStatus;
+use App;
 use Seeder;
-use Djetson\Shop\Models\Currency;
-use Djetson\Shop\Models\ShippingMethod;
-use Djetson\Shop\Models\PaymentMethod;
 
 class SeedInitial extends Seeder
 {
     public function run()
     {
-        // Add currency
-        Currency::create([
-            'name' => 'Us Dollar',
-            'code' => 'USD',
-            'symbol' => '$',
-            'symbol_position' => 'after',
-            'symbol_space' => true,
-        ]);
+        // Register plugin Factories
+        App::register('Djetson\Shop\Providers\FactoryServiceProvider');
 
-        // Add shipping method
-        ShippingMethod::create([
-            'name' => 'Самовывоз',
-            'provider' => 'self',
-            'is_active' => true,
-        ]);
-
-        // Add Payment method
-        PaymentMethod::create([
-            'name' => 'Тестовый метод оплаты',
-            'provider' => 'self',
-            'is_active' => true,
-        ]);
-
-        // Add Order status
-        OrderStatus::create([
-            'name' => 'Тестовый метод оплаты',
-            'color' => '#1abc9c',
-            'is_active' => true,
-        ]);
+        factory('Djetson\Shop\Models\BindingType', 5)->create();
+        factory('Djetson\Shop\Models\Binding', 5)->make()->each(function (\Djetson\Shop\Models\Binding $model) {
+            $model->binding_type()->associate(random_int(1,5));
+            $model->save();
+        });
+        factory('Djetson\Shop\Models\Category', 5)->create();
+        factory('Djetson\Shop\Models\Manufacturer', 5)->create();
+        factory('Djetson\Shop\Models\Product', 5)->make()->each(function (\Djetson\Shop\Models\Product $model) {
+            $model->category()->associate(random_int(1,5));
+            $model->manufacturer()->associate(random_int(1,5));
+            $model->save();
+        });
+        factory('Djetson\Shop\Models\Currency', 5)->create();
+        factory('Djetson\Shop\Models\OrderStatus', 5)->create();
+        factory('Djetson\Shop\Models\PaymentMethod', 5)->create();
+        factory('Djetson\Shop\Models\ShippingMethod', 5)->create();
     }
 }

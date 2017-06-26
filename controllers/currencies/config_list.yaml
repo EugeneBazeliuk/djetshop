@@ -9,7 +9,7 @@ list: $/djetson/shop/models/currency/columns.yaml
 modelClass: Djetson\Shop\Models\Currency
 
 # List Title
-title: djetson.shop::lang.currencies.manage
+title: djetson.shop::lang.currencies.label
 
 # Link URL for each record
 recordUrl: djetson/shop/currencies/update/:id

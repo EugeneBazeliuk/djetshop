@@ -1,6 +1,6 @@
 <?php namespace Djetson\Shop\Models;
 
-use Model;
+use October\Rain\Database\Model;
 use ApplicationException;
 use October\Rain\Database\Traits\Validation;
 
@@ -27,7 +27,7 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereSymbolSpace($value)
  * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereUpdatedAt($value)
  *
- * @mixin   \Eloquent
+ * @mixin \Eloquent
  * @mixin   \October\Rain\Database\Model
  * @mixin   \October\Rain\Database\Builder
  * @mixin   \October\Rain\Database\Traits\Validation
@@ -57,9 +57,7 @@ class Currency extends Model
         'symbol_space',
     ];
 
-    /**
-     * Validation
-     */
+    /** @var array Validation rules */
     public $rules = [
         'name'      => ['required', 'between:1,255'],
         'code'      => ['required', 'alpha_num', 'size:3', 'unique:djetshop_currencies'],

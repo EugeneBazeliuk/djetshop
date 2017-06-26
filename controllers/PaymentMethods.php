@@ -20,7 +20,6 @@ class PaymentMethods extends Controller
     public function __construct()
     {
         parent::__construct();
-
         BackendMenu::setContext('October.System', 'system', 'settings');
         SettingsManager::setContext('Djetson.Shop', 'payment_methods');
     }

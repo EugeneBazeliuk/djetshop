@@ -9,7 +9,7 @@ list: $/djetson/shop/models/orderstatus/columns.yaml
 modelClass: Djetson\Shop\Models\OrderStatus
 
 # List Title
-title: djetson.shop::lang.order_statuses.manage
+title: djetson.shop::lang.order_statuses.label
 
 # Link URL for each record
 recordUrl: djetson/shop/orderstatuses/update/:id
@@ -21,15 +21,15 @@ noRecordsMessage: backend::lang.list.no_records
 recordsPerPage: 20
 
 # Displays the list column set up button
-showSetup: true
+showSetup: false
 
 # Displays the sorting link on each column
-showSorting: true
+showSorting: false
 
 # Default sorting column
-# defaultSort:
-#     column: created_at
-#     direction: desc
+defaultSort:
+    column: name
+    direction: asc
 
 # Display checkboxes next to each record
 # showCheckboxes: true

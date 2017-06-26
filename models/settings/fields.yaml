@@ -6,22 +6,22 @@ tabs:
     fields:
 
         currency:
-            tab: djetson.shop::lang.settings.tab.currency
-            label: djetson.shop::lang.settings.currency
+            tab: djetson.shop::lang.form.tab.currency
+            label: djetson.shop::lang.form.currency_default
             type: relation
             span: left
 
         price_format_decimal_count:
-            tab: djetson.shop::lang.settings.tab.currency
-            label: djetson.shop::lang.settings.price_format_decimal_count
+            tab: djetson.shop::lang.form.tab.currency
+            label: djetson.shop::lang.form.price_format_decimal_count
             span: left
 
         price_format_decimal_point:
-            tab: djetson.shop::lang.settings.tab.currency
-            label: djetson.shop::lang.settings.price_format_decimal_point
+            tab: djetson.shop::lang.form.tab.currency
+            label: djetson.shop::lang.form.price_format_decimal_point
             span: left
 
         price_format_thousands_separator:
-            tab: djetson.shop::lang.settings.tab.currency
-            label: djetson.shop::lang.settings.price_format_thousands_separator
+            tab: djetson.shop::lang.form.tab.currency
+            label: djetson.shop::lang.form.price_format_thousands_separator
             span: left

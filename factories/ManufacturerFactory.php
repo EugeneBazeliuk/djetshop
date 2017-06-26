@@ -6,7 +6,7 @@
  */
 $factory->define('Djetson\Shop\Models\Manufacturer', function (Faker\Generator $faker) {
 
-    $name = $faker->name;
+    $name = $faker->unique()->numerify('Manufacturer ###');
 
     return [
         // base
@@ -18,7 +18,7 @@ $factory->define('Djetson\Shop\Models\Manufacturer', function (Faker\Generator $
         'meta_description' => $faker->realText(255),
         'description' => $faker->realText(250, 2),
         // states
-        'is_active' => $faker->boolean,
-        'is_searchable' => $faker->boolean,
+        'is_active' => $faker->boolean(80),
+        'is_searchable' => $faker->boolean(70),
     ];
 });

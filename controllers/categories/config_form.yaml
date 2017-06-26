@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Category
+name: djetson.shop::lang.categories.label
 
 # Model Form Field configuration
 form: $/djetson/shop/models/category/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: djetson/shop/categories
 
 # Create page
 create:
-    title: Create Category
+    title: djetson.shop::lang.categories.create
     redirect: djetson/shop/categories/update/:id
     redirectClose: djetson/shop/categories
 
 # Update page
 update:
-    title: Edit Category
+    title: djetson.shop::lang.categories.update
     redirect: djetson/shop/categories
     redirectClose: djetson/shop/categories
 
 # Preview page
 preview:
-    title: Preview Category
+    title: djetson.shop::lang.categories.preview

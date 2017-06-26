@@ -3,6 +3,7 @@
 # ===================================
 
 columns:
+
     name:
         label: djetson.shop::lang.list.name
         type: partial

@@ -1,7 +1,7 @@
 <?php namespace Djetson\Shop\Models;
 
-use Model;
 use ApplicationException;
+use October\Rain\Database\Model;
 
 /**
  * Settings
@@ -86,7 +86,7 @@ class Settings extends Model
                 $price = implode($space, [$price, $currency->symbol]);
                 break;
             default:
-                throw new ApplicationException(trans('djetson.shop::lang.settings.errors.failed_price_format_position'));
+                throw new ApplicationException(trans('djetson.shop::lang.errors.failed_price_format_position'));
         }
 
         return (string) $price;
@@ -112,6 +112,6 @@ class Settings extends Model
             return $this->currency;
         }
 
-        throw new ApplicationException(trans('djetson.shop::lang.settings.errors.failed_default_currency'));
+        throw new ApplicationException(trans('djetson.shop::lang.errors.failed_get_default_currency'));
     }
 }

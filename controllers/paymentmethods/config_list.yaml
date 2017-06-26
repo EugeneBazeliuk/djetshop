@@ -9,7 +9,7 @@ list: $/djetson/shop/models/paymentmethod/columns.yaml
 modelClass: Djetson\Shop\Models\PaymentMethod
 
 # List Title
-title: djetson.shop::lang.payment_methods.manage
+title: djetson.shop::lang.payment_methods.label
 
 # Link URL for each record
 recordUrl: djetson/shop/paymentmethods/update/:id
@@ -21,15 +21,15 @@ noRecordsMessage: backend::lang.list.no_records
 recordsPerPage: 20
 
 # Displays the list column set up button
-showSetup: true
+showSetup: false
 
 # Displays the sorting link on each column
-showSorting: true
+showSorting: false
 
 # Default sorting column
-# defaultSort:
-#     column: created_at
-#     direction: desc
+defaultSort:
+    column: name
+    direction: asc
 
 # Display checkboxes next to each record
 # showCheckboxes: true

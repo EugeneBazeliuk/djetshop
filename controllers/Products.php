@@ -8,19 +8,22 @@ use Backend\Classes\Controller;
  */
 class Products extends Controller
 {
+    public $bodyClass = 'compact-container';
+
     public $implement = [
         'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController'
+        'Backend.Behaviors.ListController',
+        'Backend.Behaviors.RelationController',
     ];
 
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
+    public $relationConfig = 'config_relation.yaml';
     public $requiredPermissions = ['djetson.shop.access_product'];
 
     public function __construct()
     {
         parent::__construct();
-
         BackendMenu::setContext('Djetson.Shop', 'shop', 'products');
     }
 }

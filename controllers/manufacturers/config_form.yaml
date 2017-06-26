@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Manufacturer
+name: djetson.shop::lang.manufacturers.label
 
 # Model Form Field configuration
 form: $/djetson/shop/models/manufacturer/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: djetson/shop/manufacturers
 
 # Create page
 create:
-    title: Create Manufacturer
+    title: djetson.shop::lang.manufacturers.create
     redirect: djetson/shop/manufacturers/update/:id
     redirectClose: djetson/shop/manufacturers
 
 # Update page
 update:
-    title: Edit Manufacturer
+    title: djetson.shop::lang.manufacturers.update
     redirect: djetson/shop/manufacturers
     redirectClose: djetson/shop/manufacturers
 
 # Preview page
 preview:
-    title: Preview Manufacturer
+    title: djetson.shop::lang.manufacturers.preview

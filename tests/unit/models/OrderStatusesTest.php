@@ -1,14 +1,20 @@
-<?php namespace Djetson\Shop\Tests\Models;
+<?php namespace Djetson\Shop\Tests\Unit\Models;
 
 use PluginTestCase;
 use Djetson\Shop\Models\OrderStatus;
-use Djetson\Shop\Traits\ModelTestHelper;
+use Djetson\Shop\Tests\ModelTestHelper;
 
 class OrderStatusesTest extends PluginTestCase
 {
     use ModelTestHelper;
 
     protected $class = 'Djetson\Shop\Models\OrderStatuses';
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
+    }
 
     /**
      * Test creation model

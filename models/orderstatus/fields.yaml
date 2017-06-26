@@ -7,7 +7,7 @@ fields:
     name:
         label: djetson.shop::lang.form.name
         type: text
-        span: auto
+        span: left
         required: true
 
     color:

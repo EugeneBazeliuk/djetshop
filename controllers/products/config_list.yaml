@@ -9,7 +9,7 @@ list: $/djetson/shop/models/product/columns.yaml
 modelClass: Djetson\Shop\Models\Product
 
 # List Title
-title: Manage Products
+title: djetson.shop::lang.products.label
 
 # Link URL for each record
 recordUrl: djetson/shop/products/update/:id
@@ -27,9 +27,9 @@ showSetup: true
 showSorting: true
 
 # Default sorting column
-# defaultSort:
-#     column: created_at
-#     direction: desc
+defaultSort:
+    column: created_at
+    direction: desc
 
 # Display checkboxes next to each record
 # showCheckboxes: true

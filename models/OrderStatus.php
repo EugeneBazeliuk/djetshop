@@ -1,7 +1,7 @@
 <?php namespace Djetson\Shop\Models;
 
-use Model;
-use \October\Rain\Database\Traits\Validation;
+use October\Rain\Database\Model;
+use October\Rain\Database\Traits\Validation;
 
 /**
  * OrderStatus Model
@@ -38,19 +38,13 @@ class OrderStatus extends Model
 {
     use Validation;
 
-    /**
-     * @var string The database table used by the model.
-     */
+    /** @var string The database table used by the model. */
     public $table = 'djetshop_order_statuses';
 
-    /**
-     * @var array Guarded fields
-     */
+    /** @var array Guarded fields */
     protected $guarded = ['*'];
 
-    /**
-     * @var array Fillable fields
-     */
+    /** @var array Fillable fields */
     protected $fillable = [
         'name',
         'color',
@@ -60,9 +54,10 @@ class OrderStatus extends Model
         'is_attach_invoice'
     ];
 
-    /**
-     * @var array Relations
-     */
+    /** @var string The database timestamps. */
+    public $timestamps = false;
+
+    /** @var array Relations */
     public $belongsTo = [
         'mail_template' => [
             'System\Models\MailTemplate',
@@ -70,6 +65,7 @@ class OrderStatus extends Model
         ],
     ];
 
+    /** @var array Validation rules */
     public $rules = [
         'name'              => ['required'],
         'color'             => ['required'],

@@ -17,7 +17,6 @@ class CreatePaymentMethodsTable extends Migration
             $table->decimal('cost', 10, 2)->nullable();
             // State
             $table->boolean('is_active')->default(0);
-            $table->timestamps();
         });
     }
 

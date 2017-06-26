@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Product
+name: djetson.shop::lang.products.label
 
 # Model Form Field configuration
 form: $/djetson/shop/models/product/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: djetson/shop/products
 
 # Create page
 create:
-    title: Create Product
+    title: djetson.shop::lang.products.create
     redirect: djetson/shop/products/update/:id
     redirectClose: djetson/shop/products
 
 # Update page
 update:
-    title: Edit Product
+    title: djetson.shop::lang.products.update
     redirect: djetson/shop/products
     redirectClose: djetson/shop/products
 
 # Preview page
 preview:
-    title: Preview Product
+    title: djetson.shop::lang.products.preview

@@ -20,8 +20,6 @@ class CreateOrderStatusesTable extends Migration
             $table->boolean('is_active')->default(0);
             $table->boolean('is_send_email')->default(0);
             $table->boolean('is_attach_invoice')->default(0);
-            // Timestamps
-            $table->timestamps();
         });
     }
 

@@ -31,18 +31,10 @@ class CreateCategoriesTable extends Migration
             // Timestamps
             $table->timestamps();
         });
-
-        Schema::create('djetshop_products_categories', function(Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->integer('product_id')->unsigned();
-            $table->integer('category_id')->unsigned();
-            $table->primary(['product_id', 'category_id'], 'product_category');
-        });
     }
 
     public function down()
     {
         Schema::dropIfExists('djetshop_categories');
-        Schema::dropIfExists('djetshop_products_categories');
     }
 }

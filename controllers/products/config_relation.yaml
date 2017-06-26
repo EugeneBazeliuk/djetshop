@@ -1,0 +1,6 @@
+featured:
+    label: Featured products
+    view:
+        toolbarButtons: add|remove
+        recordsPerPage: 10
+        list: $/djetson/shop/models/product/columns.yaml

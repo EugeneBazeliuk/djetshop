@@ -6,7 +6,7 @@ return [
     'plugin' => [
         'name' => 'Djetson Shop',
         'description' => 'Платформа для торговли',
-        'menu_label' => 'Магазин'
+        'label' => 'Магазин'
     ],
 
     // Permissions
@@ -17,7 +17,14 @@ return [
         'access_orders' => 'Управление заказами',
         'access_currencies' => 'Управление валютами',
         'access_shipping_methods' => 'Управление методами доставки',
-        'access_payment_methods' => 'Управление методами оплаты'
+        'access_payment_methods' => 'Управление методами оплаты',
+        'access_binding' => 'Управление связями',
+        'access_binding_type' => 'Управление типами связи',
+    ],
+
+    // Btn
+    'btn' => [
+        'create' => 'Создать'
     ],
 
     // Form
@@ -39,10 +46,25 @@ return [
         'mail_template' => 'Шаблон письма',
         'mail_template_empty' => '--- Выберите шаблон ---',
         'mail_template_section' => 'Настройка уведомления на E-mail',
+        'description' => 'Описание',
+        'meta_title' => 'Мета Title',
+        'meta_keywords' => 'Мета Keywords',
+        'meta_description' => 'Мета Description',
+        'manufacturer' => 'Производитель',
+        'package_width' => 'Ширина упаковки',
+        'package_height' => 'Высота упаковки',
+        'package_depth' => 'Глубина упаковки',
+        'package_weight' => 'Вес упаковки',
+        'category' => 'Категория',
+        'categories' => 'Категории',
+        'color' => 'Цвет',
+        'binding_type' => 'Тип связи',
+
 
         'cost' => 'Стоимость',
         'price' => 'Цена',
         'price_original' => 'Текущая цена',
+        'currency_default' => 'Основная валюта магазина',
 
         'is_active' => 'Статус активности',
         'is_searchable' => 'Статус индексации',
@@ -59,8 +81,23 @@ return [
         'updated_at' => 'Обновлено',
         'deleted_at' => 'Удалено',
 
+        'price_format_decimal_count' => 'Количество цифр после знака разделения',
+        'price_format_decimal_point' => 'Знак разделения',
+        'price_format_thousands_separator' => 'Знак разделения тысяч',
+        'price_format_position' => 'Позиция знака валюты',
+        'price_format_space' => 'Разделение числа и знака пробелом',
+
+        'dropdown_empty' => '--- Выберите из списка ---',
+
         'tab' => [
             'settings' => 'Настройки',
+            'general' => 'Основное',
+            'seo' => 'SEO',
+            'sizes' => 'Размеры',
+            'categories' => 'Категории',
+            'featured' => 'Связанные товары',
+            'images' => 'Изображения',
+            'currency' => 'Валюты'
         ]
     ],
 
@@ -79,6 +116,7 @@ return [
 
         'category' => 'Категория',
         'categories' => 'Категории',
+        'binding_type' => 'Тип связи',
 
         'quantity' => 'Количество',
         'available' => 'Доступно',
@@ -104,35 +142,41 @@ return [
         'deleted_at' => 'Удалено',
     ],
 
-    // Btn
-    'btn' => [
-        'create' => 'Создать'
+    // Errors
+    'errors' => [
+        'failed_get_default_currency' => 'Не удалось получить валюту по умолчанию!',
+        'failed_price_format_position' => 'Настройки позиции знака валюты заданы не верно',
     ],
 
-    // Products
-    'products' => [
-        'menu_label' => 'Товары'
+    // Bindings
+    'bindings' => [
+        'label' => 'Связи',
+        'create' => 'Создание связи',
+        'update' => 'Обновление связи',
+        'preview' => 'Просмотр связи',
+    ],
+
+    // Bindings
+    'binding_types' => [
+        'label' => 'Типы связи товара',
+        'description' => 'Управление типами связи товара',
+        'create' => 'Создание типа связи',
+        'update' => 'Обновление типа связи',
+        'preview' => 'Просмотр типа связи',
     ],
 
     // Categories
     'categories' => [
-        'menu_label' => 'Категории'
-    ],
-
-    // Manufacturers
-    'manufacturers' => [
-        'menu_label' => 'Производители'
-    ],
-
-    // Orders
-    'orders' => [
-        'menu_label' => 'Заказы'
+        'label' => 'Категории',
+        'create' => 'Создание категории',
+        'update' => 'Обновление категории',
+        'preview' => 'Просмотр категории',
     ],
 
     // Currencies
     'currencies' => [
         'label' => 'Валюты',
-        'manage' => 'Управление валютами',
+        'description' => 'Управление валютами магазина',
         'create' => 'Создание валюты',
         'update' => 'Обновление валюты',
         'preview' => 'Просмотр валюты',
@@ -141,19 +185,32 @@ return [
         ]
     ],
 
-    // Shipping methods
-    'shipping_methods' => [
-        'label' => 'Методы доставки',
-        'manage' => 'Управление методами доставки',
-        'create' => 'Создание метода доставки',
-        'update' => 'Обновление метода доставки',
-        'preview' => 'Просмотр метода доставки',
+    // Manufacturers
+    'manufacturers' => [
+        'label' => 'Производители',
+        'create' => 'Создание производителя',
+        'update' => 'Обновление производителя',
+        'preview' => 'Просмотр производителя',
+    ],
+
+    // Orders
+    'orders' => [
+        'label' => 'Заказы'
+    ],
+
+    // Order statuses
+    'order_statuses' => [
+        'label' => 'Статусы счёта',
+        'description' => 'Управление статусами счёта',
+        'create' => 'Создание статуса счёта',
+        'update' => 'Обновление статуса счёта',
+        'preview' => 'Просмотр статуса счёта',
     ],
 
     // Payment methods
     'payment_methods' => [
         'label' => 'Методы оплаты',
-        'manage' => 'Управление методами оплаты',
+        'description' => 'Управление методами оплаты',
         'create' => 'Создание метода оплаты',
         'update' => 'Обновление метода оплаты',
         'preview' => 'Просмотр метода оплаты',
@@ -162,55 +219,40 @@ return [
         ]
     ],
 
-    // Order statuses
-    'order_statuses' => [
-        'label' => 'Статусы счёта',
-        'manage' => 'Управление статусами счёта',
-        'create' => 'Создание статуса счёта',
-        'update' => 'Обновление статуса счёта',
-        'preview' => 'Просмотр статуса счёта',
+    // Products
+    'products' => [
+        'label' => 'Товары',
+        'create' => 'Создание товара',
+        'update' => 'Обновление товара',
+        'preview' => 'Просмотр товара',
+    ],
+
+    // Properties
+    'properties' => [
+        'label' => 'Свойства товара',
+        'description' => 'Управление свойствами товара',
+        'create' => 'Создание свойства',
+        'update' => 'Обновление свойства',
+        'preview' => 'Просмотр свойства',
     ],
 
     // Settings
     'settings' => [
-        'plugin_settings_category' => 'Djetson Shop',
-        'general' => [
-            'label' => 'Настройки магазина',
-            'description' => 'Управление основными настройками',
-            'category' => 'Djetson Shop',
-        ],
-        'currencies' => [
-            'label' => 'Валюты',
-            'description' => 'Управление валютами',
-            'category' => 'Djetson Shop',
-        ],
-        'shipping_methods' => [
-            'label' => 'Методы доставки',
-            'description' => 'Управление методами доставки',
-            'category' => 'Djetson Shop',
-        ],
-        'payment_methods' => [
-            'label' => 'Методы оплаты',
-            'description' => 'Управление методами оплаты',
-            'category' => 'Djetson Shop',
-        ],
-        'order_statuses' => [
-            'label' => 'Статусы счёта',
-            'description' => 'Управление статусами счёта',
-            'category' => 'Djetson Shop',
-        ],
-        'tab' => [
-            'currency' => 'Валюта'
-        ],
-        'errors' => [
-            'failed_default_currency' => 'Не удалось получить валюту по умолчанию!',
-            'failed_price_format_position' => 'Настройки позиции знака валюты заданы не верно'
-        ],
-        'currency' => 'Основная валюта магазина',
-        'price_format_decimal_count' => 'Количество цифр после знака разделения',
-        'price_format_decimal_point' => 'Знак разделения',
-        'price_format_thousands_separator' => 'Знак разделения тысяч',
-        'price_format_position' => 'Позиция знака валюты',
-        'price_format_space' => 'Разделение числа и знака пробелом',
+        'label' => 'Настройки магазина',
+        'description' => 'Управление основными настройками',
+    ],
+
+    // Settings category
+    'setting_categories' => [
+        'main' => "Djetson Shop"
+    ],
+
+    // Shipping methods
+    'shipping_methods' => [
+        'label' => 'Методы доставки',
+        'description' => 'Управление методами доставки',
+        'create' => 'Создание метода доставки',
+        'update' => 'Обновление метода доставки',
+        'preview' => 'Просмотр метода доставки',
     ],
 ];

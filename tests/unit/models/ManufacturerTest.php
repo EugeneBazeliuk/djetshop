@@ -1,7 +1,7 @@
-<?php namespace Djetson\Shop\Tests\Models;
+<?php namespace Djetson\Shop\Tests\Unit\Models;
 
 use PluginTestCase;
-use Djetson\Shop\Traits\ModelTestHelper;
+use Djetson\Shop\Tests\ModelTestHelper;
 
 class ManufacturerTest extends PluginTestCase
 {

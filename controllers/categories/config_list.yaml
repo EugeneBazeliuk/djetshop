@@ -9,7 +9,7 @@ list: $/djetson/shop/models/category/columns.yaml
 modelClass: Djetson\Shop\Models\Category
 
 # List Title
-title: Manage Categories
+title: djetson.shop::lang.categories.label
 
 # Link URL for each record
 recordUrl: djetson/shop/categories/update/:id
@@ -27,9 +27,9 @@ showSetup: true
 showSorting: true
 
 # Default sorting column
-# defaultSort:
-#     column: created_at
-#     direction: desc
+defaultSort:
+    column: name
+    direction: desc
 
 # Display checkboxes next to each record
 # showCheckboxes: true

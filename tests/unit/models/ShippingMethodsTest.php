@@ -1,13 +1,13 @@
-<?php namespace Djetson\Shop\Tests\Models;
+<?php namespace Djetson\Shop\Tests\Unit\Models;
 
 use PluginTestCase;
-use Djetson\Shop\Traits\ModelTestHelper;
+use Djetson\Shop\Tests\ModelTestHelper;
 
-class CategoryTest extends PluginTestCase
+class ShippingMethodsTest extends PluginTestCase
 {
     use ModelTestHelper;
 
-    protected $class = 'Djetson\Shop\Models\Category';
+    protected $class = 'Djetson\Shop\Models\ShippingMethod';
 
     public function setUp()
     {
@@ -15,6 +15,9 @@ class CategoryTest extends PluginTestCase
         $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
     }
 
+    /**
+     * Test creation model
+     */
     public function test_creation()
     {
         $this->createHelper(new $this->class, 'name');

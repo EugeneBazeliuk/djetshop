@@ -20,8 +20,6 @@ class CreateShippingMethodsTable extends Migration
             $table->boolean('is_allow_in_order')->default(0);
             $table->boolean('is_allow_free_shipping')->default(0);
             $table->boolean('is_active')->default(0);
-            // Timestamps
-            $table->timestamps();
 
         });
     }

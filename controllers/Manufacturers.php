@@ -8,6 +8,8 @@ use Backend\Classes\Controller;
  */
 class Manufacturers extends Controller
 {
+    public $bodyClass = 'compact-container';
+
     public $implement = [
         'Backend.Behaviors.FormController',
         'Backend.Behaviors.ListController'
@@ -20,7 +22,6 @@ class Manufacturers extends Controller
     public function __construct()
     {
         parent::__construct();
-
         BackendMenu::setContext('Djetson.Shop', 'shop', 'manufacturers');
     }
 }
