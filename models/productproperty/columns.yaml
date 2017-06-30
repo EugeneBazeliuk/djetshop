@@ -7,16 +7,17 @@ columns:
     name:
         label: djetson.shop::lang.list.name
         type: text
-
-    code:
-        label: djetson.shop::lang.list.code
-        type: text
-        width: 20%
+        searchable: 1
 
     group:
         label: djetson.shop::lang.list.group
         relation: group
         select: name
+        width: 20%
+
+    pivot[property_value][value]:
+        label: djetson.shop::lang.list.value
+        type: text
         width: 20%
 
     is_active:

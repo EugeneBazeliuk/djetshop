@@ -24,7 +24,10 @@ return [
 
     // Btn
     'btn' => [
-        'create' => 'Создать'
+        'create' => 'Создать',
+        'reorder' => 'Изменить порядок',
+        'property_groups' => 'Группы свойств',
+        'return_to_properties' => 'Вернуться к свойствам',
     ],
 
     // Form
@@ -59,7 +62,9 @@ return [
         'categories' => 'Категории',
         'color' => 'Цвет',
         'binding_type' => 'Тип связи',
-
+        'value' => 'Значение',
+        'group' => 'Группа',
+        'property_value' => 'Значение свойства',
 
         'cost' => 'Стоимость',
         'price' => 'Цена',
@@ -97,7 +102,9 @@ return [
             'categories' => 'Категории',
             'featured' => 'Связанные товары',
             'images' => 'Изображения',
-            'currency' => 'Валюты'
+            'currency' => 'Валюты',
+            'properties' => 'Свойства',
+            'bindings' => 'Связи'
         ]
     ],
 
@@ -113,7 +120,9 @@ return [
         'symbol_position' => 'Позиция символа',
         'preview' => 'Предпросмотр',
         'provider' => 'Поставщик',
+        'value' => 'Значение',
 
+        'group' => 'Группа',
         'category' => 'Категория',
         'categories' => 'Категории',
         'binding_type' => 'Тип связи',
@@ -125,6 +134,7 @@ return [
         'cost' => 'Стоимость',
         'price' => 'Цена',
         'price_original' => 'Текущая цена',
+        'properties_count' => 'Количество свойств',
 
         'is_active' => 'Активность',
         'is_searchable' => 'Поиск',
@@ -185,6 +195,10 @@ return [
         ]
     ],
 
+    'featured' => [
+        'label' => 'Связанные товары',
+    ],
+
     // Manufacturers
     'manufacturers' => [
         'label' => 'Производители',
@@ -234,6 +248,22 @@ return [
         'create' => 'Создание свойства',
         'update' => 'Обновление свойства',
         'preview' => 'Просмотр свойства',
+        'reorder' => 'Сортировка свойст'
+    ],
+
+    // Properties
+    'property_values' => [
+        'label' => 'Значение',
+    ],
+
+    // Property Groups
+    'property_groups' => [
+        'label' => 'Группы свойств',
+        'description' => 'Управление группами свойств',
+        'create' => 'Создание группы свойства',
+        'update' => 'Обновление группы свойства',
+        'preview' => 'Просмотр группы свойства',
+        'reorder' => 'Сортировка групп свойст'
     ],
 
     // Settings
@@ -244,7 +274,7 @@ return [
 
     // Settings category
     'setting_categories' => [
-        'main' => "Djetson Shop"
+        'main' => "Djetshop"
     ],
 
     // Shipping methods

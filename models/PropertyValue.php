@@ -1,37 +1,59 @@
 <?php namespace Djetson\Shop\Models;
 
-use Model;
+use October\Rain\Database\Model;
+use October\Rain\Database\Traits\Validation;
 
 /**
  * PropertyValue Model
+ *
+ * @property int $id
+ * @property string $value
+ * @property int $property_id
+ *
+ * @property \Djetson\Shop\Models\Property $property
+ * @method  \October\Rain\Database\Relations\BelongsTo property
+ *
+ * @mixin \Eloquent
+ * @mixin \October\Rain\Database\Model
+ * @mixin \October\Rain\Database\Traits\Validation
  */
 class PropertyValue extends Model
 {
-    /**
-     * @var string The database table used by the model.
-     */
-    public $table = 'djetson_shop_property_values';
+    use Validation;
 
-    /**
-     * @var array Guarded fields
-     */
+    /** @var string The database table used by the model. */
+    public $table = 'djetshop_property_values';
+
+    /** @var array Guarded fields */
     protected $guarded = ['*'];
 
-    /**
-     * @var array Fillable fields
-     */
-    protected $fillable = [];
+    /** @var array Fillable fields */
+    protected $fillable = [
+        'value'
+    ];
+
+    /** @var string The database timestamps. */
+    public $timestamps = false;
+
+    /** @var array Relations */
+    public $belongsTo = [
+        'property' => [
+            'Djetson\Shop\Models\Property',
+        ],
+    ];
+
+    /** @var array Validation rules */
+    public $rules = [
+        'property'  => ['required'],
+        'value'     => ['required', 'between:1,255'],
+    ];
 
     /**
-     * @var array Relations
+     * Action BeforeValidate
      */
-    public $hasOne = [];
-    public $hasMany = [];
-    public $belongsTo = [];
-    public $belongsToMany = [];
-    public $morphTo = [];
-    public $morphOne = [];
-    public $morphMany = [];
-    public $attachOne = [];
-    public $attachMany = [];
+    public function beforeValidate()
+    {
+        $rule = 'unique:djetshop_property_values,value,NULL,id,property_id, %d';
+        array_push($this->rules['value'], sprintf($rule, $this->property_id));
+    }
 }

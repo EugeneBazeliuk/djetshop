@@ -7,26 +7,37 @@ fields:
     name:
         label: djetson.shop::lang.form.name
         type: text
-        span: auto
+        span: left
         required: 1
 
     code:
         label: djetson.shop::lang.form.code
         type: text
-        span: auto
+        span: left
         required: 1
         preset:
             field: name
             type: slug
+
+    group:
+        label: djetson.shop::lang.form.group
+        type: relation
+        span: left
+        emptyOption: djetson.shop::lang.form.dropdown_empty
 
     description:
         tab: djetson.shop::lang.form.tab.general
         label: djetson.shop::lang.form.description
         type: textarea
         size: hude
-        span: full
+        span: left
 
     is_active:
         label: djetson.shop::lang.form.is_active
         type: switch
         default: true
+
+    values:
+        type: partial
+        path: $/djetson/shop/controllers/properties/relations/_values.htm
+        context: [preview, update]

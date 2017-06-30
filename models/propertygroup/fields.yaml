@@ -4,7 +4,8 @@
 
 fields:
 
-    value:
-        label: djetson.shop::lang.form.value
+    name:
+        label: djetson.shop::lang.form.name
         type: text
-        span: full
+        span: left
+        required: 1

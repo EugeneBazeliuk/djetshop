@@ -1,6 +1,24 @@
+bindings:
+    label: djetson.shop::lang.bindings.label
+    view:
+        toolbarButtons: add|remove
+        recordsPerPage: 10
+        list: $/djetson/shop/models/binding/columns.yaml
+
 featured:
-    label: Featured products
+    label: djetson.shop::lang.featured.label
     view:
         toolbarButtons: add|remove
         recordsPerPage: 10
         list: $/djetson/shop/models/product/columns.yaml
+
+properties:
+    label:
+    view:
+        toolbarButtons: add|remove
+        recordsPerPage: 10
+        list: $/djetson/shop/models/productproperty/columns.yaml
+    manage:
+        list: $/djetson/shop/models/property/columns.yaml
+    pivot:
+        form: $/djetson/shop/models/productproperty/fields.yaml

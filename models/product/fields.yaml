@@ -54,6 +54,27 @@ tabs:
             type: richeditor
             size: large
 
+        # SEO
+        meta_title:
+            tab: djetson.shop::lang.form.tab.seo
+            label: djetson.shop::lang.form.meta_title
+            span: left
+            type: text
+
+        meta_keywords:
+            tab: djetson.shop::lang.form.tab.seo
+            label: djetson.shop::lang.form.meta_keywords
+            type: textarea
+            span: left
+            size: hude
+
+        meta_description:
+            tab: djetson.shop::lang.form.tab.seo
+            label: djetson.shop::lang.form.meta_description
+            type: textarea
+            span: left
+            size: large
+
         # Size
         package_width:
             tab: djetson.shop::lang.form.tab.sizes
@@ -93,39 +114,33 @@ tabs:
             type: relation
             span: left
 
-        # SEO
-        meta_title:
-            tab: djetson.shop::lang.form.tab.seo
-            label: djetson.shop::lang.form.meta_title
-            span: left
-            type: text
+        # bindings
+        bindings:
+            tab: djetson.shop::lang.form.tab.bindings
+            type: partial
+            path: $/djetson/shop/controllers/products/relations/_bindings.htm
+            context: [update, preview]
 
-        meta_keywords:
-            tab: djetson.shop::lang.form.tab.seo
-            label: djetson.shop::lang.form.meta_keywords
-            type: textarea
-            span: left
-            size: hude
-
-        meta_description:
-            tab: djetson.shop::lang.form.tab.seo
-            label: djetson.shop::lang.form.meta_description
-            type: textarea
-            span: left
-            size: large
+        # Properties
+        properties:
+            tab: djetson.shop::lang.form.tab.properties
+            type: partial
+            path: $/djetson/shop/controllers/products/relations/_properties.htm
+            context: [update, preview]
 
         # Featured
         featured:
             tab: djetson.shop::lang.form.tab.featured
             type: partial
             path: $/djetson/shop/controllers/products/relations/_featured.htm
-
+            context: [update, preview]
 
         # Images
         images:
             tab: djetson.shop::lang.form.tab.images
             type: fileupload
             mode: image
+            context: [update, preview]
 
 secondaryTabs:
     fields:

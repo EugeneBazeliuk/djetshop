@@ -4,24 +4,6 @@
 
 columns:
 
-    name:
-        label: djetson.shop::lang.form.name
+    value:
+        label: djetson.shop::lang.form.value
         type: text
-        span: auto
-        required: 1
-
-    code:
-        label: djetson.shop::lang.form.code
-        type: text
-        span: auto
-        required: 1
-        preset:
-            field: name
-            type: slug
-
-    description:
-        tab: djetson.shop::lang.form.tab.general
-        label: djetson.shop::lang.form.description
-        type: richeditor
-        size: large
-        span: full

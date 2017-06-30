@@ -9,12 +9,6 @@ columns:
         type: text
         searchable: 1
 
-    slug:
-        label: djetson.shop::lang.list.slug
-        type: text
-        width: 20%
-        searchable: 1
-
     binding_type:
         label: djetson.shop::lang.list.binding_type
         relation: binding_type

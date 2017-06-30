@@ -15,6 +15,18 @@ use October\Rain\Database\Traits\SoftDelete;
  * @property \Djetson\Shop\Models\Manufacturer $manufacturer
  * @method \October\Rain\Database\Relations\BelongsTo manufacturer
  *
+ * @property \Djetson\Shop\Models\Binding $bindings
+ * @method \October\Rain\Database\Relations\BelongsToMany bindings
+ *
+ * @property \Djetson\Shop\Models\Category $categories
+ * @method \October\Rain\Database\Relations\BelongsToMany categories
+ *
+ * @property \Djetson\Shop\Models\Property $properties
+ * @method \October\Rain\Database\Relations\BelongsToMany properties
+ *
+ * @property \Djetson\Shop\Models\Product $featured
+ * @method \October\Rain\Database\Relations\BelongsToMany featured
+ *
  * @mixin \Eloquent
  * @mixin \October\Rain\Database\Model
  * @mixin \October\Rain\Database\Traits\Sluggable
@@ -85,11 +97,25 @@ class Product extends Model
     ];
 
     public $belongsToMany = [
+        'bindings' => [
+            'Djetson\Shop\Models\Binding',
+            'table'         => 'djetshop_products_bindings',
+            'key'           => 'product_id',
+            'otherKey'      => 'binding_id',
+        ],
         'categories' => [
             'Djetson\Shop\Models\Category',
             'table'         => 'djetshop_products_categories',
             'key'           => 'product_id',
             'otherKey'      => 'category_id',
+        ],
+        'properties' => [
+            'Djetson\Shop\Models\Property',
+            'table'         => 'djetshop_products_properties',
+            'key'           => 'product_id',
+            'otherKey'      => 'property_id',
+            'pivot'         => 'property_value_id',
+            'pivotModel'    => 'Djetson\Shop\Models\ProductProperty'
         ],
         'featured' => [
             'Djetson\Shop\Models\Product',

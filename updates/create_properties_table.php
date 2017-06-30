@@ -15,16 +15,34 @@ class CreatePropertiesTable extends Migration
             $table->string('name');
             $table->string('code')->unique();
             $table->text('description')->nullable();
+            // Sortable
+            $table->string('sort_order');
             // States
             $table->boolean('is_active')->default(0);
         });
 
+        // Property Values
         Schema::create('djetshop_property_values', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('property_id')->unsigned()->nullable();
             $table->string('value');
-            //$table->foreign('property_id')->references('id')->on('djetshop_properties');
+            $table->foreign('property_id')->references('id')->on('djetshop_properties');
+        });
+
+        // Property Groups
+        Schema::create('djetshop_property_groups', function(Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('name');
+            // Sortable
+            $table->string('sort_order');
+        });
+
+        // Add property group reference to properties
+        Schema::table('djetshop_properties', function(Blueprint $table) {
+            $table->integer('group_id')->unsigned()->nullable();
+            $table->foreign('group_id')->references('id')->on('djetshop_property_groups');
         });
     }
 
@@ -32,5 +50,6 @@ class CreatePropertiesTable extends Migration
     {
         Schema::dropIfExists('djetshop_property_values');
         Schema::dropIfExists('djetshop_properties');
+        Schema::dropIfExists('djetshop_property_groups');
     }
 }

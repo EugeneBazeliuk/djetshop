@@ -69,6 +69,17 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')->references('id')->on('djetshop_categories');
         });
 
+        // Add properties reference to product
+        Schema::create('djetshop_products_properties', function(Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->integer('product_id')->unsigned();
+            $table->integer('property_id')->unsigned();
+            $table->integer('property_value_id')->unsigned()->nullable();
+            $table->primary(['product_id', 'property_id'], 'product_property');
+            $table->foreign('product_id')->references('id')->on('djetshop_products');
+            $table->foreign('property_id')->references('id')->on('djetshop_properties');
+        });
+
         // Add featured reference to product
         Schema::create('djetshop_products_featured', function(Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -84,6 +95,7 @@ class CreateProductsTable extends Migration
     {
         Schema::dropIfExists('djetshop_products_bindings');
         Schema::dropIfExists('djetshop_products_categories');
+        Schema::dropIfExists('djetshop_products_properties');
         Schema::dropIfExists('djetshop_products_featured');
         Schema::dropIfExists('djetshop_products');
     }

@@ -22,6 +22,17 @@ class SeedInitial extends Seeder
             $model->manufacturer()->associate(random_int(1,5));
             $model->save();
         });
+
+        factory('Djetson\Shop\Models\PropertyGroup', 5)->create();
+
+
+        factory('Djetson\Shop\Models\Property', 5)->create()->each(function (\Djetson\Shop\Models\Property $model) {
+            $model->group()->associate(random_int(1,5));
+            $model->values()->addMany(factory('Djetson\Shop\Models\PropertyValue', 5)->make());
+            $model->save();
+        });
+
+
         factory('Djetson\Shop\Models\Currency', 5)->create();
         factory('Djetson\Shop\Models\OrderStatus', 5)->create();
         factory('Djetson\Shop\Models\PaymentMethod', 5)->create();

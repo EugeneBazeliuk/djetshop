@@ -65,6 +65,20 @@ permissions:
     djetson.shop.access_binding_type:
         tab: djetson.shop::lang.plugin.name
         label: djetson.shop::lang.permissions.access_binding_type
+    djetson.shop.access_properties:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_properties
+    djetson.shop.access_property_groups:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_property_groups
+    djetson.shop.access_property_values:
+        tab: djetson.shop::lang.plugin.name
+        label: djetson.shop::lang.permissions.access_property_values
+
+
+
+
+
 
 # Plugin settings
 settings:
