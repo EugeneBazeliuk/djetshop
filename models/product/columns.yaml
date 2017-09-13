@@ -23,9 +23,8 @@ columns:
 
     price:
         label: djetson.shop::lang.list.price
-        type: number
-        cssClass: text-center
-        width: 10%
+        type: price
+        width: 1%
         searchable: 0
 
     is_unique_text:

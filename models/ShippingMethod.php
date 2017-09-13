@@ -66,7 +66,7 @@ class ShippingMethod extends Model
         'name'      => ['required', 'between:1,255'],
         'provider'  => ['required', 'alpha_dash', 'between:1,255'],
         'cost'      => ['required_if:is_allow_in_order,1', 'numeric'],
-        'free_shipping_limit'   => ['required_if:is_free_shipping,1', 'numeric'],
+        'free_shipping_limit'       => ['required_if:is_free_shipping,1', 'numeric'],
         'is_allow_in_order'         => ['boolean'],
         'is_allow_free_shipping'    => ['boolean'],
         'is_active'                 => ['boolean'],
@@ -78,12 +78,22 @@ class ShippingMethod extends Model
      */
     public function getProviderOptions()
     {
-        $list = [];
+        return array_pluck(Config::get('djetson.shop::shipping.methods', []), 'name', 'code');
+    }
 
-        foreach (Config::get('djetson.shop::shipping.methods', []) as $key => $val) {
-            $list[$key] = $val['name'];
+    /**
+     * @return int
+     */
+    /**
+     * @param Order $order
+     * @return int
+     */
+    public function getCost(Order $order)
+    {
+        if (!$order->items->count() || $this->is_allow_free_shipping && $order->subtotal >= $this->free_shipping_limit) {
+            return 0;
+        } else {
+            return $this->cost;
         }
-
-        return $list;
     }
 }

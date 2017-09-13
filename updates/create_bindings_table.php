@@ -35,8 +35,8 @@ class CreateBindingsTable extends Migration
         });
 
         Schema::table('djetshop_bindings', function(Blueprint $table) {
-            $table->integer('binding_type_id')->unsigned()->nullable();
-            $table->foreign('binding_type_id')->references('id')->on('djetshop_binding_types');
+            $table->integer('type_id')->unsigned()->nullable();
+            $table->foreign('type_id')->references('id')->on('djetshop_binding_types');
         });
     }
 

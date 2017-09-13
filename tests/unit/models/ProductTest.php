@@ -3,63 +3,96 @@
 use PluginTestCase;
 use Djetson\Shop\Tests\ModelTestHelper;
 
+/**
+ * Class ProductTest
+ * @package Djetson\Shop\Tests\Unit\Models
+ *
+ * @property \Djetson\Shop\Models\Product $model
+ *
+ * @mixin \PHPUnit_Framework_TestCase
+ */
 class ProductTest extends PluginTestCase
 {
     use ModelTestHelper;
 
-    protected $class = 'Djetson\Shop\Models\Product';
+    protected $model;
 
+    /**
+     * SetUp Test
+     */
     public function setUp()
     {
         parent::setUp();
         $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
+        $this->model = factory('Djetson\Shop\Models\Product')->make();
     }
 
     /**
-     * Creation test
+     * Create model test
      */
     public function test_create()
     {
-        $this->createHelper(new $this->class, 'name');
+        $this->helperCreateModel($this->model, 'name');
     }
 
     /**
-     * Creation with sluggable trait test
+     * Create sluggable test
      */
-    public function test_create_with_slugable_trait()
+    public function test_create_sluggable()
     {
-        $this->createSluggableHelper(new $this->class, 'slug');
+        $this->helperCreateWithSluggable($this->model, 'name', 'slug');
     }
 
     /**
-     * Relation BelongTo | Category
+     * Relation test | BelongTo category
      */
     public function test_relation_belong_to_category()
     {
-        $this->helperBelongTo(new $this->class, 'category');
+        $this->helperBelongTo($this->model, 'category', 'name');
     }
 
     /**
-     * Relation BelongTo | Manufacturer
+     * Relation test | BelongTo manufacturer
      */
     public function test_relation_belong_to_manufacturer()
     {
-        $this->helperBelongTo(new $this->class, 'manufacturer');
+        $this->helperBelongTo($this->model, 'manufacturer', 'name');
     }
 
     /**
-     * Relation BelongToMany | Categories
+     * Relation test | BelongToMany bindings
+     */
+    public function test_relation_belong_to_many_bindings()
+    {
+        $this->model->bindings = factory('Djetson\Shop\Models\Binding', 3)->create([
+            'binding_type' => factory('Djetson\Shop\Models\BindingType')->create()
+        ]);
+
+        $this->assertEquals(3, $this->model->bindings->count());
+    }
+
+    /**
+     * Relation test | BelongToMany properties
+     * @todo pivot проблема null
+     */
+//    public function test_relation_belong_to_many_properties()
+//    {
+//        $this->helperBelongToMany($this->model, 'properties');
+//    }
+
+    /**
+     * Relation test | BelongToMany categories
      */
     public function test_relation_belong_to_many_categories()
     {
-        $this->helperBelongToMany(new $this->class, 'categories');
+        $this->helperBelongToMany($this->model, 'categories');
     }
 
     /**
-     * Relation BelongToMany | Featured
+     * Relation test | BelongToMany featured
      */
     public function test_relation_belong_to_many_featured()
     {
-        $this->helperBelongToMany(new $this->class, 'featured');
+        $this->helperBelongToMany($this->model, 'featured');
     }
 }

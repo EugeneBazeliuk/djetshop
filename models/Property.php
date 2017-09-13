@@ -62,7 +62,7 @@ class Property extends Model
     /** @var array Validation rules */
     public $rules = [
         'name'          => ['required', 'between:1,255'],
-        'code'          => ['required', 'alpha_dash', 'between:1,255', 'unique:djetshop_properties'],
+        'code'          => ['required:update', 'alpha_dash', 'between:1,255', 'unique:djetshop_properties'],
         'description'   => [],
         'is_active'     => ['boolean'],
     ];

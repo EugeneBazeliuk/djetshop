@@ -22,18 +22,3 @@ $factory->define('Djetson\Shop\Models\Binding', function (Faker\Generator $faker
         'is_searchable' => $faker->boolean(70),
     ];
 });
-
-/**
- * BindingType factory
- * @var $factory \Illuminate\Database\Eloquent\Factory
- */
-$factory->define('Djetson\Shop\Models\BindingType', function (Faker\Generator $faker) {
-
-    $name = $faker->unique()->numerify('BindingType ###');
-
-    return [
-        // base
-        'name' => $name,
-        'code' => str_slug($name),
-    ];
-});

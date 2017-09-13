@@ -19,29 +19,28 @@ fields:
             field: name
             type: slug
 
+    type:
+        label: djetson.shop::lang.form.type
+        type: relation
+        span: left
+        emptyOption: djetson.shop::lang.form.dropdown_empty
+
 tabs:
     fields:
 
-        # Tab General
-        binding_type:
-            tab: djetson.shop::lang.form.tab.general
-            label: djetson.shop::lang.form.binding_type
-            type: relation
-            span: left
-            emptyOption: djetson.shop::lang.form.dropdown_empty
-
+        # General
         description:
             tab: djetson.shop::lang.form.tab.general
             label: djetson.shop::lang.form.description
             type: richeditor
             size: large
 
-        # Tab SEO
+        # SEO
         meta_title:
             tab: djetson.shop::lang.form.tab.seo
             label: djetson.shop::lang.form.meta_title
-            type: text
             span: left
+            type: text
 
         meta_keywords:
             tab: djetson.shop::lang.form.tab.seo

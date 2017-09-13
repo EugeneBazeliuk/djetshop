@@ -7,9 +7,44 @@
 
 <?php if (!$this->fatalError): ?>
 
-    <div class="form-preview">
-        <?= $this->formRenderPreview() ?>
-    </div>
+    <!-- START FORM-CONTENTS -->
+    <?php Block::put('form-contents') ?>
+
+        <div class="scoreboard">
+            <div data-control="toolbar">
+                <?= $this->makePartial('partials/preview_scoreboard') ?>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <?= $this->makePartial('partials/preview_toolbar') ?>
+            </div>
+        </div>
+
+        <div class="layout-row">
+            <?= $this->makePartial('partials/preview_table') ?>
+        </div>
+
+    <?php Block::endPut() ?>
+    <!-- END FORM-CONTENTS -->
+
+    <!-- START SIDEBAR -->
+    <?php Block::put('form-sidebar') ?>
+        <div class="hide-tabs"><?= $this->formRender(['preview' => true, 'section' => 'secondary']) ?></div>
+    <?php Block::endPut() ?>
+    <!-- END SIDEBAR -->
+
+
+    <!-- START BODY -->
+    <?php Block::put('body') ?>
+
+        <?= Form::open(['class'=>'layout stretch']) ?>
+            <?= $this->makeLayout('form-with-sidebar') ?>
+        <?= Form::close() ?>
+
+    <?php Block::endPut() ?>
+    <!-- END BODY -->
 
 <?php else: ?>
 

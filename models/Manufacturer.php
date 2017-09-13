@@ -9,6 +9,17 @@ use October\Rain\Database\Traits\SoftDelete;
  * Manufacturer Model
  * @package Djetson\Shop
  *
+ * @property int        $id
+ * @property string     $name
+ * @property string     $description
+ * @property string     $meta_title
+ * @property string     $meta_keywords
+ * @property string     $meta_description
+ * @property boolean    $is_active
+ * @property boolean    $is_searchable
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ *
  * @mixin \Eloquent
  * @mixin \October\Rain\Database\Model
  * @mixin \October\Rain\Database\Traits\Sluggable
@@ -37,8 +48,8 @@ class Manufacturer extends Model
     protected $fillable = [
         // Base
         'name',
-        // Description
         'description',
+        // Seo
         'meta_title',
         'meta_keywords',
         'meta_description',
@@ -61,7 +72,7 @@ class Manufacturer extends Model
     public $rules = [
         // Base
         'name' => ['required', 'between:1,255'],
-        'slug' => ['regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255', 'unique:djetshop_manufacturers'],
+        'slug' => ['required:update', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255', 'unique:djetshop_manufacturers'],
         // Description
         'description'       => [],
         'meta_title'        => ['between:1,255'],
@@ -78,14 +89,4 @@ class Manufacturer extends Model
     public $attachOne = [
         'image' => 'System\Models\File'
     ];
-
-    /**
-     * Action BeforeValidate
-     */
-    public function beforeValidate()
-    {
-        if ($this->exists) {
-            array_push($this->rules['slug'], 'required');
-        }
-    }
 }

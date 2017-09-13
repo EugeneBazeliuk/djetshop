@@ -16,7 +16,7 @@ class CreatePropertiesTable extends Migration
             $table->string('code')->unique();
             $table->text('description')->nullable();
             // Sortable
-            $table->string('sort_order');
+            $table->integer('sort_order')->default(0);
             // States
             $table->boolean('is_active')->default(0);
         });
@@ -36,7 +36,7 @@ class CreatePropertiesTable extends Migration
             $table->increments('id');
             $table->string('name');
             // Sortable
-            $table->string('sort_order');
+            $table->integer('sort_order')->default(0);
         });
 
         // Add property group reference to properties

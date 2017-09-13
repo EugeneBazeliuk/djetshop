@@ -30,6 +30,13 @@ return [
         'return_to_properties' => 'Вернуться к свойствам',
     ],
 
+    // Scoreboard
+    'scoreboard' => [
+        'enabled_count' => 'Включено',
+        'disabled_count' => 'Отключено',
+        'deleted_count' => 'Удалено',
+    ],
+
     // Form
     'form' => [
         'name' => 'Название',
@@ -61,30 +68,43 @@ return [
         'category' => 'Категория',
         'categories' => 'Категории',
         'color' => 'Цвет',
+        'bindings' => 'Связи',
         'binding_type' => 'Тип связи',
         'value' => 'Значение',
         'group' => 'Группа',
+        'properties' => 'Свойства',
         'property_value' => 'Значение свойства',
+        'see_in_categories' => 'Отображать в категориях',
 
         'cost' => 'Стоимость',
         'price' => 'Цена',
         'price_original' => 'Текущая цена',
         'currency_default' => 'Основная валюта магазина',
 
-        'is_active' => 'Статус активности',
-        'is_searchable' => 'Статус индексации',
-        'is_available' => 'Статус доступности',
+        'customer' => 'Заказчик',
+        'total' => 'Всего',
+        'subtotal' => 'Сумма заказа',
+        'payment_method' => 'Метод оплаты',
+        'shipping_method' => 'Метод доставки',
+
+        'is_active' => 'Активность',
+        'is_searchable' => 'Индексация',
+        'is_available' => 'Доступность',
         'is_available_option_true' => 'Доступен',
         'is_available_option_false' => 'Предзаказ',
-        'is_unique_text' => 'Статус уникального наполнения',
+        'is_unique_text' => 'Уникальный текст',
         'is_allow_in_order' => 'Разрешить учитывать в заказе',
         'is_allow_free_shipping' => 'Разрешить бесплатную доставку',
         'is_send_email' => 'Отправить уведомление на E-mail?',
         'is_attach_invoice' => 'Прикрепить счёт во вложение?',
+        'is_closed' => 'Закрыт',
+        'is_paid' => 'Оплачен',
 
-        'created_at' => 'Создано',
-        'updated_at' => 'Обновлено',
-        'deleted_at' => 'Удалено',
+        'created_at' => 'Создан',
+        'updated_at' => 'Обновлен',
+        'deleted_at' => 'Удален',
+
+        'order_status_new' => 'Статус для созданных счетов',
 
         'price_format_decimal_count' => 'Количество цифр после знака разделения',
         'price_format_decimal_point' => 'Знак разделения',
@@ -93,6 +113,10 @@ return [
         'price_format_space' => 'Разделение числа и знака пробелом',
 
         'dropdown_empty' => '--- Выберите из списка ---',
+
+        'section' => [
+            'price_format' => 'Формат отображения стоимости'
+        ],
 
         'tab' => [
             'settings' => 'Настройки',
@@ -126,17 +150,26 @@ return [
         'category' => 'Категория',
         'categories' => 'Категории',
         'binding_type' => 'Тип связи',
+        'status' => 'Статус',
+        'payment_cost' => 'Стоиомсть оплаты',
+        'shipping_cost' => 'Стоимость доставки',
 
         'quantity' => 'Количество',
         'available' => 'Доступно',
         'preorder' => 'Предзаказ',
 
+        'subtotal' => 'Стоимость',
+        'total' => 'Итого',
+
         'cost' => 'Стоимость',
         'price' => 'Цена',
+        'price_current' => 'Текущая цена',
+
+
         'price_original' => 'Текущая цена',
         'properties_count' => 'Количество свойств',
 
-        'is_active' => 'Активность',
+        'is_active' => 'Активен',
         'is_searchable' => 'Поиск',
         'is_available' => 'Доступность',
         'is_available_option_true' => 'Доступен',
@@ -195,6 +228,12 @@ return [
         ]
     ],
 
+    // Import Template
+    'import_templates' => [
+        'label' => 'Шаблоны импорта',
+        'description' => 'Управление шаблонами импорта',
+    ],
+
     'featured' => [
         'label' => 'Связанные товары',
     ],
@@ -209,7 +248,15 @@ return [
 
     // Orders
     'orders' => [
-        'label' => 'Заказы'
+        'label' => 'Заказы',
+        'errors' => [
+            'empty_order' => 'Вы ещё не добавили товары в счёт'
+        ]
+    ],
+
+    // Order histories
+    'order_histories' => [
+        'label' => 'Истории счёта'
     ],
 
     // Order statuses
@@ -219,6 +266,15 @@ return [
         'create' => 'Создание статуса счёта',
         'update' => 'Обновление статуса счёта',
         'preview' => 'Просмотр статуса счёта',
+    ],
+
+    // Payments
+    'payments' => [
+        'statuses' => [
+            'cancelled' => 'Отменён',
+            'paid' => 'Оплачен',
+            'failed' => 'Ошибка'
+        ],
     ],
 
     // Payment methods
@@ -270,11 +326,9 @@ return [
     'settings' => [
         'label' => 'Настройки магазина',
         'description' => 'Управление основными настройками',
-    ],
-
-    // Settings category
-    'setting_categories' => [
-        'main' => "Djetshop"
+        'categories' => [
+            'shop' => "Shop"
+        ]
     ],
 
     // Shipping methods
@@ -284,5 +338,14 @@ return [
         'create' => 'Создание метода доставки',
         'update' => 'Обновление метода доставки',
         'preview' => 'Просмотр метода доставки',
+    ],
+
+    // Statuses
+    'statuses' => [
+        'label' => 'Статусы',
+        'description' => 'Управление статусами',
+        'create' => 'Создание статуса',
+        'update' => 'Обновление статуса',
+        'preview' => 'Просмотр статуса',
     ],
 ];

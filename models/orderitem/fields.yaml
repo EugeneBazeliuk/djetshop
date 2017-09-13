@@ -1,0 +1,22 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    product:
+        label: djetson.shop::lang.form.product
+        type: relation
+        emptyOption: djetson.shop::lang.form.dropdown_empty
+        context: [create]
+
+    price:
+        label: djetson.shop::lang.form.price
+        type: number
+        default: 0.00
+        dependsOn: product
+
+    quantity:
+        label: djetson.shop::lang.form.quantity
+        type: number
+        default: 1

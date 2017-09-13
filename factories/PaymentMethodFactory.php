@@ -7,7 +7,7 @@
 $factory->define('Djetson\Shop\Models\PaymentMethod', function (Faker\Generator $faker) {
     return [
         'name' => $faker->numerify('Payment method ###'),
-        'provider' => $faker->randomElement($array = array ('self','privatbank')),
+        'provider' => 'test_provider',
         'cost' => $faker->randomNumber(2),
         'is_active' => $faker->boolean(50),
     ];

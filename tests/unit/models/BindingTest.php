@@ -3,31 +3,61 @@
 use PluginTestCase;
 use Djetson\Shop\Tests\ModelTestHelper;
 
+/**
+ * Class BindingTest
+ * @package Djetson\Shop\Tests\Unit\Models
+ *
+ * @property \Djetson\Shop\Models\Binding $model
+ *
+ * @mixin \PHPUnit_Framework_TestCase
+ */
 class BindingTest extends PluginTestCase
 {
     use ModelTestHelper;
 
-    protected $class = 'Djetson\Shop\Models\Binding';
+    protected $model;
 
+    /**
+     * SetUp Test
+     */
     public function setUp()
     {
         parent::setUp();
         $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
+        $this->model = factory('Djetson\Shop\Models\Binding')->make([
+            'binding_type' => factory('Djetson\Shop\Models\BindingType')->create()
+        ]);
     }
 
     /**
-     * Creation test
+     * Create model test
      */
     public function test_create()
     {
-        $this->createHelper(new $this->class, 'name');
+        $this->helperCreateModel($this->model, 'name');
     }
 
     /**
-     * Creation with sluggable trait test
+     * Create sluggable test
      */
-    public function test_create_with_slugable_trait()
+    public function test_create_sluggable()
     {
-        $this->createSluggableHelper(new $this->class, 'slug');
+        $this->helperCreateWithSluggable($this->model, 'name', 'slug');
+    }
+
+    /**
+     * Relation test | BelongTo bindingType
+     */
+    public function test_relation_belong_to_binding_type()
+    {
+        $this->helperBelongTo($this->model, 'binding_type', 'name');
+    }
+
+    /**
+     * Relation test | BelongToMany products
+     */
+    public function test_relation_belong_to_many_products()
+    {
+        $this->helperBelongToMany($this->model, 'products');
     }
 }

@@ -10,6 +10,17 @@ use October\Rain\Database\Traits\NestedTree;
  * Category Model
  * @package Djetson\Shop
  *
+ * @property int        $id
+ * @property string     $name
+ * @property string     $description
+ * @property string     $meta_title
+ * @property string     $meta_keywords
+ * @property string     $meta_description
+ * @property boolean    $is_active
+ * @property boolean    $is_searchable
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ *
  * @mixin \Eloquent
  * @mixin \October\Rain\Database\Model
  * @mixin \October\Rain\Database\Traits\Sluggable
@@ -24,24 +35,18 @@ class Category extends Model
     use SoftDelete;
     use NestedTree;
 
-    /**
-     * @var string The database table used by the model.
-     */
+    /** @var string The database table used by the model. */
     public $table = 'djetshop_categories';
 
-    /**
-     * @var array Guarded fields
-     */
+    /** @var array Guarded fields */
     protected $guarded = ['*'];
 
-    /**
-     * @var array Fillable fields
-     */
+    /** @var array Fillable fields */
     protected $fillable = [
         // Base
         'name',
-        // Description
         'description',
+        // Seo
         'meta_title',
         'meta_keywords',
         'meta_description',
@@ -50,21 +55,22 @@ class Category extends Model
         'is_searchable',
     ];
 
-    /**
-     * @var array Generate slugs for these attributes.
-     */
+    /** @var array Generate slugs for these attributes. */
     protected $slugs = ['slug' => 'name'];
 
-    /**
-     * @var array Dates fields
-     */
+    /** @var array Dates fields */
     protected $dates = ['deleted_at'];
+
+    /** @var array Relations */
+    public $attachOne = [
+        'image' => 'System\Models\File'
+    ];
 
     /** @var array Validation rules */
     public $rules = [
         // Base
-        'name' => ['required', 'between:1,255'],
-        'slug'      => ['regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255', 'unique:djetshop_categories'],
+        'name'      => ['required', 'between:1,255'],
+        'slug'      => ['required:update', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255', 'unique:djetshop_categories'],
         // Description
         'description'       => [],
         'meta_title'        => ['between:1,255'],
@@ -74,21 +80,4 @@ class Category extends Model
         'is_active'         => ['boolean'],
         'is_searchable'     => ['boolean'],
     ];
-
-    /**
-     * Relations
-     */
-    public $attachOne = [
-        'image' => 'System\Models\File'
-    ];
-
-    /**
-     * Action BeforeValidate
-     */
-    public function beforeValidate()
-    {
-        if ($this->exists) {
-            array_push($this->rules['slug'], 'required');
-        }
-    }
 }

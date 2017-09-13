@@ -24,7 +24,7 @@ create:
 update:
     title: Edit Order
     redirect: djetson/shop/orders
-    redirectClose: djetson/shop/orders
+    redirectClose: djetson/shop/orders/preview/:id
 
 # Preview page
 preview:

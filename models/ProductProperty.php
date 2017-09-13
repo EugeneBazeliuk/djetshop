@@ -17,6 +17,7 @@ use October\Rain\Database\Traits\Validation;
  *
  * @mixin \Eloquent
  * @mixin \October\Rain\Database\Model
+ * @todo рефакторинг в pivot
  */
 class ProductProperty extends Pivot
 {
@@ -41,26 +42,14 @@ class ProductProperty extends Pivot
         ],
         'property_value' => [
             'Djetson\Shop\Models\PropertyValue',
+            'scope' => 'PropertyValues'
         ],
     ];
 
     /** @var array Validation rules */
     public $rules = [
-        'product' => ['required'],
-        'property' => ['required'],
-        'property_value' => ['required']
+        'product'       => ['required'],
+        'property'      => ['required'],
+        'property_value'    => ['required']
     ];
-
-    public function getPropertyValueIdOptions()
-    {
-        if ($this->exists) {
-            $id = $this->property->id;
-        } elseif (count(post('foreign_id'))) {
-            $id = post('foreign_id');
-        } else {
-            throw new \ApplicationException('Error');
-        }
-
-        return PropertyValue::where('property_id', $id)->lists('value', 'id');
-    }
 }

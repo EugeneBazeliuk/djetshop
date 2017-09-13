@@ -29,7 +29,7 @@ fields:
         tab: djetson.shop::lang.form.tab.general
         label: djetson.shop::lang.form.description
         type: textarea
-        size: hude
+        size: small
         span: left
 
     is_active:

@@ -56,4 +56,21 @@ class PropertyValue extends Model
         $rule = 'unique:djetshop_property_values,value,NULL,id,property_id, %d';
         array_push($this->rules['value'], sprintf($rule, $this->property_id));
     }
+
+    /**
+     * @param $query \October\Rain\Database\Builder
+     * @param $type \October\Rain\Database\Model
+     *
+     * @return mixed
+     */
+    public function scopePropertyValues($query, $type)
+    {
+        if ($type->exists) {
+            $query->where('property_id', $type->property_id);
+        } elseif (post('foreign_id')) {
+            $query->where('property_id', post('foreign_id'));
+        }
+
+        return $query;
+    }
 }

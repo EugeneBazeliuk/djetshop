@@ -2,40 +2,34 @@
 
 use App;
 use Seeder;
+use Djetson\Shop\Models\Currency;
+use Djetson\Shop\Models\Settings;
 
 class SeedInitial extends Seeder
 {
     public function run()
     {
-        // Register plugin Factories
+        // Register factories
         App::register('Djetson\Shop\Providers\FactoryServiceProvider');
 
-        factory('Djetson\Shop\Models\BindingType', 5)->create();
-        factory('Djetson\Shop\Models\Binding', 5)->make()->each(function (\Djetson\Shop\Models\Binding $model) {
-            $model->binding_type()->associate(random_int(1,5));
-            $model->save();
-        });
-        factory('Djetson\Shop\Models\Category', 5)->create();
-        factory('Djetson\Shop\Models\Manufacturer', 5)->create();
-        factory('Djetson\Shop\Models\Product', 5)->make()->each(function (\Djetson\Shop\Models\Product $model) {
-            $model->category()->associate(random_int(1,5));
-            $model->manufacturer()->associate(random_int(1,5));
-            $model->save();
-        });
+        // Create Currency
+        $currency = Currency::create([
+            'name' => 'Гривна',
+            'code' => 'GRN',
+            'symbol' => 'грн.',
+            'symbol_position' => 'after',
+            'symbol_space' => true,
+        ]);
 
-        factory('Djetson\Shop\Models\PropertyGroup', 5)->create();
+        // Set default settings
+        $settings = Settings::instance();
+        $settings->currency = $currency;
+        $settings->save();
 
-
-        factory('Djetson\Shop\Models\Property', 5)->create()->each(function (\Djetson\Shop\Models\Property $model) {
-            $model->group()->associate(random_int(1,5));
-            $model->values()->addMany(factory('Djetson\Shop\Models\PropertyValue', 5)->make());
-            $model->save();
-        });
-
-
-        factory('Djetson\Shop\Models\Currency', 5)->create();
-        factory('Djetson\Shop\Models\OrderStatus', 5)->create();
-        factory('Djetson\Shop\Models\PaymentMethod', 5)->create();
-        factory('Djetson\Shop\Models\ShippingMethod', 5)->create();
+        // Test seed
+        factory('Djetson\Shop\Models\Product', 5)->create();
+        factory('Djetson\Shop\Models\Category', 2)->create();
+        factory('Djetson\Shop\Models\Manufacturer', 2)->create();
+        factory('Djetson\Shop\Models\Status', 2)->create();
     }
 }

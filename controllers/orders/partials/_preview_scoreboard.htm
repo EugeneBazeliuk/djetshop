@@ -1,0 +1,33 @@
+<!-- START INVOICE -->
+<div class="scoreboard-item title-value">
+    <h4>Invoice</h4>
+    <p><?= e($formModel->id) ?></p>
+    <p class="description"><?= e(trans('djetson.shop::lang.form.created_at')) ?>: <?= e($formModel->created_at) ?></p>
+</div>
+<!-- END INVOICE -->
+
+<!-- START CUSTOMER -->
+<?php if ($formModel->customer): ?>
+    <div class="scoreboard-item title-value">
+        <h4><?= e(trans('djetson.shop::lang.form.customer')) ?></h4>
+        <p><?= e($formModel->customer->name.' '.$formModel->customer->surname) ?></p>
+        <p class="description"><a href="mailto:<?= e($formModel->customer->email) ?>"><?= e($formModel->customer->email) ?></a></p>
+    </div>
+<?php endif ?>
+<!-- END CUSTOMER -->
+
+<!-- START TOTAL -->
+<div class="scoreboard-item title-value">
+    <h4><?= e(trans('djetson.shop::lang.form.total')) ?></h4>
+    <p><?= e($formModel->formatPrice($formModel->total)) ?></p>
+    <p class="description"><?= e(trans('djetson.shop::lang.form.subtotal')) ?>: <?= e($formModel->formatPrice($formModel->subtotal)) ?></p>
+</div>
+<!-- END TOTAL -->
+
+<!-- START STATUS -->
+<div class="scoreboard-item title-value">
+    <h4>Status</h4>
+    <p><?= e($formModel->status->name) ?></p>
+    <p class="description"><?= e(trans('djetson.shop::lang.form.updated_at')) ?>: <?= e($formModel->updated_at) ?></p>
+</div>
+<!-- END STATUS -->

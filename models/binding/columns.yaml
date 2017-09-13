@@ -9,9 +9,9 @@ columns:
         type: text
         searchable: 1
 
-    binding_type:
-        label: djetson.shop::lang.list.binding_type
-        relation: binding_type
+    type:
+        label: djetson.shop::lang.list.type
+        relation: type
         select: name
         width: 20%
 

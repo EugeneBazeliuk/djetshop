@@ -2,56 +2,77 @@
 
 /**
  * Trait ModelTestHelper
- * @mixin
+ *
+ * @property \October\Rain\Database\Model $class
+ *
+ * @mixin \PluginTestCase
+ * @mixin \PHPUnit_Framework_TestCase
  * @package Djetson\Shop
  */
 
 trait ModelTestHelper {
 
     /**
-     * Test creation model
-     * @param \October\Rain\Database\Model $class
-     * @param string                       $field
+     * @param $model \October\Rain\Database\Model
+     * @param $checkField string
      */
-    public function createHelper($class, string $field)
+    public function helperCreateModel($model, $checkField)
     {
-        $model = factory(get_class($class))->create();
-        $this->seeInDatabase($class->getTable(), [$field => $model->{$field}]);
+        $model->save();
+        $this->seeInDatabase($model->getTable(), [$checkField => $model->{$checkField}]);
     }
 
     /**
-     * Test creation model with sluggable field
-     * @param \October\Rain\Database\Model $class
-     * @param string                       $field
+     * @param $model \October\Rain\Database\Model
+     * @param $checkField string
+     * @param $sluggableField string
      */
-    public function createSluggableHelper($class, string $field)
+    public function helperCreateWithSluggable($model, $checkField, $sluggableField)
     {
-        $model = factory(get_class($class))->create([$field => null]);
-        $this->seeInDatabase($class->getTable(), [$field => $model->$field]);
+        $model->{$sluggableField} = null;
+        $model->save();
+        $this->seeInDatabase($model->getTable(), [$checkField => $model->{$checkField}]);
     }
 
     /**
-     * @param \October\Rain\Database\Model  $class
-     * @param string                        $relationName
+     * @param $model \October\Rain\Database\Model
+     * @param $relationName string
+     * @param $checkField string
      */
-    public function helperBelongToMany($class, $relationName)
+    public function helperBelongTo($model, $relationName, $checkField)
     {
-        $model = factory(get_class($class))->create();
         $relatedClass = $model->{$relationName}()->getRelated();
         $relatedModel = factory(get_class($relatedClass))->create();
-        $model->{$relationName}()->add($relatedModel);
+        $model->{$relationName} = $relatedModel;
+        $model->save();
 
-        $this->assertEquals(1, $model->$relationName()->count());
+        $this->assertEquals($model->{$relationName}->{$checkField}, $relatedModel->{$checkField});
     }
 
-    public function helperBelongTo(\October\Rain\Database\Model $class, $relationName)
+    /**
+     * @param $model \October\Rain\Database\Model
+     * @param $relationName string
+     */
+    public function helperHasMany($model, $relationName)
     {
-        $model = factory(get_class($class))->create();
-        $relatedClass = $class->{$relationName}()->getRelated();
-        $relatedModel = factory(get_class($relatedClass))->create();
+        $relatedClass = $model->{$relationName}()->getRelated();
+        $relatedModels = factory(get_class($relatedClass), 3)->make();
+        $model->{$relationName} = $relatedModels;
+        $model->save();
 
-        $model->$relationName()->associate($relatedModel);
+        $this->assertEquals(3, $model->$relationName->count());
+    }
 
-        $this->assertEquals(1, $model->$relationName()->count());
+    /**
+     * @param $model \October\Rain\Database\Model
+     * @param $relationName string
+     */
+    public function helperBelongToMany($model, $relationName)
+    {
+        $relatedModels = factory(get_class($model->{$relationName}()->getRelated()), 3)->create();
+        $model->{$relationName} = $relatedModels;
+        $model->save();
+
+        $this->assertEquals(3, $model->$relationName->count());
     }
 }

@@ -5,7 +5,8 @@ use PluginTestCase;
 
 /**
  * Class SettingsTest
- * @package Djetson\Shop
+ * @package Djetson\Shop\Tests\Unit\Models
+ *
  * @mixin \PHPUnit_Framework_TestCase
  */
 class SettingsTest extends PluginTestCase
@@ -32,18 +33,18 @@ class SettingsTest extends PluginTestCase
         ]);
 
         // Position left with space
-        $this->assertEquals('$ 1,000.00', $settings->getConvertedPrice($currency, 1000));
+        $this->assertEquals('$ 1,000.00', $settings->formatPrice(1000, $currency));
 
         // Position left without space
         $currency->symbol_space = false;
-        $this->assertEquals('$1,000.00', $settings->getConvertedPrice($currency, 1000));
+        $this->assertEquals('$1,000.00', $settings->formatPrice(1000, $currency));
 
         // Position right without space
         $currency->symbol_position = 'after';
-        $this->assertEquals('1,000.00$', $settings->getConvertedPrice($currency, 1000));
+        $this->assertEquals('1,000.00$', $settings->formatPrice(1000, $currency));
 
         // Position right with space
         $currency->symbol_space = true;
-        $this->assertEquals('1,000.00 $', $settings->getConvertedPrice($currency, 1000));
+        $this->assertEquals('1,000.00 $', $settings->formatPrice(1000, $currency));
     }
 }

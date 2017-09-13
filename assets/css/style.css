@@ -1,11 +1,33 @@
-.v-align-middle {
-    vertical-align: middle !important;
+.list-cell-type-price {
+    text-align: right;
 }
 
-.order-status-label {
+.btn-status-label {
+    padding: 1px 6px;
+    font-size: 11px;
     color: #fff;
-    padding: 3px 6px;
-    font-size: smaller;
-    display: inline-block;
-    border-radius: 3px;
+    box-shadow: none;
 }
+
+
+table.table.data tfoot {
+    background: red;
+}
+
+table.table.data tfoot tr.total {
+    border-top: 2px solid #d4d8da !important;
+}
+
+
+
+/*.v-align-middle {*/
+    /*vertical-align: middle !important;*/
+/*}*/
+
+/*.order-status-label {*/
+    /*color: #fff;*/
+    /*padding: 3px 6px;*/
+    /*font-size: smaller;*/
+    /*display: inline-block;*/
+    /*border-radius: 3px;*/
+/*}*/

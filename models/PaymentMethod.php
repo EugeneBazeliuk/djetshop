@@ -35,7 +35,7 @@ class PaymentMethod extends Model
     use Validation;
 
     /** @var string The database table used by the model. */
-    public $table = 'djetson_shop_payment_methods';
+    public $table = 'djetshop_payment_methods';
 
     /** @var array Guarded fields */
     protected $guarded = ['*'];
@@ -65,13 +65,19 @@ class PaymentMethod extends Model
      */
     public function getProviderOptions()
     {
-        $list = [];
-        $providers = Config::get('djetson.shop::payments.methods', []);
+        return array_pluck(Config::get('djetson.shop::payment.methods', []), 'name', 'code');
+    }
 
-        foreach ($providers as $key => $val) {
-            $list[$key] = $val['name'];
+    /**
+     * @param Order $order
+     * @return int
+     */
+    public function getCost(Order $order)
+    {
+        if ($order->items->count()) {
+            return $this->cost;
+        } else {
+            return 0;
         }
-
-        return $list;
     }
 }

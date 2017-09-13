@@ -3,23 +3,35 @@
 use PluginTestCase;
 use Djetson\Shop\Tests\ModelTestHelper;
 
+/**
+ * Class PropertyGroupTest
+ * @package Djetson\Shop\Tests\Unit\Models
+ *
+ * @property \Djetson\Shop\Models\ShippingMethod $model
+ *
+ * @mixin \PHPUnit_Framework_TestCase
+ */
 class ShippingMethodsTest extends PluginTestCase
 {
     use ModelTestHelper;
 
-    protected $class = 'Djetson\Shop\Models\ShippingMethod';
+    protected $model;
 
+    /**
+     * SetUp Test
+     */
     public function setUp()
     {
         parent::setUp();
         $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
+        $this->model = factory('Djetson\Shop\Models\ShippingMethod')->make();
     }
 
     /**
-     * Test creation model
+     * Create model test
      */
-    public function test_creation()
+    public function test_create()
     {
-        $this->createHelper(new $this->class, 'name');
+        $this->helperCreateModel($this->model, 'name');
     }
 }

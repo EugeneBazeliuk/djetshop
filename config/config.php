@@ -7,14 +7,17 @@ return [
         'methods' => [
 
             'self' => [
+                'code' => 'self',
                 'name' => 'Self',
             ],
 
             'novaposhta' => [
+                'code' => 'novaposhta',
                 'name' => 'Novaposhta',
             ],
 
             'ukrposhta' => [
+                'code' => 'ukrposhta',
                 'name' => 'Ukrposhta',
             ],
 
@@ -22,19 +25,20 @@ return [
 
     ],
 
-    'payments' => [
+    'payment' => [
 
         'methods' => [
 
             'self' => [
+                'code' => 'self',
                 'name' => 'Self',
             ],
 
             'privatbank' => [
-                'name' => 'Приватбанк',
+                'code' => 'privatbank',
+                'name' => 'Privatbank',
             ]
 
         ],
-
     ],
 ];

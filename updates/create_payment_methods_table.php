@@ -8,7 +8,7 @@ class CreatePaymentMethodsTable extends Migration
 {
     public function up()
     {
-        Schema::create('djetson_shop_payment_methods', function(Blueprint $table) {
+        Schema::create('djetshop_payment_methods', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             // Base
@@ -22,6 +22,6 @@ class CreatePaymentMethodsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('djetson_shop_payment_methods');
+        Schema::dropIfExists('djetshop_payment_methods');
     }
 }

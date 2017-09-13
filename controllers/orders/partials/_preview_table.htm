@@ -1,0 +1,72 @@
+<?php if ($formModel->items->count()): ?>
+
+    <div class="control-list" style="margin-left: -20px; margin-right: -20px">
+        <table class="table data">
+
+            <thead>
+                <tr>
+                    <th><span>Product name</span></th>
+                    <th class="text-right"><span>SKU</span></th>
+                    <th class="text-right"><span>Price</span></th>
+                    <th class="text-right"><span>Quantity</span></th>
+                    <th class="text-right"><span>Total</span></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <!-- START ORDER ITEMS -->
+                <?php foreach ($formModel->items as $item): ?>
+                    <tr>
+                        <td><?= e($item->name) ?></td>
+                        <td class="text-right"><?= e($item->sku) ?></td>
+                        <td class="text-right"><?= e($formModel->formatPrice($item->price)) ?></td>
+                        <td class="text-right"><?= e($item->quantity) ?></td>
+                        <td class="text-right"><?= e($formModel->formatPrice($item->total)) ?></td>
+                    </tr>
+                <?php endforeach ?>
+                <!-- END ORDER ITEMS -->
+
+            </tbody>
+
+            <tfoot>
+
+                <!-- START ORDER SUBTOTAL -->
+                <tr class="total">
+                    <td class="text-right" colspan="4"><span>SubTotal:</span></td>
+                    <td class="text-right"><span><?= e($formModel->formatPrice($formModel->subtotal)) ?></span></td>
+                </tr>
+                <!-- END ORDER SUBTOTAL -->
+
+                <!-- START ORDER PAYMENT -->
+                <?php if ($formModel->payment_method): ?>
+                <tr>
+                    <td class="text-right" colspan="4"><span><?= e($formModel->payment_method->name) ?></span></td>
+                    <td class="text-right"><span><?= e($formModel->formatPrice($formModel->payment_cost)) ?></span></td>
+                </tr>
+                <?php endif; ?>
+                <!-- END ORDER PAYMENT -->
+
+                <!-- START ORDER SHIPPING -->
+                <?php if ($formModel->shipping_method): ?>
+                <tr>
+                    <td class="text-right" colspan="4"><span><?= e($formModel->shipping_method->name) ?></span></td>
+                    <td class="text-right"><span><?= e($formModel->formatPrice($formModel->shipping_cost)) ?></span></td>
+                </tr>
+                <?php endif; ?>
+                <!-- END ORDER SHIPPING -->
+
+                <!-- START ORDER TOTAL -->
+                <tr>
+                    <td class="text-right" colspan="4"><span>Total:</span></td>
+                    <td class="text-right"><span><?= e($formModel->formatPrice($formModel->total)) ?></span></td>
+                </tr>
+                <!-- END ORDER TOTAL -->
+
+            </tfoot>
+        </table>
+    </div>
+
+<?php else: ?>
+        <p class="flash-message static warning"><?= e(trans('djetson.shop::lang.orders.errors.empty_order')) ?></p>
+<?php endif; ?>

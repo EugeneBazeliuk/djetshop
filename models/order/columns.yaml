@@ -3,6 +3,35 @@
 # ===================================
 
 columns:
+
     id:
         label: ID
         searchable: true
+
+    status_name:
+        label: djetson.shop::lang.list.status
+        relation: status
+        select: name
+        type: partial
+        path: $/djetson/shop/controllers/orders/partials/_column_status_label.htm
+        width: 160px
+
+    payment_cost:
+        label: djetson.shop::lang.list.payment_cost
+        type: price
+        width: 120px
+
+    shipping_cost:
+        label: djetson.shop::lang.list.shipping_cost
+        type: price
+        width: 120px
+
+    subtotal:
+        label: djetson.shop::lang.list.subtotal
+        type: price
+        width: 120px
+
+    total:
+        label: djetson.shop::lang.list.total
+        type: price
+        width: 120px

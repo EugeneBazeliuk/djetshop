@@ -1,32 +1,37 @@
 <?php namespace Djetson\Shop\Tests\Unit\Models;
 
 use PluginTestCase;
-use Djetson\Shop\Models\PaymentMethod;
 use Djetson\Shop\Tests\ModelTestHelper;
 
+/**
+ * Class PaymentMethodsTest
+ * @package Djetson\Shop\Tests\Unit\Models
+ *
+ * @property \Djetson\Shop\Models\PaymentMethod $model
+ *
+ * @mixin \PHPUnit_Framework_TestCase
+ */
 class PaymentMethodsTest extends PluginTestCase
 {
     use ModelTestHelper;
 
-    protected $class = 'Djetson\Shop\Models\PaymentMethodsTest';
+    protected $model;
 
+    /**
+     * SetUp Test
+     */
     public function setUp()
     {
         parent::setUp();
         $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
+        $this->model = factory('Djetson\Shop\Models\PaymentMethod')->make();
     }
 
     /**
-     * Test creation model
+     * Create model test
      */
-    public function test_creation()
+    public function test_create()
     {
-        $model = PaymentMethod::create([
-            'name' => 'Test Payment method',
-            'provider' => 'self',
-            'is_active' => true,
-        ]);
-
-        $this->seeInDatabase($model->getTable(), ['name' => $model->name]);
+        $this->helperCreateModel($this->model, 'name');
     }
 }

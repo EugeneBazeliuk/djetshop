@@ -3,20 +3,35 @@
 use PluginTestCase;
 use Djetson\Shop\Tests\ModelTestHelper;
 
+/**
+ * Class BindingTest
+ * @package Djetson\Shop\Tests\Unit\Models
+ *
+ * @property \Djetson\Shop\Models\Currency $model
+ *
+ * @mixin \PHPUnit_Framework_TestCase
+ */
 class CurrencyTest extends PluginTestCase
 {
     use ModelTestHelper;
 
-    protected $class = 'Djetson\Shop\Models\Currency';
+    protected $model;
 
+    /**
+     * SetUp Test
+     */
     public function setUp()
     {
         parent::setUp();
         $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
+        $this->model = factory('Djetson\Shop\Models\Currency')->make();
     }
 
-    public function test_creation()
+    /**
+     * Create model test
+     */
+    public function test_create()
     {
-        $this->createHelper(new $this->class, 'name');
+        $this->helperCreateModel($this->model, 'name');
     }
 }

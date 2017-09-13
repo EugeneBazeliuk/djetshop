@@ -16,8 +16,8 @@ class Plugin extends PluginBase
     {
         return [
             'price' => function(float $value) {
-                return Settings::instance()->convertPrice($value);
-            }
+                return Settings::formatPrice($value);
+            },
         ];
     }
 }

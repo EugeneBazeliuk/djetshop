@@ -66,7 +66,7 @@ tabs:
             label: djetson.shop::lang.form.meta_keywords
             type: textarea
             span: left
-            size: hude
+            size: small
 
         meta_description:
             tab: djetson.shop::lang.form.tab.seo
@@ -110,7 +110,7 @@ tabs:
 
         categories:
             tab: djetson.shop::lang.form.tab.categories
-            label: djetson.shop::lang.form.categories
+            label: djetson.shop::lang.form.see_in_categories
             type: relation
             span: left
 
@@ -145,6 +145,7 @@ tabs:
 secondaryTabs:
     fields:
 
+        # Image
         image:
             type: fileupload
             mode: image
@@ -159,6 +160,7 @@ secondaryTabs:
                 sharpen: 0
                 extension: auto
 
+        # States
         is_active:
             label: djetson.shop::lang.form.is_active
             type: switch

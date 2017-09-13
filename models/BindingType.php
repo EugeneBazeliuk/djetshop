@@ -1,6 +1,7 @@
 <?php namespace Djetson\Shop\Models;
 
 use October\Rain\Database\Model;
+use October\Rain\Database\Traits\Sluggable;
 use October\Rain\Database\Traits\Validation;
 
 /**
@@ -16,6 +17,7 @@ use October\Rain\Database\Traits\Validation;
  */
 class BindingType extends Model
 {
+    use Sluggable;
     use Validation;
 
     /** @var string The database table used by the model. */
@@ -30,6 +32,11 @@ class BindingType extends Model
         'code'
     ];
 
+    /**
+     * @var array Generate slugs for these attributes.
+     */
+    protected $slugs = ['code' => 'name'];
+
     /** @var string The database timestamps. */
     public $timestamps = false;
 
@@ -37,6 +44,6 @@ class BindingType extends Model
     public $rules = [
         // Base
         'name' => ['required', 'between:1,255'],
-        'code' => ['required', 'alpha_dash', 'between:1,255', 'unique:djetshop_binding_types'],
+        'code' => ['required:update', 'alpha_dash', 'between:1,255', 'unique:djetshop_binding_types'],
     ];
 }

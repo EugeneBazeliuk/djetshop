@@ -13,7 +13,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             // Base
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug')->index();
             $table->string('sku')->unique();
             $table->string('isbn')->nullable();
             $table->decimal('price', 10, 2)->default(0.00);
@@ -37,18 +37,6 @@ class CreateProductsTable extends Migration
             $table->timestamps();
         });
 
-        // Add category reference to product
-        Schema::table('djetshop_products', function(Blueprint $table) {
-            $table->integer('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('djetshop_categories');
-        });
-
-        // Add manufacturer reference to product
-        Schema::table('djetshop_products', function(Blueprint $table) {
-            $table->integer('manufacturer_id')->unsigned()->nullable();
-            $table->foreign('manufacturer_id')->references('id')->on('djetshop_manufacturers');
-        });
-
         // Add binding reference to product
         Schema::create('djetshop_products_bindings', function(Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -57,6 +45,12 @@ class CreateProductsTable extends Migration
             $table->primary(['product_id', 'binding_id'], 'product_binding');
             $table->foreign('product_id')->references('id')->on('djetshop_products');
             $table->foreign('binding_id')->references('id')->on('djetshop_bindings');
+        });
+
+        // Add category reference to product
+        Schema::table('djetshop_products', function(Blueprint $table) {
+            $table->integer('category_id')->unsigned()->nullable();
+            $table->foreign('category_id')->references('id')->on('djetshop_categories');
         });
 
         // Add categories reference to product
@@ -69,6 +63,22 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')->references('id')->on('djetshop_categories');
         });
 
+        // Add featured reference to product
+        Schema::create('djetshop_products_featured', function(Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->integer('product_id')->unsigned();
+            $table->integer('featured_id')->unsigned();
+            $table->primary(['product_id', 'featured_id'], 'product_featured');
+            $table->foreign('product_id')->references('id')->on('djetshop_products');
+            $table->foreign('featured_id')->references('id')->on('djetshop_products');
+        });
+
+        // Add manufacturer reference to product
+        Schema::table('djetshop_products', function(Blueprint $table) {
+            $table->integer('manufacturer_id')->unsigned()->nullable();
+            $table->foreign('manufacturer_id')->references('id')->on('djetshop_manufacturers');
+        });
+
         // Add properties reference to product
         Schema::create('djetshop_products_properties', function(Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -79,24 +89,14 @@ class CreateProductsTable extends Migration
             $table->foreign('product_id')->references('id')->on('djetshop_products');
             $table->foreign('property_id')->references('id')->on('djetshop_properties');
         });
-
-        // Add featured reference to product
-        Schema::create('djetshop_products_featured', function(Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->integer('product_id')->unsigned();
-            $table->integer('featured_id')->unsigned();
-            $table->primary(['product_id', 'featured_id'], 'product_featured');
-            $table->foreign('product_id')->references('id')->on('djetshop_products');
-            $table->foreign('featured_id')->references('id')->on('djetshop_products');
-        });
     }
 
     public function down()
     {
         Schema::dropIfExists('djetshop_products_bindings');
         Schema::dropIfExists('djetshop_products_categories');
-        Schema::dropIfExists('djetshop_products_properties');
         Schema::dropIfExists('djetshop_products_featured');
+        Schema::dropIfExists('djetshop_products_properties');
         Schema::dropIfExists('djetshop_products');
     }
 }

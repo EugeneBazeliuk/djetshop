@@ -6,13 +6,10 @@
  */
 $factory->define('Djetson\Shop\Models\Product', function (Faker\Generator $faker) {
 
-    //$faker->seed($faker->unique()->randomNumber(2));
-
-
     $name = $faker->unique()->numerify('Product ###');
 
     return [
-        // base
+        // Base
         'name' => $name,
         'slug' => str_slug($name),
         'sku' => $faker->unique()->ean8,
@@ -28,9 +25,11 @@ $factory->define('Djetson\Shop\Models\Product', function (Faker\Generator $faker
         'meta_title' => $faker->realText(255),
         'meta_keywords' => $faker->realText(255),
         'meta_description' => $faker->realText(255),
-        // states
+        // States
         'is_active' => $faker->boolean(70),
         'is_searchable' => $faker->boolean(70),
         'is_unique_text' => $faker->boolean(30),
+        // Image
+        //'image' => $faker->image($dir = temp_path() . '/faker', $width = 640, $height = 480),
     ];
 });

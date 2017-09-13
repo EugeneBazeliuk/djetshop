@@ -33,19 +33,22 @@ tabs:
         meta_title:
             tab: djetson.shop::lang.form.tab.seo
             label: djetson.shop::lang.form.meta_title
+            span: left
             type: text
 
         meta_keywords:
             tab: djetson.shop::lang.form.tab.seo
             label: djetson.shop::lang.form.meta_keywords
             type: textarea
-            size: hude
+            span: left
+            size: small
 
         meta_description:
             tab: djetson.shop::lang.form.tab.seo
             label: djetson.shop::lang.form.meta_description
             type: textarea
-            size: hude
+            span: left
+            size: large
 
 secondaryTabs:
     fields:

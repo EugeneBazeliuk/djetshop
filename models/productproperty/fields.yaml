@@ -4,7 +4,8 @@
 
 fields:
 
-    pivot[property_value_id]:
-        label: djetson.store::lang.form.property_value
-        type: dropdown
+    pivot[property_value]:
+        label: djetson.shop::lang.form.property_value
+        type: relation
+        nameFrom: value
         emptyOption: djetson.shop::lang.form.dropdown_empty

@@ -13,7 +13,7 @@ featured:
         list: $/djetson/shop/models/product/columns.yaml
 
 properties:
-    label:
+    label: djetson.shop::lang.properties.label
     view:
         toolbarButtons: add|remove
         recordsPerPage: 10

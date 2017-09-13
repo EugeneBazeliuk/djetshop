@@ -3,31 +3,43 @@
 use PluginTestCase;
 use Djetson\Shop\Tests\ModelTestHelper;
 
+/**
+ * Class CategoryTest
+ * @package Djetson\Shop\Tests\Unit\Models
+ *
+ * @property \Djetson\Shop\Models\Category $model
+ *
+ * @mixin \PHPUnit_Framework_TestCase
+ */
 class CategoryTest extends PluginTestCase
 {
     use ModelTestHelper;
 
-    protected $class = 'Djetson\Shop\Models\Category';
+    protected $model;
 
+    /**
+     * SetUp Test
+     */
     public function setUp()
     {
         parent::setUp();
         $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
+        $this->model = factory('Djetson\Shop\Models\Category')->make();
     }
 
     /**
-     * Creation test
+     * Create model test
      */
     public function test_create()
     {
-        $this->createHelper(new $this->class, 'name');
+        $this->helperCreateModel($this->model, 'name');
     }
 
     /**
-     * Creation with sluggable trait test
+     * Create sluggable test
      */
-    public function test_create_with_slugable_trait()
+    public function test_create_sluggable()
     {
-        $this->createSluggableHelper(new $this->class, 'slug');
+        $this->helperCreateWithSluggable($this->model, 'name', 'slug');
     }
 }

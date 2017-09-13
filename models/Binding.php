@@ -9,11 +9,22 @@ use October\Rain\Database\Traits\SoftDelete;
  * Binding Model
  *
  * @property int        $id
+ * @property int        $type_id
  * @property string     $name
  * @property string     $description
+ * @property string     $meta_title
+ * @property string     $meta_keywords
+ * @property string     $meta_description
+ * @property boolean    $is_active
+ * @property boolean    $is_searchable
+ * @property \Carbon\Carbon     $created_at
+ * @property \Carbon\Carbon     $updated_at
  *
- * @property \Djetson\Shop\Models\Currency $binding_type
+ * @property-read \Djetson\Shop\Models\BindingType $binding_type
  * @method \October\Rain\Database\Relations\BelongsTo binding_type
+ *
+ * @property-read \Djetson\Shop\Models\Product $products
+ * @method \October\Rain\Database\Relations\BelongsToMany products
  *
  * @mixin \Eloquent
  * @mixin \October\Rain\Database\Model
@@ -43,6 +54,7 @@ class Binding extends Model
     protected $fillable = [
         // Base
         'name',
+        'type_id',
         // Description
         'description',
         'meta_title',
@@ -65,7 +77,7 @@ class Binding extends Model
 
     /** @var array Relations */
     public $belongsTo = [
-        'binding_type' => [
+        'type' => [
             'Djetson\Shop\Models\BindingType',
         ],
     ];
@@ -85,8 +97,8 @@ class Binding extends Model
     public $rules = [
         // Base
         'name'              => ['required', 'between:1,255'],
-        'slug'              => ['regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255', 'unique:djetshop_bindings'],
-        'binding_type'      => ['required'],
+        'slug'              => ['required:update', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255', 'unique:djetshop_bindings'],
+        'type_id'           => ['required'],
         // Description
         'description'       => [],
         'meta_title'        => ['between:1,255'],
@@ -96,14 +108,4 @@ class Binding extends Model
         'is_active'         => ['boolean'],
         'is_searchable'     => ['boolean'],
     ];
-
-    /**
-     * Action BeforeValidate
-     */
-    public function beforeValidate()
-    {
-        if ($this->exists) {
-            array_push($this->rules['slug'], 'required');
-        }
-    }
 }

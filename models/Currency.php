@@ -36,19 +36,13 @@ class Currency extends Model
 {
     use Validation;
 
-    /**
-     * @var string The database table used by the model.
-     */
+    /** @var string The database table used by the model. */
     public $table = 'djetshop_currencies';
 
-    /**
-     * @var array Guarded fields
-     */
+    /** @var array Guarded fields */
     protected $guarded = ['*'];
 
-    /**
-     * @var array Fillable fields
-     */
+    /** @var array Fillable fields */
     protected $fillable = [
         'name',
         'code',
@@ -71,7 +65,7 @@ class Currency extends Model
      */
     public function beforeDelete()
     {
-        if (Settings::instance()->checkIsDefaultCurrency($this->id)) {
+        if (Settings::isDefaultCurrency($this)) {
             throw new ApplicationException(trans('djetson.shop::lang.currencies.errors.delete_default'));
         }
     }
@@ -82,6 +76,6 @@ class Currency extends Model
      */
     public function getPreviewAttribute()
     {
-        return Settings::instance()->getConvertedPrice($this, 100.00);
+        return Settings::formatPrice(100.00, $this);
     }
 }

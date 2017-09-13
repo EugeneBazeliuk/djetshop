@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/djetson/shop/models/orderstatus/columns.yaml
+list: $/djetson/shop/models/status/columns.yaml
 
 # Model Class name
-modelClass: Djetson\Shop\Models\OrderStatus
+modelClass: Djetson\Shop\Models\Status
 
 # List Title
-title: djetson.shop::lang.order_statuses.label
+title: djetson.shop::lang.statuses.label
 
 # Link URL for each record
-recordUrl: djetson/shop/orderstatuses/update/:id
+recordUrl: djetson/shop/statuses/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
@@ -30,9 +30,6 @@ showSorting: false
 defaultSort:
     column: name
     direction: asc
-
-# Display checkboxes next to each record
-# showCheckboxes: true
 
 # Toolbar widget configuration
 toolbar:

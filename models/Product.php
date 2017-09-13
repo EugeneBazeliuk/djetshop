@@ -16,7 +16,8 @@ use October\Rain\Database\Traits\SoftDelete;
  * @method \October\Rain\Database\Relations\BelongsTo manufacturer
  *
  * @property \Djetson\Shop\Models\Binding $bindings
- * @method \October\Rain\Database\Relations\BelongsToMany bindings
+ * @method
+ * bindings
  *
  * @property \Djetson\Shop\Models\Category $categories
  * @method \October\Rain\Database\Relations\BelongsToMany categories
@@ -55,16 +56,19 @@ class Product extends Model
     protected $fillable = [
         // Base
         'name',
+        'slug',
+        'description',
+        // Code
         'sku',
         'isbn',
+        // Price
         'price',
-        // Sizes
+        // Delivery
         'package_width',
         'package_height',
         'package_depth',
         'package_weight',
-        // Description
-        'description',
+        // Seo
         'meta_title',
         'meta_keywords',
         'meta_description',
@@ -84,9 +88,7 @@ class Product extends Model
      */
     protected $dates = ['deleted_at'];
 
-    /**
-     * @var array Relations
-     */
+    /** @var array Relations */
     public $belongsTo = [
         'category' => [
             'Djetson\Shop\Models\Category',
@@ -114,7 +116,7 @@ class Product extends Model
             'table'         => 'djetshop_products_properties',
             'key'           => 'product_id',
             'otherKey'      => 'property_id',
-            'pivot'         => 'property_value_id',
+            'pivot'         => ['property_value_id'],
             'pivotModel'    => 'Djetson\Shop\Models\ProductProperty'
         ],
         'featured' => [
@@ -137,7 +139,7 @@ class Product extends Model
     public $rules = [
         // Base
         'name'              => ['required', 'between:1,255'],
-        'slug'              => ['regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255', 'unique:djetshop_products'],
+        'slug'              => ['required:update', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255', 'unique:djetshop_products'],
         'sku'               => ['required', 'numeric', 'unique:djetshop_products'],
         'price'             => ['required', 'numeric'],
         // Sizes
@@ -155,14 +157,4 @@ class Product extends Model
         'is_searchable'     => ['boolean'],
         'is_unique_text'    => ['boolean'],
     ];
-
-    /**
-     * Action BeforeValidate
-     */
-    public function beforeValidate()
-    {
-        if ($this->exists) {
-            array_push($this->rules['slug'], 'required');
-        }
-    }
 }

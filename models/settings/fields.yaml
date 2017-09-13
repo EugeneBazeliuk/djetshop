@@ -5,23 +5,65 @@
 tabs:
     fields:
 
+        # STATUSES
+        order_status_new:
+            tab: djetson.shop::lang.form.tab.general
+            label: djetson.shop::lang.form.order_status_new
+            type: relation
+            span: left
+            emptyOption: djetson.shop::lang.form.dropdown_empty
+
+        # CURRENCY
         currency:
-            tab: djetson.shop::lang.form.tab.currency
+            tab: djetson.shop::lang.form.tab.general
             label: djetson.shop::lang.form.currency_default
             type: relation
             span: left
+            emptyOption: djetson.shop::lang.form.dropdown_empty
+
+        # PRICE FORMAT
+        price_format_section:
+            tab: djetson.shop::lang.form.tab.general
+            label: djetson.shop::lang.form.section.price_format
+            type: section
 
         price_format_decimal_count:
-            tab: djetson.shop::lang.form.tab.currency
+            tab: djetson.shop::lang.form.tab.general
             label: djetson.shop::lang.form.price_format_decimal_count
             span: left
 
         price_format_decimal_point:
-            tab: djetson.shop::lang.form.tab.currency
+            tab: djetson.shop::lang.form.tab.general
             label: djetson.shop::lang.form.price_format_decimal_point
             span: left
 
         price_format_thousands_separator:
-            tab: djetson.shop::lang.form.tab.currency
+            tab: djetson.shop::lang.form.tab.general
             label: djetson.shop::lang.form.price_format_thousands_separator
             span: left
+
+        import_product_section:
+            tab: djetson.shop::lang.form.tab.import
+            label: djetson.shop::lang.form.section.product_import
+            type: section
+            span: left
+
+        import_product_is_active:
+            tab: djetson.shop::lang.form.tab.import
+            label: djetson.shop::lang.form.is_active
+            type: switch
+            span: left
+
+        import_product_file:
+            tab: djetson.shop::lang.form.tab.import
+            label: djetson.shop::lang.form.file
+            span: left
+            type: mediafinder
+            mode: file
+
+        import_product_template:
+            tab: djetson.shop::lang.form.tab.import
+            label: djetson.shop::lang.form.template
+            span: left
+            type: relation
+            emptyOption: djetson.shop::lang.form.dropdown_empty

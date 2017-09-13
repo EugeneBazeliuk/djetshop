@@ -12,7 +12,7 @@ modelClass: Djetson\Shop\Models\Order
 title: djetson.shop::lang.orders.label
 
 # Link URL for each record
-recordUrl: djetson/shop/orders/update/:id
+recordUrl: djetson/shop/orders/preview/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
