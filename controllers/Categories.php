@@ -24,18 +24,30 @@ class Categories extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Djetson.Shop', 'shop', 'categories');
-    }
-
-    public function setScoreboardValues()
-    {
-        $this->vars['count_enabled']    = Category::where('is_active', true)->count();
-        $this->vars['count_disabled']   = Category::where('is_active', false)->count();
-        $this->vars['count_deleted']    = Category::onlyTrashed()->count();
+        // Add custom css styles
+        $this->addCss('/plugins/djetson/shop/assets/css/style.css');
     }
 
     public function index()
     {
-        $this->setScoreboardValues();
+        $this->vars['scoreboard'] = $this->getListScoreboard();
         $this->asExtension('ListController')->index();
+    }
+
+    private function getListScoreboard()
+    {
+        return [
+            'enabled_count' => Category::where('is_active', 1)->count(),
+            'disabled_count' => Category::where('is_active', 0)->count(),
+            'deleted_count' =>Category::onlyTrashed()->count()
+        ];
+    }
+
+    /**
+     * @param \Djetson\Shop\Models\Category $query
+     */
+    public function listExtendQuery($query)
+    {
+        $query->withTrashed();
     }
 }

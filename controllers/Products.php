@@ -26,11 +26,13 @@ class Products extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Djetson.Shop', 'shop', 'products');
+        // Add custom css styles
+        $this->addCss('/plugins/djetson/shop/assets/css/style.css');
     }
 
     public function index()
     {
-        $this->initListScoreboard();
+        $this->vars['scoreboard'] = $this->getListScoreboard();
         $this->asExtension('ListController')->index();
     }
 
@@ -46,12 +48,20 @@ class Products extends Controller
         return $this->asExtension('FormController')->update($recordId, $context);
     }
 
-    public function initListScoreboard()
+    private function getListScoreboard()
     {
-        $this->vars['scoreboard'] = [
+        return [
             'enabled_count' => Product::where('is_active', 1)->count(),
             'disabled_count' => Product::where('is_active', 0)->count(),
             'deleted_count' => Product::onlyTrashed()->count()
         ];
+    }
+
+    /**
+     * @param \Djetson\Shop\Models\Product $query
+     */
+    public function listExtendQuery($query)
+    {
+        $query->withTrashed();
     }
 }

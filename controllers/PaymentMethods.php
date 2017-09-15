@@ -22,5 +22,7 @@ class PaymentMethods extends Controller
         parent::__construct();
         BackendMenu::setContext('October.System', 'system', 'settings');
         SettingsManager::setContext('Djetson.Shop', 'payment_methods');
+        // Add custom css styles
+        $this->addCss('/plugins/djetson/shop/assets/css/style.css');
     }
 }

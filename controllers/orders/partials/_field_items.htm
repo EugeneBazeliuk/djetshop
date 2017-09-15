@@ -1,0 +1,14 @@
+<div id="itemList">
+    <?= $this->makePartial('partials/field_items_list', ['items' => $model->items]) ?>
+</div>
+
+<p>
+    <a
+        href="javascript:;"
+        class="btn btn-secondary oc-icon-plus"
+        data-control="popup"
+        data-handler="onLoadCreateItemForm"
+        data-size="large">
+        Add item
+    </a>
+</p>

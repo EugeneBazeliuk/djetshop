@@ -13,17 +13,14 @@ columns:
         label: djetson.shop::lang.list.provider
         type: text
         width: 1%
-        searchable: 1
 
     cost:
         label: djetson.shop::lang.list.cost
         type: number
         cssClass: text-center
         width: 10%
-        searchable: 0
 
     is_active:
         label: djetson.shop::lang.list.is_active
-        type: switch
+        type: switch_colored
         width: 1%
-        searchable: 0

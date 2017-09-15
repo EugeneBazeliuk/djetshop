@@ -28,7 +28,6 @@ class Orders extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Djetson.Shop', 'shop', 'orders');
-
         // Add custom css styles
         $this->addCss('/plugins/djetson/shop/assets/css/style.css');
     }

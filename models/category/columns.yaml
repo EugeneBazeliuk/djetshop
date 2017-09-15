@@ -12,20 +12,17 @@ columns:
     slug:
         label: djetson.shop::lang.list.slug
         type: text
-        width: 10%
         searchable: 1
 
     is_searchable:
         label: djetson.shop::lang.list.is_searchable
-        type: switch
+        type: switch_colored
         width: 1%
-        searchable: 0
 
     is_active:
         label: djetson.shop::lang.list.is_active
-        type: switch
+        type: switch_colored
         width: 1%
-        searchable: 0
 
     created_at:
         label: djetson.shop::lang.list.created_at

@@ -20,8 +20,9 @@ class Statuses extends Controller
     public function __construct()
     {
         parent::__construct();
-
         BackendMenu::setContext('October.System', 'system', 'settings');
         SettingsManager::setContext('Djetson.Shop', 'statuses');
+        // Add custom css styles
+        $this->addCss('/plugins/djetson/shop/assets/css/style.css');
     }
 }

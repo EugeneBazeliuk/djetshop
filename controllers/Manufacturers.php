@@ -2,6 +2,7 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
+use Djetson\Shop\Models\Manufacturer;
 
 /**
  * Manufacturers Back-end Controller
@@ -23,5 +24,30 @@ class Manufacturers extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Djetson.Shop', 'shop', 'manufacturers');
+        // Add custom css styles
+        $this->addCss('/plugins/djetson/shop/assets/css/style.css');
+    }
+
+    public function index()
+    {
+        $this->vars['scoreboard'] = $this->getListScoreboard();
+        $this->asExtension('ListController')->index();
+    }
+
+    private function getListScoreboard()
+    {
+        return [
+            'enabled_count' => Manufacturer::where('is_active', 1)->count(),
+            'disabled_count' => Manufacturer::where('is_active', 0)->count(),
+            'deleted_count' =>Manufacturer::onlyTrashed()->count()
+        ];
+    }
+
+    /**
+     * @param \Djetson\Shop\Models\Category $query
+     */
+    public function listExtendQuery($query)
+    {
+        $query->withTrashed();
     }
 }

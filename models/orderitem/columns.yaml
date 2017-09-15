@@ -18,21 +18,14 @@ columns:
     quantity:
         label: djetson.shop::lang.list.quantity
         type: number
-        width: 160px
-
-    price_current:
-        label: djetson.shop::lang.list.price_current
-        type: price
-        relation: product
-        select: price
-        width: 160px
+        width: 1%
 
     price:
         label: djetson.shop::lang.list.price
         type: price
-        width: 160px
+        width: 140px
 
     total:
         label: djetson.shop::lang.list.total
         type: price
-        width: 160px
+        width: 140px

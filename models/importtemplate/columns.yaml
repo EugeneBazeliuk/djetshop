@@ -10,5 +10,5 @@ columns:
 
     is_active:
         label: djetson.shop::lang.list.is_active
-        type: switch
+        type: switch_colored
         width: 1%

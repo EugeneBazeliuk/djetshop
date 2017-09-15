@@ -6,21 +6,20 @@ columns:
 
     name:
         label: djetson.shop::lang.list.name
-        type: partial
-        path: $/djetson/shop/controllers/statuses/partials/_column_name.htm
+        type: label
         searchable: 1
 
     is_send_email:
         label: djetson.shop::lang.list.is_send_email
-        type: switch
+        type: switch_colored
         width: 1%
 
     is_attach_invoice:
         label: djetson.shop::lang.list.is_attach_invoice
-        type: switch
+        type: switch_colored
         width: 1%
 
     is_active:
         label: djetson.shop::lang.list.is_active
-        type: switch
+        type: switch_colored
         width: 1%

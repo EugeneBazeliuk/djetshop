@@ -37,6 +37,12 @@ return [
         'deleted_count' => 'Удалено',
     ],
 
+    // Filter
+    'filter' => [
+        'category' => 'Категория',
+        'manufacturers' => 'Производитель',
+    ],
+
     // Form
     'form' => [
         'name' => 'Название',
@@ -75,6 +81,13 @@ return [
         'properties' => 'Свойства',
         'property_value' => 'Значение свойства',
         'see_in_categories' => 'Отображать в категориях',
+
+        'firstname' => 'Фамилия',
+        'lastname' => 'Имя',
+        'address' => 'Адрес',
+        'city' => 'Город',
+        'billing_address' => 'Адрес оплаты',
+        'shipping_address' => 'Адрес доставки',
 
         'cost' => 'Стоимость',
         'price' => 'Цена',
@@ -128,7 +141,9 @@ return [
             'images' => 'Изображения',
             'currency' => 'Валюты',
             'properties' => 'Свойства',
-            'bindings' => 'Связи'
+            'bindings' => 'Связи',
+            'shipping_address' => 'Адрес доставки',
+            'billing_address' => 'Адрес оплаты'
         ]
     ],
 
@@ -147,6 +162,7 @@ return [
         'value' => 'Значение',
 
         'group' => 'Группа',
+        'type' => 'Тип',
         'category' => 'Категория',
         'categories' => 'Категории',
         'binding_type' => 'Тип связи',
@@ -159,7 +175,7 @@ return [
         'preorder' => 'Предзаказ',
 
         'subtotal' => 'Стоимость',
-        'total' => 'Итого',
+        'total' => 'Всего',
 
         'cost' => 'Стоимость',
         'price' => 'Цена',

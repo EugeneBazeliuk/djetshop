@@ -4,29 +4,14 @@
 
 fields:
 
-#     track_number:
-#         label: djetson.shop::lang.form.track_number
-#         type: text
-#         span: auto
-
-#    status:
-#        label: djetson.shop::lang.form.status
-#        span: auto
-#        type: relation
-#        emptyOption: djetson.shop::lang.form.dropdown_empty
-
-    payment_method:
-        label: djetson.shop::lang.form.payment_method
+    # Status
+    status:
+        label: djetson.shop::lang.form.status
         span: auto
         type: relation
         emptyOption: djetson.shop::lang.form.dropdown_empty
 
-    shipping_method:
-        label: djetson.shop::lang.form.shipping_method
-        span: auto
-        type: relation
-        emptyOption: djetson.shop::lang.form.dropdown_empty
-
+    # Customer
     customer:
         label: djetson.shop::lang.form.customer
         span: auto
@@ -34,29 +19,133 @@ fields:
         select: concat(name, ' ', surname, ' - ', email)
         emptyOption: djetson.shop::lang.form.dropdown_empty
 
+    # Shipping
+    shipping_method:
+        label: djetson.shop::lang.form.shipping_method
+        span: auto
+        type: relation
+        emptyOption: djetson.shop::lang.form.dropdown_empty
+
+    # Payment
+    payment_method:
+        label: djetson.shop::lang.form.payment_method
+        span: auto
+        type: relation
+        emptyOption: djetson.shop::lang.form.dropdown_empty
+
 tabs:
     fields:
 
+        # Items
         items:
-            tab: Items
             type: partial
             path: $/djetson/shop/controllers/orders/relations/_items.htm
 
-#        statuses:
-#            type: partial
-#            path: $/djetson/shop/controllers/orders/relations/_statuses.htm
+        # Statuses
+        statuses:
+            type: partial
+            path: $/djetson/shop/controllers/orders/relations/_statuses.htm
+
+        # Shipping address
+        shipping_address[firstname]:
+            tab: djetson.shop::lang.form.tab.shipping_address
+            label: djetson.shop::lang.list.firstname
+            type: text
+            span: left
+
+        shipping_address[lastname]:
+            tab: djetson.shop::lang.form.tab.shipping_address
+            label: djetson.shop::lang.list.lastname
+            type: text
+            span: left
+
+        shipping_address[address]:
+            tab: djetson.shop::lang.form.tab.shipping_address
+            label: djetson.shop::lang.list.address
+            type: text
+            span: left
+
+        shipping_address[city]:
+            tab: djetson.shop::lang.form.tab.shipping_address
+            label: djetson.shop::lang.list.city
+            type: text
+            span: left
+
+        is_billing_as_shipping:
+            tab: djetson.shop::lang.form.tab.shipping_address
+            label: djetson.shop::lang.list.is_billing_as_shipping
+            type: checkbox
+            span: left
+
+        # Payment address
+        billing_address[firstname]:
+            tab: djetson.shop::lang.form.tab.billing_address
+            label: djetson.shop::lang.list.firstname
+            type: text
+            span: left
+            trigger:
+                action: hide
+                field: is_billing_as_shipping
+                condition: checked
+
+        billing_address[lastname]:
+            tab: djetson.shop::lang.form.tab.billing_address
+            label: djetson.shop::lang.list.lastname
+            type: text
+            span: left
+            trigger:
+                action: hide
+                field: is_billing_as_shipping
+                condition: checked
+
+        billing_address[address]:
+            tab: djetson.shop::lang.form.tab.billing_address
+            label: djetson.shop::lang.list.address
+            type: text
+            span: left
+            trigger:
+                action: hide
+                field: is_billing_as_shipping
+                condition: checked
+
+        billing_address[city]:
+            tab: djetson.shop::lang.form.tab.billing_address
+            label: djetson.shop::lang.list.city
+            type: text
+            span: left
+            trigger:
+                action: hide
+                field: is_billing_as_shipping
+                condition: checked
+
+
+
 
 
 secondaryTabs:
     fields:
 
-        # States
-        is_closed:
-            label: djetson.shop::lang.form.is_closed
-            type: switch
-            default: 0
+        # Shipping address
+        shipping_address:
+            type: partial
+            path: $/djetson/shop/controllers/orders/partials/_field_shipping_address.htm
 
-        is_paid:
-            label: djetson.shop::lang.form.is_paid
-            type: switch
-            default: 0
+        # Payment address
+        payment_address:
+            type: partial
+            path: $/djetson/shop/controllers/orders/partials/_field_payment_address.htm
+
+
+
+
+#        # State closed
+#        is_closed:
+#            label: djetson.shop::lang.form.is_closed
+#            type: switch
+#            default: 0
+#
+#        # State paid
+#        is_paid:
+#            label: djetson.shop::lang.form.is_paid
+#            type: switch
+#            default: 0

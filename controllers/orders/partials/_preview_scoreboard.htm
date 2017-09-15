@@ -1,6 +1,6 @@
 <!-- START INVOICE -->
 <div class="scoreboard-item title-value">
-    <h4>Invoice</h4>
+    <h4><?= e(trans('djetson.shop::lang.form.invoice')) ?></h4>
     <p><?= e($formModel->id) ?></p>
     <p class="description"><?= e(trans('djetson.shop::lang.form.created_at')) ?>: <?= e($formModel->created_at) ?></p>
 </div>
@@ -11,7 +11,12 @@
     <div class="scoreboard-item title-value">
         <h4><?= e(trans('djetson.shop::lang.form.customer')) ?></h4>
         <p><?= e($formModel->customer->name.' '.$formModel->customer->surname) ?></p>
-        <p class="description"><a href="mailto:<?= e($formModel->customer->email) ?>"><?= e($formModel->customer->email) ?></a></p>
+        <p class="description"><?= e($formModel->phone) ?></p>
+    </div>
+<?php else: ?>
+    <div class="scoreboard-item title-value">
+        <h4><?= e(trans('djetson.shop::lang.form.customer')) ?></h4>
+        <p><?= e($formModel->phone) ?></p>
     </div>
 <?php endif ?>
 <!-- END CUSTOMER -->

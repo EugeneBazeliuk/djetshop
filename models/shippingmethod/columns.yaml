@@ -23,18 +23,15 @@ columns:
 
     is_allow_in_order:
         label: djetson.shop::lang.list.is_allow_in_order
-        type: switch
+        type: switch_colored
         width: 1%
-        searchable: 0
 
     is_allow_free_shipping:
         label: djetson.shop::lang.list.is_allow_free_shipping
-        type: switch
+        type: switch_colored
         width: 1%
-        searchable: 0
 
     is_active:
         label: djetson.shop::lang.list.is_active
-        type: switch
+        type: switch_colored
         width: 1%
-        searchable: 0

@@ -27,9 +27,12 @@ class SeedInitial extends Seeder
         $settings->save();
 
         // Test seed
-        factory('Djetson\Shop\Models\Product', 5)->create();
+        factory('Djetson\Shop\Models\Product', 3)->create();
         factory('Djetson\Shop\Models\Category', 2)->create();
         factory('Djetson\Shop\Models\Manufacturer', 2)->create();
-        factory('Djetson\Shop\Models\Status', 2)->create();
+        factory('Djetson\Shop\Models\Status', 3)->create();
+
+        factory('Djetson\Shop\Models\PaymentMethod', 3)->create();
+        factory('Djetson\Shop\Models\ShippingMethod', 3)->create();
     }
 }

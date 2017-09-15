@@ -11,28 +11,34 @@ class CreateOrdersTable extends Migration
         Schema::create('djetshop_orders', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Base
-            $table->integer('manager_id')->unsigned()->nullable();
-            $table->integer('customer_id')->unsigned()->nullable();
-            $table->integer('status_id')->unsigned()->nullable();
-            // Details
+            // Customer info
+            $table->string('phone');
             $table->text('comment')->nullable();
-            // Shipping
+            $table->integer('customer_id')->unsigned()->nullable();
+            $table->json('shipping_address')->nullable();
+            $table->json('billing_address')->nullable();
+            $table->boolean('is_billing_as_shipping')->default(0);
+
+
+
+            // Order info
+            $table->string('track_id')->nullable();
+            $table->integer('status_id')->unsigned()->nullable();
+            $table->integer('manager_id')->unsigned()->nullable();
             $table->integer('shipping_method_id')->unsigned()->nullable();
-            $table->decimal('shipping_cost', 10, 2)->default(0.00);
-            $table->string('track_number')->nullable();
-            // Payments
             $table->integer('payment_method_id')->unsigned()->nullable();
+            // Total
+            $table->decimal('shipping_cost', 10, 2)->default(0.00);
             $table->decimal('payment_cost', 10, 2)->default(0.00);
-            // Totals
             $table->decimal('subtotal', 10, 2)->default(0.00);
             $table->decimal('total', 10, 2)->default(0.00);
-            // States
-            $table->boolean('is_closed')->default(0);
-            $table->boolean('is_paid')->default(0);
             // Timestamps
             $table->timestamps();
         });
+
+
+
+
 
         Schema::create('djetshop_order_items', function(Blueprint $table) {
             $table->engine = 'InnoDB';

@@ -32,9 +32,7 @@ class BindingType extends Model
         'code'
     ];
 
-    /**
-     * @var array Generate slugs for these attributes.
-     */
+    /** @var array Generate slugs for these attributes. */
     protected $slugs = ['code' => 'name'];
 
     /** @var string The database timestamps. */

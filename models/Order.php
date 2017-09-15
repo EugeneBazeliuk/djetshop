@@ -1,6 +1,5 @@
 <?php namespace Djetson\Shop\Models;
 
-use ApplicationException;
 use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
@@ -49,6 +48,9 @@ class Order extends Model
 
     /** @var array Fillable fields */
     protected $fillable = [];
+
+    /** @var array Json fields */
+    protected $jsonable  = ['shipping_address', 'billing_address'];
 
     /** @var array Relations */
     public $hasMany = [

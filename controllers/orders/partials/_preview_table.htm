@@ -5,11 +5,11 @@
 
             <thead>
                 <tr>
-                    <th><span>Product name</span></th>
-                    <th class="text-right"><span>SKU</span></th>
-                    <th class="text-right"><span>Price</span></th>
-                    <th class="text-right"><span>Quantity</span></th>
-                    <th class="text-right"><span>Total</span></th>
+                    <th><span><?= e(trans('djetson.shop::lang.list.name')) ?></span></th>
+                    <th class="text-right"><span><?= e(trans('djetson.shop::lang.list.sku')) ?></span></th>
+                    <th style="width: 10%" class="text-right"><span><?= e(trans('djetson.shop::lang.list.quantity')) ?></span></th>
+                    <th style="width: 10%" class="text-right"><span><?= e(trans('djetson.shop::lang.list.price')) ?></span></th>
+                    <th style="width: 10%" class="text-right"><span><?= e(trans('djetson.shop::lang.list.total')) ?></span></th>
                 </tr>
             </thead>
 
@@ -20,8 +20,8 @@
                     <tr>
                         <td><?= e($item->name) ?></td>
                         <td class="text-right"><?= e($item->sku) ?></td>
-                        <td class="text-right"><?= e($formModel->formatPrice($item->price)) ?></td>
                         <td class="text-right"><?= e($item->quantity) ?></td>
+                        <td class="text-right"><?= e($formModel->formatPrice($item->price)) ?></td>
                         <td class="text-right"><?= e($formModel->formatPrice($item->total)) ?></td>
                     </tr>
                 <?php endforeach ?>

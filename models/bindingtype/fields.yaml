@@ -14,3 +14,6 @@ fields:
         label: djetson.shop::lang.form.code
         span: left
         type: text
+        preset:
+            field: name
+            type: slug
