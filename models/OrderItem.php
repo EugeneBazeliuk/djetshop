@@ -64,13 +64,13 @@ class OrderItem extends Model
         $this->total = $this->price * $this->quantity;
     }
 
-    //
-    // Filter
-    //
-    public function filterFields($fields, $context = null)
-    {
-        if ($context == 'create' && $this->product) {
-            $fields->price->value = $this->product->price;
-        }
-    }
+//    //
+//    // Filter
+//    //
+//    public function filterFields($fields, $context = null)
+//    {
+//        if ($context == 'create' && $this->product) {
+//            $fields->price->value = $this->product->price;
+//        }
+//    }
 }

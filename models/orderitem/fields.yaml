@@ -20,3 +20,4 @@ fields:
         label: djetson.shop::lang.form.quantity
         type: number
         default: 1
+        defaultFrom: product

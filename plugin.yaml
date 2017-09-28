@@ -32,6 +32,14 @@ navigation:
                 label: djetson.shop::lang.bindings.label
                 url: djetson/shop/bindings
                 icon: icon-cube
+            warehouses:
+                label: djetson.shop::lang.warehouses.label
+                url: djetson/shop/warehouses
+                icon: icon-cube
+            reserves:
+                label: djetson.shop::lang.reserves.label
+                url: djetson/shop/reserves
+                icon: icon-cube
 
 # Plugin permissions
 permissions:

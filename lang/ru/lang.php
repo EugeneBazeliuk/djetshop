@@ -48,6 +48,7 @@ return [
         'name' => 'Название',
         'slug'  => 'Параметр URL',
         'code' => 'Уникальный код',
+        'type' => 'Тип',
         'sku' => 'SKU код',
         'ean_13' => 'EAN13 код',
         'isbn' => 'ISBN код',
@@ -81,6 +82,7 @@ return [
         'properties' => 'Свойства',
         'property_value' => 'Значение свойства',
         'see_in_categories' => 'Отображать в категориях',
+        'quantity' => 'Количество',
 
         'firstname' => 'Фамилия',
         'lastname' => 'Имя',
@@ -140,10 +142,12 @@ return [
             'featured' => 'Связанные товары',
             'images' => 'Изображения',
             'currency' => 'Валюты',
+            'products' => 'Товары',
             'properties' => 'Свойства',
             'bindings' => 'Связи',
             'shipping_address' => 'Адрес доставки',
-            'billing_address' => 'Адрес оплаты'
+            'billing_address' => 'Адрес оплаты',
+            'warehouses' => 'Хранение'
         ]
     ],
 
@@ -187,7 +191,7 @@ return [
 
         'is_active' => 'Активен',
         'is_searchable' => 'Поиск',
-        'is_available' => 'Доступность',
+        'is_available' => 'Доступен',
         'is_available_option_true' => 'Доступен',
         'is_available_option_false' => 'Предзаказ',
         'is_unique_text' => 'Текст',
@@ -364,4 +368,13 @@ return [
         'update' => 'Обновление статуса',
         'preview' => 'Просмотр статуса',
     ],
+
+    // Warehouses
+    'warehouses' => [
+        'label' => 'Хранение',
+        'code' => [
+            'available' => 'Доступен к заказу',
+            'preorder' => 'Доступен к предзаказу',
+        ]
+    ]
 ];

@@ -142,6 +142,12 @@ tabs:
             mode: image
             context: [update, preview]
 
+        # Warehouses
+        warehouses:
+            tab: djetson.shop::lang.form.tab.warehouses
+            type: partial
+            path: $/djetson/shop/controllers/products/relations/_warehouses.htm
+
 secondaryTabs:
     fields:
 

@@ -5,6 +5,7 @@
     - create_categories_table.php
     - create_manufacturers_table.php
     - create_properties_table.php
+    - create_warehouses_table.php
     - create_products_table.php
     - create_import_templates_table.php
     # Order section
@@ -12,6 +13,7 @@
     - create_payment_methods_table.php
     - create_shipping_methods_table.php
     - create_orders_table.php
+    - create_reserves_table.php
     # Settings
     - create_currencies_table.php
     # Seed

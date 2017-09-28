@@ -9,24 +9,21 @@ use October\Rain\Database\Traits\SoftDelete;
  * Product Model
  * @package Djetson\Shop
  *
- * @property \Djetson\Shop\Models\Category $category
- * @method \October\Rain\Database\Relations\BelongsTo category
+ * @property-read \Djetson\Shop\Models\Binding          $bindings
+ * @property-read \Djetson\Shop\Models\Category         $category
+ * @property-read \Djetson\Shop\Models\Category         $categories
+ * @property-read \Djetson\Shop\Models\Product          $featured
+ * @property-read \Djetson\Shop\Models\Manufacturer     $manufacturer
+ * @property-read \Djetson\Shop\Models\Property         $properties
+ * @property-read \Djetson\Shop\Models\Warehouse        $warehouses
  *
- * @property \Djetson\Shop\Models\Manufacturer $manufacturer
- * @method \October\Rain\Database\Relations\BelongsTo manufacturer
- *
- * @property \Djetson\Shop\Models\Binding $bindings
- * @method
- * bindings
- *
- * @property \Djetson\Shop\Models\Category $categories
- * @method \October\Rain\Database\Relations\BelongsToMany categories
- *
- * @property \Djetson\Shop\Models\Property $properties
- * @method \October\Rain\Database\Relations\BelongsToMany properties
- *
- * @property \Djetson\Shop\Models\Product $featured
- * @method \October\Rain\Database\Relations\BelongsToMany featured
+ * @method \October\Rain\Database\Relations\BelongsTo       category
+ * @method \October\Rain\Database\Relations\BelongsTo       manufacturer
+ * @method \October\Rain\Database\Relations\BelongsToMany   bindings
+ * @method \October\Rain\Database\Relations\BelongsToMany   categories
+ * @method \October\Rain\Database\Relations\BelongsToMany   featured
+ * @method \October\Rain\Database\Relations\BelongsToMany   properties
+ * @method \October\Rain\Database\Relations\BelongsToMany   warehouses
  *
  * @mixin \Eloquent
  * @mixin \October\Rain\Database\Model
@@ -40,19 +37,18 @@ class Product extends Model
     use Validation;
     use SoftDelete;
 
-    /**
-     * @var string The database table used by the model.
-     */
+    /** @var string The database table used by the model. */
     public $table = 'djetshop_products';
 
-    /**
-     * @var array Guarded fields
-     */
+    /** @var array The accessors to append to the model's array form. */
+    protected $appends = [
+        'quantity',
+    ];
+
+    /** @var array Guarded fields */
     protected $guarded = ['*'];
 
-    /**
-     * @var array Fillable fields
-     */
+    /** @var array Fillable fields */
     protected $fillable = [
         // Base
         'name',
@@ -78,14 +74,10 @@ class Product extends Model
         'is_unique_text'
     ];
 
-    /**
-     * @var array Generate slugs for these attributes.
-     */
+    /** @var array Generate slugs for these attributes. */
     protected $slugs = ['slug' => ['sku', 'name']];
 
-    /**
-     * @var array Dates fields
-     */
+    /** @var array Dates fields */
     protected $dates = ['deleted_at'];
 
     /** @var array Relations */
@@ -125,6 +117,15 @@ class Product extends Model
             'key'           => 'product_id',
             'otherKey'      => 'featured_id'
         ],
+        'warehouses' => [
+            'Djetson\Shop\Models\Warehouse',
+            'table'         => 'djetshop_products_warehouses',
+            'key'           => 'product_id',
+            'otherKey'      => 'warehouse_id',
+            'pivot'         => ['quantity'],
+            'pivotModel'    => 'Djetson\Shop\Models\ProductWarehouse',
+            'conditions'    => 'is_active = 1',
+        ],
     ];
 
     public $attachOne = [
@@ -157,4 +158,24 @@ class Product extends Model
         'is_searchable'     => ['boolean'],
         'is_unique_text'    => ['boolean'],
     ];
+
+    /**
+     * @return mixed
+     */
+    public function getQuantityAttribute()
+    {
+        return $this->warehouses->sum('pivot.quantity');
+    }
+
+    /**
+     *
+     * @param $warehouse_id
+     * @return int
+     */
+    public function getWarehouseQuantity($warehouse_id)
+    {
+        $warehouse = $this->warehouses()->wherePivot('warehouse_id', $warehouse_id)->first();
+
+        return $warehouse ? $warehouse->pivot->quantity : 0;
+    }
 }

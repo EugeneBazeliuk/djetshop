@@ -89,6 +89,16 @@ class CreateProductsTable extends Migration
             $table->foreign('product_id')->references('id')->on('djetshop_products');
             $table->foreign('property_id')->references('id')->on('djetshop_properties');
         });
+
+        Schema::create('djetshop_products_warehouses', function(Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->integer('product_id')->unsigned();
+            $table->integer('warehouse_id')->unsigned();
+            $table->integer('quantity')->nullable();
+            $table->primary(['product_id', 'warehouse_id'], 'product_warehouse');
+            $table->foreign('product_id')->references('id')->on('djetshop_products');
+            $table->foreign('warehouse_id')->references('id')->on('djetshop_products');
+        });
     }
 
     public function down()
@@ -97,6 +107,7 @@ class CreateProductsTable extends Migration
         Schema::dropIfExists('djetshop_products_categories');
         Schema::dropIfExists('djetshop_products_featured');
         Schema::dropIfExists('djetshop_products_properties');
+        Schema::dropIfExists('djetshop_products_warehouses');
         Schema::dropIfExists('djetshop_products');
     }
 }
