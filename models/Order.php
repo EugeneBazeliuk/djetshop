@@ -3,38 +3,33 @@
 use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
-
 /**
  * Order Model
  *
- * @property int    $id
+ * @property int $id
  * @property float  $total
- * @property float  $subtotal
- * @property float  $payment_cost
- * @property int    $payment_status_id
- * @property float  $shipping_cost
- * @property bool   $is_closed
+ * @property float  $sub_total
+ * @property float  $payment_total
+ * @property float  $shipping_total
+ * @property string $comment
+ * @property string $phone
+ * @property string $track
  *
- * @property \Rainlab\User\Models\User $customer
- * @property \Djetson\Shop\Models\OrderItem $items
- * @property \Djetson\Shop\Models\OrderStatus $statuses
- * @property \Backend\Models\User $manager
- * @property \Djetson\Shop\Models\PaymentMethod $payment_method
- * @property \Djetson\Shop\Models\Status $status
- * @property \Djetson\Shop\Models\ShippingMethod $shipping_method
+ * @property \Backend\Models\User                       $manager
+ * @property \Rainlab\User\Models\User                  $customer
+ * @property \Djetson\Shop\Models\OrderItem             $items
+ * @property \Djetson\Shop\Models\Status                $status
+ * @property \Djetson\Shop\Models\PaymentMethod         $payment_method
+ * @property \Djetson\Shop\Models\ShippingMethod        $shipping_method
  *
- * @method \October\Rain\Database\Relations\BelongsTo customer
- * @method \October\Rain\Database\Relations\BelongsTo status
- * @method \October\Rain\Database\Relations\BelongsTo payment_method
- * @method \October\Rain\Database\Relations\BelongsTo shipping_method
- * @method \October\Rain\Database\Relations\BelongsTo manager
- *
- * @method \October\Rain\Database\Relations\HasMany items
- * @method \October\Rain\Database\Relations\HasMany statuses
+ * @method \October\Rain\Database\Relations\HasMany     items
+ * @method \October\Rain\Database\Relations\BelongsTo   customer
+ * @method \October\Rain\Database\Relations\BelongsTo   status
+ * @method \October\Rain\Database\Relations\BelongsTo   payment_method
+ * @method \October\Rain\Database\Relations\BelongsTo   shipping_method
+ * @method \October\Rain\Database\Relations\BelongsTo   manager
  *
  * @mixin \Eloquent
- * @mixin \October\Rain\Database\Model
- * @mixin \October\Rain\Database\Traits\Validation
  */
 class Order extends Model
 {
@@ -47,21 +42,23 @@ class Order extends Model
     protected $guarded = ['*'];
 
     /** @var array Fillable fields */
-    protected $fillable = [];
+    protected $fillable = [
+        'comment',
+        'phone',
+        'track'
+    ];
 
     /** @var array Json fields */
     protected $jsonable  = ['shipping_address', 'billing_address'];
 
-    /** @var array Relations */
+    /** @var array Relation HasMany */
     public $hasMany = [
         'items' => [
             'Djetson\Shop\Models\OrderItem',
-        ],
-        'statuses' => [
-            'Djetson\Shop\Models\OrderStatus',
         ]
     ];
 
+    /** @var array Relation BelongTo */
     public $belongsTo = [
         'customer' => [
             'Rainlab\User\Models\User',
@@ -82,79 +79,135 @@ class Order extends Model
 
     /** @var array Validation rules */
     public $rules = [
-        'payment_method'        => ['required'],
-        'shipping_method'       => ['required'],
+        'phone'         => [],
+        'comment'       => [],
+        'track'         => [],
+        'payment_method'        => [],
+        'shipping_method'       => [],
     ];
 
-    //
-    // Events
-    //
+    /**
+     * Action | BeforeCreate
+     */
     public function beforeCreate()
     {
-        $this->status = Settings::instance()->order_status_new;
-
-        // $this->manager = BackendAuth::getUser(); // @todo ошибка / извне нет менеджера
-    }
-
-    public function beforeSave()
-    {
-//        if ($this->is_closed) {
-//            throw new ApplicationException(trans('djetson.shop::lang.orders.errors.order_is_closed'));
-//        }
-//
-//        if ($this->checkDifference('status_id')) {
-//            $this->statuses = new OrderStatus();
-//        }
-//
-
-//
-
-//
-
+        $this->payment_total = $this->getPaymentTotal();
+        $this->shipping_total = $this->getShippingTotal();
+        $this->total = $this->getTotal();
     }
 
     /**
-     * Check attribute difference
-     * @param $attribute
-     * @return bool
+     * Action | beforeUpdate
      */
-    public function checkDifference($attribute)
+    public function beforeUpdate()
     {
-        if ($this->getOriginal($attribute) != $this->$attribute) {
-            return true;
+        // Update Payment total
+        if ($this->isDirty('sub_total', 'payment_method_id')) {
+            $this->payment_total = $this->getPaymentTotal();
+        }
+
+        // Update Shipping total
+        if ($this->isDirty('sub_total', 'shipping_method_id')) {
+            $this->shipping_total = $this->getShippingTotal();
+        }
+
+        // Update Total
+        if ($this->isDirty('sub_total', 'payment_method_id', 'shipping_method_id')) {
+            $this->total = $this->getTotal();
+        }
+    }
+
+    /**
+     * Get text total Attribute
+     */
+    public function getTextTotalAttribute()
+    {
+        return Settings::formatPrice($this->total);
+    }
+
+    /**
+     * Get text subtotal Attribute
+     */
+    public function getTextSubtotalAttribute()
+    {
+        return Settings::formatPrice($this->sub_total);
+    }
+
+    /**
+     * Get text total Attribute
+     */
+    public function getTextShippingTotalAttribute()
+    {
+        return Settings::formatPrice($this->shipping_total);
+    }
+
+    /**
+     * Get text total Attribute
+     */
+    public function getTextPaymentTotalAttribute()
+    {
+        return Settings::formatPrice($this->payment_total);
+    }
+
+    /**
+     * Get totals Attribute
+     * @return array
+     */
+    public function getTotalsAttribute()
+    {
+        $totals = [];
+
+        // Add subtotal
+        array_push($totals, ['title' => trans('djetson.shop::lang.orders.sub_total'), 'value' => $this->sub_total ]);
+        // Add payment total
+        $this->payment_total ? array_push($totals, ['title' => $this->payment_method->name, 'value' => $this->payment_total ]) : null;
+        // Add shipping total
+        $this->shipping_total ? array_push($totals, ['title' => $this->shipping_method->name, 'value' => $this->shipping_total ]) : null;
+        // Add total
+        array_push($totals, ['title' => trans('djetson.shop::lang.orders.total'), 'value' => $this->total ]);
+
+        return $totals;
+    }
+
+    /**
+     * Get Payment total
+     */
+    private function getPaymentTotal()
+    {
+        if (Settings::get('order_allow_payment_total', false) && $this->payment_method) {
+            return $this->payment_method->calculateTotal($this->sub_total);
         } else {
-            return false;
+            return null;
         }
     }
 
     /**
-     * Convert price to default format
-     * @param float $price
-     * @return string
+     * Get Shipping total
      */
-    public function formatPrice(float $price)
+    private function getShippingTotal()
     {
-        return (string) Settings::formatPrice($price);
+        if (Settings::get('order_allow_shipping_total', false) && $this->shipping_method) {
+            return $this->shipping_method->calculateTotal($this->sub_total);
+        } else {
+            return null;
+        }
     }
 
     /**
-     * Update order total
+     * Get Total
      */
-    public function updateOrderTotal()
+    private function getTotal()
     {
-        $this->subtotal = $this->items->sum('total');
+        $total = $this->sub_total;
 
-        // Check payment cost
-        if ($this->checkDifference('subtotal') || $this->checkDifference('payment_method_id')) {
-            $this->payment_cost = $this->payment_method->getCost($this);
+        if ($this->payment_total) {
+            $total += $this->payment_total;
         }
 
-        // Check shipping cost
-        if ($this->checkDifference('subtotal') || $this->checkDifference('shipping_method_id')) {
-            $this->shipping_cost = $this->shipping_method->getCost($this);
+        if ($this->shipping_total) {
+            $total += $this->shipping_total;
         }
 
-        // Update total
-        $this->total = $this->subtotal + $this->payment_cost + $this->shipping_cost;
+        return $total;
     }
 }

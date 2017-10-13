@@ -10,8 +10,8 @@ class CreatePaymentMethodsTable extends Migration
     {
         Schema::create('djetshop_payment_methods', function(Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
             // Base
+            $table->increments('id');
             $table->string('name');
             $table->string('provider');
             $table->decimal('cost', 10, 2)->nullable();

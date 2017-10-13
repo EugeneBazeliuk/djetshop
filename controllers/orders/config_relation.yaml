@@ -1,15 +1,9 @@
 items:
+    deferredBinding: true
     label: djetson.shop::lang.order_items.label
     view:
-        toolbarButtons: create|delete
+        toolbarButtons: create
+        toolbarPartial: relations/items_toolbar
         list: $/djetson/shop/models/orderitem/columns.yaml
     manage:
         form: $/djetson/shop/models/orderitem/fields.yaml
-
-statuses:
-    label: djetson.shop::lang.order_statuses.label
-    view:
-        toolbarButtons: create
-        list: $/djetson/shop/models/orderstatus/columns.yaml
-    manage:
-        form: $/djetson/shop/models/orderstatus/fields.yaml

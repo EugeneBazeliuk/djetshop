@@ -7,6 +7,6 @@
 $factory->define('Djetson\Shop\Models\OrderItem', function (Faker\Generator $faker) {
     return [
         'price' => $faker->randomNumber(2),
-        'quantity' => $faker->randomNumber(1),
+        'quantity' => $faker->numberBetween(1, 10),
     ];
 });

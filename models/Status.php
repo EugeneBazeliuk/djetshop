@@ -15,10 +15,9 @@ use Model;
  * @property \Carbon\Carbon     $created_at
  * @property \Carbon\Carbon     $updated_at
  *
- * @property-read \System\Models\MailTemplate $mail_template
+ * @property \System\Models\MailTemplate $mail_template
  *
  * @mixin \Eloquent
- * @mixin \October\Rain\Database\Model
  * @mixin \October\Rain\Database\Traits\Validation
  */
 class Status extends Model
@@ -33,11 +32,13 @@ class Status extends Model
 
     /** @var array Fillable fields */
     protected $fillable = [
+        // Base
         'name',
         'color',
+        // States
         'is_active',
         'is_send_email',
-        'is_attach_invoice'
+        'is_attach_invoice',
     ];
 
     /** @var array Relations */
@@ -50,9 +51,11 @@ class Status extends Model
 
     /** @var array Validation rules */
     public $rules = [
+        // Base
         'name'              => ['required'],
         'color'             => ['required'],
         'mail_template'     => ['required_if:is_send_email,1'],
+        // States
         'is_send_email'     => ['boolean'],
         'is_attach_invoice' => ['boolean'],
         'is_active'         => ['boolean'],

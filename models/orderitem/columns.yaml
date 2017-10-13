@@ -5,15 +5,22 @@
 columns:
 
     name:
-        title: djetson.shop::lang.list.title
-        type: text
+        label: djetson.shop::lang.list.name
+        relation: product
+        select: name
         searchable: 1
 
     sku:
         label: djetson.shop::lang.list.sku
-        type: number
+        relation: product
+        select: sku
         searchable: 1
-        width: 160px
+
+    warehouse_name:
+        label: djetson.shop::lang.list.warehouse
+        relation: warehouse
+        select: name
+        searchable: 1
 
     quantity:
         label: djetson.shop::lang.list.quantity
@@ -25,7 +32,7 @@ columns:
         type: price
         width: 140px
 
-    total:
-        label: djetson.shop::lang.list.total
+    sum:
+        label: djetson.shop::lang.list.sum
         type: price
         width: 140px

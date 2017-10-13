@@ -10,8 +10,8 @@ class CreateShippingMethodsTable extends Migration
     {
         Schema::create('djetshop_shipping_methods', function(Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
             // Base
+            $table->increments('id');
             $table->string('name');
             $table->string('provider');
             $table->decimal('cost', 10, 2)->default(0.00);
@@ -20,7 +20,6 @@ class CreateShippingMethodsTable extends Migration
             $table->boolean('is_allow_in_order')->default(0);
             $table->boolean('is_allow_free_shipping')->default(0);
             $table->boolean('is_active')->default(0);
-
         });
     }
 

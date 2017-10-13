@@ -22,16 +22,16 @@ fields:
         span: left
         required: 1
 
-    symbol_position:
-        label: djetson.shop::lang.form.symbol_position
+    position:
+        label: djetson.shop::lang.form.position
         type: dropdown
         span: left
         required: 1
         options:
-            before: djetson.shop::lang.form.symbol_position_before
-            after: djetson.shop::lang.form.symbol_position_after
+            before: djetson.shop::lang.form.position_before
+            after: djetson.shop::lang.form.position_after
 
-    symbol_space:
-        label: djetson.shop::lang.form.symbol_space
+    space:
+        label: djetson.shop::lang.form.space
         type: switch
         default: 1

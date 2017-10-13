@@ -8,14 +8,14 @@ use October\Rain\Database\Traits\Validation;
  * ShippingMethod Model
  * @package Djetson\Shop
  *
- * @property int        $id
- * @property string     $name
- * @property string     $provider
- * @property double     $cost
- * @property boolean    $is_active
- * @property float $free_shipping_limit
- * @property bool $is_allow_in_order
- * @property bool $is_allow_free_shipping
+ * @property int            $id
+ * @property string         $name
+ * @property string         $provider
+ * @property double         $cost
+ * @property boolean        $is_active
+ * @property float          $free_shipping_limit
+ * @property bool           $is_allow_in_order
+ * @property bool           $is_allow_free_shipping
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
@@ -82,18 +82,10 @@ class ShippingMethod extends Model
     }
 
     /**
-     * @return int
+     *
      */
-    /**
-     * @param Order $order
-     * @return int
-     */
-    public function getCost(Order $order)
+    public function calculateTotal($value)
     {
-        if (!$order->items->count() || $this->is_allow_free_shipping && $order->subtotal >= $this->free_shipping_limit) {
-            return 0;
-        } else {
-            return $this->cost;
-        }
+        return 10;
     }
 }

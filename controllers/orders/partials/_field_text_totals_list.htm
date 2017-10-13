@@ -1,0 +1,12 @@
+<?php if ($model->items->count()): ?>
+    <table class="table data">
+        <tbody>
+            <?php foreach ($model->text_totals as $key => $val): ?>
+            <tr>
+                <td class="text-right"><span><b><?= e(trans(sprintf('djetson.shop::lang.form.%s', $key))) ?></b></span></td>
+                <td width="140px" class="text-right"><?= e($val) ?></td>
+            </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+<?php endif ?>

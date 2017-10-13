@@ -6,15 +6,12 @@ use Djetson\Shop\Tests\ModelTestHelper;
 /**
  * Class PaymentMethodsTest
  * @package Djetson\Shop\Tests\Unit\Models
- *
- * @property \Djetson\Shop\Models\Property $model
- *
- * @mixin \PHPUnit_Framework_TestCase
  */
 class PropertyTest extends PluginTestCase
 {
     use ModelTestHelper;
 
+    /** @var \Djetson\Shop\Models\Property */
     protected $model;
 
     /**

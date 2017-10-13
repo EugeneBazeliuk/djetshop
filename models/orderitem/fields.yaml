@@ -10,14 +10,19 @@ fields:
         emptyOption: djetson.shop::lang.form.dropdown_empty
         context: [create]
 
+    warehouse:
+        label: djetson.shop::lang.form.warehouse
+        type: dropdown
+        emptyOption: djetson.shop::lang.form.dropdown_empty
+        dependsOn: product
+        context: [create]
+
     price:
         label: djetson.shop::lang.form.price
         type: number
-        default: 0.00
         dependsOn: product
 
     quantity:
         label: djetson.shop::lang.form.quantity
         type: number
         default: 1
-        defaultFrom: product

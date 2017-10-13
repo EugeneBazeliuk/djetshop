@@ -25,7 +25,7 @@ class BindingTest extends PluginTestCase
         parent::setUp();
         $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
         $this->model = factory('Djetson\Shop\Models\Binding')->make([
-            'binding_type' => factory('Djetson\Shop\Models\BindingType')->create()
+            'type' => factory('Djetson\Shop\Models\BindingType')->create()
         ]);
     }
 
@@ -50,7 +50,7 @@ class BindingTest extends PluginTestCase
      */
     public function test_relation_belong_to_binding_type()
     {
-        $this->helperBelongTo($this->model, 'binding_type', 'name');
+        $this->helperBelongTo($this->model, 'type', 'name');
     }
 
     /**

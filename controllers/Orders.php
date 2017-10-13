@@ -22,6 +22,7 @@ class Orders extends Controller
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
     public $relationConfig = 'config_relation.yaml';
+
     public $requiredPermissions = ['djetson.shop.access_orders'];
 
     public function __construct()
@@ -31,4 +32,21 @@ class Orders extends Controller
         // Add custom css styles
         $this->addCss('/plugins/djetson/shop/assets/css/style.css');
     }
+
+//    /**
+//     * @param $field
+//     *
+//     * @return array
+//     */
+//    public function relationExtendRefreshResults($field)
+//    {
+//        /** @var \Djetson\Shop\Models\Order $model */
+//        $model = $this->formGetModel();
+//
+////        if ($field == 'items') {
+////            return [
+////                '#order-items-total' => $this->makePartial('partials/field_totals', ['totals' => $model->fresh()->getAttribute('text_totals')])
+////            ];
+////        }
+//    }
 }

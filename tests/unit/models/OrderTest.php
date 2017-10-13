@@ -1,22 +1,17 @@
 <?php namespace Djetson\Shop\Tests\Unit\Models;
 
-use Djetson\Shop\Models\Order;
-use Djetson\Shop\Models\OrderItem;
 use PluginTestCase;
 use Djetson\Shop\Tests\ModelTestHelper;
 
 /**
  * Class OrderTest
  * @package Djetson\Shop\Tests\Unit\Models
- *
- * @property \Djetson\Shop\Models\Order $model
- *
- * @mixin \PHPUnit_Framework_TestCase
  */
 class OrderTest extends PluginTestCase
 {
     use ModelTestHelper;
 
+    /** @var \Djetson\Shop\Models\Order */
     protected $model;
 
     /**
@@ -26,7 +21,11 @@ class OrderTest extends PluginTestCase
     {
         parent::setUp();
         $this->app->register('Djetson\Shop\Providers\FactoryServiceProvider');
-        //$this->model = factory('Djetson\Shop\Models\Order')->make();
+        $this->model = factory('Djetson\Shop\Models\Order')->make([
+            'status' => factory('Djetson\Shop\Models\Status')->create(),
+            'payment_method' => factory('Djetson\Shop\Models\PaymentMethod')->create(),
+            'shipping_method' => factory('Djetson\Shop\Models\ShippingMethod')->create(),
+        ]);
     }
 
     /**
@@ -34,18 +33,68 @@ class OrderTest extends PluginTestCase
      */
     public function test_create()
     {
-        $product = factory('Djetson\Shop\Models\Product')->create();
+        $this->helperCreateModel($this->model, 'phone');
+    }
 
-        $orderItem = factory('Djetson\Shop\Models\OrderItem')->make([
-            'price' => 100,
-            'quantity' => 10,
-            'product_id' => $product->id,
+    /**
+     * Relation test | BelongTo status
+     */
+    public function test_relation_belong_to_status()
+    {
+        $this->helperBelongTo($this->model, 'status', 'name');
+    }
+
+    /**
+     * Relation test | BelongTo payment_method
+     */
+    public function test_relation_belong_to_payment_method()
+    {
+        $this->helperBelongTo($this->model, 'payment_method', 'name');
+    }
+
+    /**
+     * Relation test | BelongTo shipping_method
+     */
+    public function test_relation_belong_to_shipping_method()
+    {
+        $this->helperBelongTo($this->model, 'shipping_method', 'name');
+    }
+
+    /**
+     * Relation test | HasMany shipping_method
+     */
+    public function test_relation_has_many_items()
+    {
+        $this->model->items = factory('Djetson\Shop\Models\OrderItem', 3)->make([
+            'product' => factory('Djetson\Shop\Models\Product')->create(),
+            'warehouse' => factory('Djetson\Shop\Models\Warehouse')->create()
+        ]);
+        $this->model->save();
+
+        $this->assertEquals(3, $this->model->items->count());
+    }
+
+    /**
+     * Test order subtotal
+     */
+    public function test_order_items_sum()
+    {
+        $item = factory('Djetson\Shop\Models\OrderItem')->make([
+            'product' => factory('Djetson\Shop\Models\Product')->create(),
+            'warehouse' => factory('Djetson\Shop\Models\Warehouse')->create(),
+            'price' => 10.25,
+            'quantity' => 4,
         ]);
 
-        $model = new Order();
-        $model->payment_method = factory('Djetson\Shop\Models\PaymentMethod')->create();
-        $model->shipping_method = factory('Djetson\Shop\Models\ShippingMethod')->create();
-        $model->items = $orderItem;
-        $model->save();
+        $order = factory('Djetson\Shop\Models\Order')->create([
+            'status' => factory('Djetson\Shop\Models\Status')->create(),
+            'payment_method' => factory('Djetson\Shop\Models\PaymentMethod')->create(),
+            'shipping_method' => factory('Djetson\Shop\Models\ShippingMethod')->create(),
+        ]);
+
+        $order->items()->add($item);
+
+        $model = \Djetson\Shop\Models\Order::find($order->id);
+        $this->assertEquals(41, $model->subtotal);
     }
 }

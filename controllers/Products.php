@@ -19,8 +19,9 @@ class Products extends Controller
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
     public $relationConfig = 'config_relation.yaml';
-    public $requiredPermissions = ['djetson.shop.access_product'];
     public $importExportConfig = 'config_import_export.yaml';
+
+    public $requiredPermissions = ['djetson.shop.access_product'];
 
     public function __construct()
     {

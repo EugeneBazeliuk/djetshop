@@ -43,6 +43,16 @@ return [
         'manufacturers' => 'Производитель',
     ],
 
+
+
+
+
+
+
+
+
+
+
     // Form
     'form' => [
         'name' => 'Название',
@@ -83,18 +93,25 @@ return [
         'property_value' => 'Значение свойства',
         'see_in_categories' => 'Отображать в категориях',
         'quantity' => 'Количество',
-
+        'sum' => 'Сумма',
+        'warehouse' => 'Склад',
         'firstname' => 'Фамилия',
         'lastname' => 'Имя',
         'address' => 'Адрес',
         'city' => 'Город',
         'billing_address' => 'Адрес оплаты',
         'shipping_address' => 'Адрес доставки',
-
+        'sub_total' => 'Стоимость',
+        'invoice' => 'Номер счёта',
+        'status' => 'Статус',
         'cost' => 'Стоимость',
         'price' => 'Цена',
+        'product' => 'Товар',
         'price_original' => 'Текущая цена',
         'currency_default' => 'Основная валюта магазина',
+        'comment' => 'Комментарий',
+        'payment_total' => 'Стоимость оплаты',
+        'shipping_total' => 'Стоимость доставки',
 
         'customer' => 'Заказчик',
         'total' => 'Всего',
@@ -118,8 +135,16 @@ return [
         'created_at' => 'Создан',
         'updated_at' => 'Обновлен',
         'deleted_at' => 'Удален',
+        'reserved_at' => 'Резерв',
 
         'order_status_new' => 'Статус для созданных счетов',
+
+        'order_allow_shipping_total' => 'Учитывать стоимость доставки',
+        'order_allow_payment_total' => 'Учитывать стоимость оплаты',
+
+
+
+
 
         'price_format_decimal_count' => 'Количество цифр после знака разделения',
         'price_format_decimal_point' => 'Знак разделения',
@@ -160,10 +185,12 @@ return [
         'ean_13' => 'EAN13',
         'isbn' => 'ISBN',
         'symbol' => 'Символ',
-        'symbol_position' => 'Позиция символа',
+        'currency_position' => 'Позиция символа',
         'preview' => 'Предпросмотр',
         'provider' => 'Поставщик',
         'value' => 'Значение',
+        'sum' => 'Сумма',
+        'warehouse' => 'Склад',
 
         'group' => 'Группа',
         'type' => 'Тип',
@@ -185,7 +212,6 @@ return [
         'price' => 'Цена',
         'price_current' => 'Текущая цена',
 
-
         'price_original' => 'Текущая цена',
         'properties_count' => 'Количество свойств',
 
@@ -203,6 +229,7 @@ return [
         'created_at' => 'Создано',
         'updated_at' => 'Обновлено',
         'deleted_at' => 'Удалено',
+        'reserved_at' => 'Резерв',
     ],
 
     // Errors
@@ -272,6 +299,16 @@ return [
         'errors' => [
             'empty_order' => 'Вы ещё не добавили товары в счёт'
         ]
+    ],
+
+    // Order items
+    'order_items' => [
+        'label' => 'Позиции счёта',
+        'buttons' => [
+            'add' => 'Добавить',
+            'return' => 'Вернуть на склад',
+            'delete' => 'Удалить',
+        ],
     ],
 
     // Order histories
@@ -346,6 +383,10 @@ return [
     'settings' => [
         'label' => 'Настройки магазина',
         'description' => 'Управление основными настройками',
+
+
+
+
         'categories' => [
             'shop' => "Shop"
         ]

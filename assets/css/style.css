@@ -15,7 +15,7 @@
 }
 
 table.table.data tfoot {
-    background: red;
+    /*background: red;*/
 }
 
 table.table.data tfoot tr.total {

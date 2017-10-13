@@ -1,36 +1,24 @@
 <?php namespace Djetson\Shop\Models;
 
-use October\Rain\Database\Model;
 use ApplicationException;
+use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
 /**
  * Currency Model
  * @package Djetson\Shop
  *
- * @property int $id
- * @property string $name
- * @property string $code
- * @property string $symbol
- * @property string $symbol_position
- * @property bool $symbol_space
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read string $preview
- *
- * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereCode($value)
- * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereSymbol($value)
- * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereSymbolPosition($value)
- * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereSymbolSpace($value)
- * @method static \Illuminate\Database\Query\Builder|\Djetson\Shop\Models\Currency whereUpdatedAt($value)
+ * @property int                $id
+ * @property string             $name
+ * @property string             $code
+ * @property string             $symbol
+ * @property string             $position
+ * @property bool               $space
+ * @property \Carbon\Carbon     $created_at
+ * @property \Carbon\Carbon     $updated_at
  *
  * @mixin \Eloquent
- * @mixin   \October\Rain\Database\Model
- * @mixin   \October\Rain\Database\Builder
- * @mixin   \October\Rain\Database\Traits\Validation
+ * @mixin \October\Rain\Database\Traits\Validation
  */
 class Currency extends Model
 {
@@ -47,17 +35,17 @@ class Currency extends Model
         'name',
         'code',
         'symbol',
-        'symbol_position',
-        'symbol_space',
+        'space',
+        'position',
     ];
 
     /** @var array Validation rules */
     public $rules = [
         'name'      => ['required', 'between:1,255'],
         'code'      => ['required', 'alpha_num', 'size:3', 'unique:djetshop_currencies'],
-        'symbol'    => ['required', 'between:1,255'],
-        'symbol_space'      => ['boolean'],
-        'symbol_position'   => ['required', 'between:1,255'],
+        'symbol'    => [],
+        'space'     => ['boolean'],
+        'position'  => ['in:before,after'],
     ];
 
     /**
@@ -65,7 +53,7 @@ class Currency extends Model
      */
     public function beforeDelete()
     {
-        if (Settings::isDefaultCurrency($this)) {
+        if ($this->isDefault()) {
             throw new ApplicationException(trans('djetson.shop::lang.currencies.errors.delete_default'));
         }
     }
@@ -76,6 +64,37 @@ class Currency extends Model
      */
     public function getPreviewAttribute()
     {
-        return Settings::formatPrice(100.00, $this);
+        return $this->setCurrencyFormat(Settings::formatPrice(100.00));
+    }
+
+    /**
+     * Get formatted price
+     * @param $price
+     * @return string
+     */
+    public function setCurrencyFormat($price)
+    {
+        $template = [];
+        $space = $this->space ? ' ' : '';
+
+        switch ($this->position) {
+            case 'before';
+                $template = [$this->symbol, $price];
+                break;
+            case 'after';
+                $template = [$price, $this->symbol];
+                break;
+        }
+
+        return implode($space, $template);
+    }
+
+    /**
+     * Check Default Currency
+     * @return bool
+     */
+    public function isDefault()
+    {
+        return $this->id == Settings::get('currency_id') ? true : false;
     }
 }

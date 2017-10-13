@@ -8,6 +8,7 @@
                     <th class="text-right"><span><?= e(trans('djetson.shop::lang.list.sku')) ?></span></th>
                     <th style="width: 10%" class="text-right"><span><?= e(trans('djetson.shop::lang.list.price')) ?></span></th>
                     <th style="width: 10%" class="text-right"><span><?= e(trans('djetson.shop::lang.list.total')) ?></span></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -15,8 +16,16 @@
                     <tr>
                         <td><?= e($item->quantity) ?> x <?= e($item->name) ?></td>
                         <td class="text-right"><?= e($item->sku) ?></td>
-                        <td class="text-right"><?= e($item->price) ?></td>
-                        <td class="text-right"><?= e($formModel->formatPrice($item->total)) ?></td>
+                        <td class="text-right"><?= e($item->text_price) ?></td>
+                        <td class="text-right"><?= e($item->text_sum) ?></td>
+                        <td><a
+                            href="javascript:;"
+                            data-request="onDeleteOrderItem"
+                            data-request-data="record_id: '<?= $item->id ?>'"
+                            data-request-confirm="Delete this item?"
+                            class="oc-icon-remove"
+                            data-toggle="tooltip"
+                            title="Remove"></a>s</td>
                     </tr>
                     <?php endforeach ?>
                 </tbody>

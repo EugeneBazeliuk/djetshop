@@ -5,6 +5,26 @@
 tabs:
     fields:
 
+        # ORDERS
+        order_allow_shipping_total:
+            tab: djetson.shop::lang.form.tab.order
+            label: djetson.shop::lang.form.order_allow_shipping_total
+            type: switch
+            span: left
+
+        order_allow_payment_total:
+            tab: djetson.shop::lang.form.tab.order
+            label: djetson.shop::lang.form.order_allow_shipping_total
+            type: switch
+            span: left
+
+
+
+
+
+
+
+
         # STATUSES
         order_status_new:
             tab: djetson.shop::lang.form.tab.general

@@ -10,13 +10,13 @@ class CreateCurrenciesTable extends Migration
     {
         Schema::create('djetshop_currencies', function(Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
             // Base
+            $table->increments('id');
             $table->string('name');
             $table->string('code')->unique();
-            $table->string('symbol');
-            $table->string('symbol_position');
-            $table->boolean('symbol_space')->default(0);
+            $table->string('symbol')->nullable();
+            $table->string('position')->nullable();
+            $table->boolean('space')->default(false);
             // Timestamps
             $table->timestamps();
         });

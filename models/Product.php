@@ -9,13 +9,13 @@ use October\Rain\Database\Traits\SoftDelete;
  * Product Model
  * @package Djetson\Shop
  *
- * @property-read \Djetson\Shop\Models\Binding          $bindings
- * @property-read \Djetson\Shop\Models\Category         $category
- * @property-read \Djetson\Shop\Models\Category         $categories
- * @property-read \Djetson\Shop\Models\Product          $featured
- * @property-read \Djetson\Shop\Models\Manufacturer     $manufacturer
- * @property-read \Djetson\Shop\Models\Property         $properties
- * @property-read \Djetson\Shop\Models\Warehouse        $warehouses
+ * @property \Djetson\Shop\Models\Binding                   $bindings
+ * @property \Djetson\Shop\Models\Category                  $category
+ * @property \Djetson\Shop\Models\Category                  $categories
+ * @property \Djetson\Shop\Models\Product                   $featured
+ * @property \Djetson\Shop\Models\Manufacturer              $manufacturer
+ * @property \Djetson\Shop\Models\Property                  $properties
+ * @property \Djetson\Shop\Models\Warehouse                 $warehouses
  *
  * @method \October\Rain\Database\Relations\BelongsTo       category
  * @method \October\Rain\Database\Relations\BelongsTo       manufacturer
@@ -165,6 +165,14 @@ class Product extends Model
     public function getQuantityAttribute()
     {
         return $this->warehouses->sum('pivot.quantity');
+    }
+
+    /**
+     * Get warehouses list
+     */
+    public function getWarehousesList()
+    {
+        return $this->warehouses->pluck('name', 'id');
     }
 
     /**

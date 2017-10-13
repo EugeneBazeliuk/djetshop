@@ -9,13 +9,23 @@ use Djetson\Shop\Models\Settings;
 class Plugin extends PluginBase
 {
     /**
+     *
+     */
+    public function registerFormWidgets()
+    {
+        return [
+            'Djetson\Shop\FormWidgets\OrderItems' => 'orderItems',
+        ];
+    }
+
+    /**
      * Register List Column Types
      * @return array
      */
     public function registerListColumnTypes()
     {
         return [
-            'price' => function(float $value) {
+            'price' => function($value) {
                 return Settings::formatPrice($value);
             },
             'label' => [$this, 'evalLabelListColumn'],

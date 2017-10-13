@@ -64,21 +64,8 @@ class ProductTest extends PluginTestCase
      */
     public function test_relation_belong_to_many_bindings()
     {
-        $this->model->bindings = factory('Djetson\Shop\Models\Binding', 3)->create([
-            'binding_type' => factory('Djetson\Shop\Models\BindingType')->create()
-        ]);
-
-        $this->assertEquals(3, $this->model->bindings->count());
+        $this->helperBelongToMany($this->model, 'bindings');
     }
-
-    /**
-     * Relation test | BelongToMany properties
-     * @todo pivot проблема null
-     */
-//    public function test_relation_belong_to_many_properties()
-//    {
-//        $this->helperBelongToMany($this->model, 'properties');
-//    }
 
     /**
      * Relation test | BelongToMany categories

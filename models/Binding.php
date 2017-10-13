@@ -8,26 +8,24 @@ use October\Rain\Database\Traits\SoftDelete;
 /**
  * Binding Model
  *
- * @property int        $id
- * @property int        $type_id
- * @property string     $name
- * @property string     $description
- * @property string     $meta_title
- * @property string     $meta_keywords
- * @property string     $meta_description
- * @property boolean    $is_active
- * @property boolean    $is_searchable
+ * @property int                $id
+ * @property string             $name
+ * @property string             $description
+ * @property string             $meta_title
+ * @property string             $meta_keywords
+ * @property string             $meta_description
+ * @property boolean            $is_active
+ * @property boolean            $is_searchable
  * @property \Carbon\Carbon     $created_at
  * @property \Carbon\Carbon     $updated_at
  *
- * @property-read \Djetson\Shop\Models\BindingType $binding_type
- * @method \October\Rain\Database\Relations\BelongsTo binding_type
+ * @property \Djetson\Shop\Models\BindingType   $type
+ * @property \Djetson\Shop\Models\Product       $products
  *
- * @property-read \Djetson\Shop\Models\Product $products
- * @method \October\Rain\Database\Relations\BelongsToMany products
+ * @method \October\Rain\Database\Relations\BelongsTo       type
+ * @method \October\Rain\Database\Relations\BelongsToMany   products
  *
  * @mixin \Eloquent
- * @mixin \October\Rain\Database\Model
  * @mixin \October\Rain\Database\Traits\Sluggable
  * @mixin \October\Rain\Database\Traits\Validation
  * @mixin \October\Rain\Database\Traits\SoftDelete
@@ -38,25 +36,18 @@ class Binding extends Model
     use Validation;
     use SoftDelete;
 
-    /**
-     * @var string The database table used by the model.
-     */
+    /** @var string The database table used by the model. */
     public $table = 'djetshop_bindings';
 
-    /**
-     * @var array Guarded fields
-     */
+    /** @var array Guarded fields */
     protected $guarded = ['*'];
 
-    /**
-     * @var array Fillable fields
-     */
+    /** @var array Fillable fields */
     protected $fillable = [
         // Base
         'name',
-        'type_id',
-        // Description
         'description',
+        // Meta
         'meta_title',
         'meta_keywords',
         'meta_description',
@@ -65,14 +56,10 @@ class Binding extends Model
         'is_searchable',
     ];
 
-    /**
-     * @var array Generate slugs for these attributes.
-     */
+    /** @var array Generate slugs for these attributes. */
     protected $slugs = ['slug' => 'name'];
 
-    /**
-     * @var array Dates fields
-     */
+    /** @var array Dates fields */
     protected $dates = ['deleted_at'];
 
     /** @var array Relations */
@@ -81,6 +68,7 @@ class Binding extends Model
             'Djetson\Shop\Models\BindingType',
         ],
     ];
+
     public $belongsToMany = [
         'products' => [
             'Djetson\Shop\Models\Product',
@@ -89,6 +77,7 @@ class Binding extends Model
             'otherKey'      => 'product_id',
         ],
     ];
+
     public $attachOne = [
         'image' => ['System\Models\File', 'delete' => true]
     ];
@@ -98,9 +87,8 @@ class Binding extends Model
         // Base
         'name'              => ['required', 'between:1,255'],
         'slug'              => ['required:update', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'between:1,255', 'unique:djetshop_bindings'],
-        'type_id'           => ['required'],
-        // Description
         'description'       => [],
+        // Meta
         'meta_title'        => ['between:1,255'],
         'meta_keywords'     => ['between:1,255'],
         'meta_description'  => ['between:1,255'],
